@@ -1,0 +1,11 @@
+---
+# tasks file for testing that variables of ansible-role jonaspammer.mediawiki are set correctly
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html
+
+# - name: test if variable_name is set correctly
+#   ansible.builtin.assert:
+#     that:
+#       - variable_name is defined
+#       - variable_name is number
+#       - variable_name >= 0
+#     quiet: true
