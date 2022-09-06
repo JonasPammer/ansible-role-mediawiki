@@ -17,7 +17,8 @@ Below you can find information on…
     ---
     galaxy_info:
       role_name: "mediawiki"
-      description: "An ansible role for downloading mediawiki into specified directory,
+      description:
+        "An ansible role for downloading mediawiki into specified directory,
         installing recommended system packages and downloading additional extensions and skins."
 
       author: "jonaspammer"
