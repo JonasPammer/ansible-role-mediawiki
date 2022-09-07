@@ -2,10 +2,10 @@
 # vars file of ansible-role jonaspammer.mediawiki
 # (tl;dr: almost not overwrite-able variables)
 
-_mediawiki__somevar:
-  Debian: ""
-  Debian_10: ""
-  RedHat: ""
+_mediawiki_destination_base:
+  default: /var/www/html
+  Alpine: /var/www/{{ httpd_servername | default(ansible_fqdn) }}
+  Suse: /srv/www/htdocs
 
 mediawiki__somevar: "{{
   _mediawiki__somevar[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(

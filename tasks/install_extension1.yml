@@ -1,0 +1,22 @@
+---
+# tasks file of roles/mediawiki-prepare
+
+- name: Include Tasks to install {{ item.key }} Extensions
+  ansible.builtin.include_tasks: install_extension.yml
+  vars:
+    extension_name: "{{ extension.name }}"
+    extension_gather_type: "{{ extension.gather_type | default('git', true) }}"
+    extension_composer_name: "{{ extension.composer_name | default('', true) }}"
+    extension_composer_version: "{{ extension.composer_version | default('', true) }}"
+    extension_git_mwrepo_name: "{{ extension.git_mwrepo_name | default(extension_name, true) }}"
+    extension_git_url: "{{ extension.git_url |
+      default('https://github.com/wikimedia/mediawiki-extensions-' + extension_git_mwrepo_name + '.git', true) }}"
+    extension_git_version: "{{ extension.git_version |
+      default('REL' + mediawiki_version_major|string + '_' + mediawiki_version_minor|string, true) }}"
+    extension_git_run_composer_install: "{{ extension.git_run_composer_install |
+      default(mediawiki_extensions_git_run_composer_install_default, true) }}"
+    system_package_dependencies: "{{ extension.system_package_dependencies | default('', true) }}"
+  loop: "{{ item.value }}"
+  loop_control:
+    loop_var: "extension"
+# FIXME somehow make that it sets these (default) values in the actual dictionary/list
