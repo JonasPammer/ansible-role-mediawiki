@@ -1,3 +1,31 @@
 ---
 # defaults file of ansible-role jonaspammer.mediawiki
 # See README.adoc for documentation. If you change a default here, also update it in the README.
+
+mediawiki_version_major: 1
+mediawiki_version_minor: 36
+mediawiki_version_release: 0
+mediawiki_version: "{{ mediawiki_version_major }}.{{ mediawiki_version_minor }}.{{ mediawiki_version_release }}"
+mediawiki_download_url: "https://releases.wikimedia.org/mediawiki/
+  {{ mediawiki_version_major}}.{{ mediawiki_version_minor }}/mediawiki-{{ mediawiki_version }}.tar.gz"
+
+mediawiki_destination: "{{ _mediawiki_destination_base[ansible_distribution] | default(_mediawiki_destination_base['default']) }}/mediawiki"
+mediawiki_destination_permissions: u=rwx,g=rx,o=rx
+mediawiki_linux_group: ~
+mediawiki_linux_username: ~
+
+# Note: Packages brought by dependant php/php-mysql role are not listed.
+mediawiki_packages_php:
+  - php{{ php_version }}-bcmath
+  - php{{ php_version }}-intl
+
+mediawiki_packages:
+  - imagemagick
+  - inkscape
+  - git
+
+mediawiki_extensions:
+  unsorted: []
+mediawiki_extensions_git_run_composer_install_default: true
+
+mediawiki_skins: []

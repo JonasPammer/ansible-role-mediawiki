@@ -5,3 +5,89 @@
   ansible.builtin.import_tasks: assert.yml
   run_once: true
   delegate_to: localhost
+
+- name: Create mediawiki destination directory and ensure correct mode/group/owner.
+  ansible.builtin.file:
+    path: "{{ mediawiki_destination }}"
+    state: directory
+    mode: "{{ mediawiki_destination_permissions }}"
+    group: "{{ mediawiki_linux_group }}"
+    owner: "{{ mediawiki_linux_username }}"
+
+- name: Download mediawiki-archive into destination directory if it does not exist and ensure correct mode/group/owner.
+  ansible.builtin.get_url:
+    url: "{{ mediawiki_download_url }}"
+    dest: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}.tar.gz"
+    mode: "{{ mediawiki_destination_permissions }}"
+    group: "{{ mediawiki_linux_group }}"
+    owner: "{{ mediawiki_linux_username }}"
+
+- name: Extract downloaded mediawiki-archive if index.php is missing in the destination directory.
+  ansible.builtin.unarchive:
+    src: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}.tar.gz"
+    dest: "{{ mediawiki_destination }}/"
+    extra_opts: [--strip-components=1]
+    copy: false
+    creates: "{{ mediawiki_destination }}/index.php"
+    keep_newer: true
+    mode: "{{ mediawiki_destination_permissions }}"
+    group: "{{ mediawiki_linux_group }}"
+    owner: "{{ mediawiki_linux_username }}"
+  register: mediawiki__register_unarchive
+
+- name: Ensure Mediawiki's directory (and everything inside it) has correct owner/group (when mediawiki has just been unarchived).
+  ansible.builtin.file:
+    path: "{{ mediawiki_destination }}"
+    recurse: true
+    owner: "{{ mediawiki_linux_username }}"
+    group: "{{ mediawiki_linux_group }}"
+  when: mediawiki__register_unarchive.changed
+
+- name: Install required/recommended Packages for running Mediawiki.
+  ansible.builtin.package:
+    name: "{{ mediawiki_packages }}"
+    state: present
+
+- name: Install additionally required/recommended PHP-Packages for running Mediawiki.
+  ansible.builtin.package:
+    name: "{{ mediawiki_packages_php }}"
+    state: present
+  notify: restart httpd
+
+- block:
+    - name: Ensure folders used for extension gathering (and everything inside them) have Mediawiki's linux user as their owner
+      become: true
+      ansible.builtin.file:
+        path: "{{ mediawiki_destination }}/{{ item }}"
+        recurse: true
+        owner: "{{ mediawiki_linux_username }}"
+      failed_when: false
+      loop: [extensions, vendor] # "vendor" is for composer
+
+    - name: Include Tasks to gather/install Extensions
+      ansible.builtin.include_tasks: install_extension1.yml
+      loop: "{{ mediawiki_extensions | dict2items }}"
+      loop_control:
+        label: "{{ item.key }}"
+  tags: [mediawiki::extensions]
+
+- block:
+    - name: Ensure folders used for skin gathering (and everything inside them) have Mediawiki's linux user as their owner
+      become: true
+      ansible.builtin.file:
+        path: "{{ mediawiki_destination }}/{{ item }}"
+        state: directory
+        recurse: true
+        owner: "{{ mediawiki_linux_username }}"
+      loop: [skins, vendor] # "vendor" is for composer
+    - name: Include Tasks to gather/install Skins
+      ansible.builtin.include_tasks: install_skin.yml
+      vars:
+        skin_name: "{{ skin.name }}"
+        skin_git_url: "{{ skin.git_url | default('https://github.com/wikimedia/mediawiki-skins-' + skin_name + '.git', true) }}"
+        skin_git_version: "{{ skin.git_version
+          | default('REL' + mediawiki_version_major|string + '_' + mediawiki_version_minor|string, true) }}"
+      loop: "{{ mediawiki_skins }}"
+      loop_control:
+        loop_var: "skin"
+  tags: [mediawiki::skins]

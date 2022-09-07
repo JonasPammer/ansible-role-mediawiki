@@ -1,2 +1,7 @@
 ---
 # handlers file of ansible-role jonaspammer.mediawiki
+
+- name: restart httpd
+  ansible.builtin.service:
+    name: "{{ apache__service | default('apache2') }}"
+    state: restarted

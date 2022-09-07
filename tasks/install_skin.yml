@@ -1,0 +1,19 @@
+---
+# tasks file of roles/mediawiki-prepare
+
+- name: Stat Folder of {{ skin_name }}-Skin
+  ansible.builtin.stat:
+    path: "{{ mediawiki_destination }}/skins/{{ skin_name }}/.git"
+  register: mediawiki__register_stat_skin_folder
+
+- name: Remove {{ skin_name }}-Skin (when .git does not exist, i.e. downloaded through other means by some other entity)
+  ansible.builtin.file:
+    path: "{{ mediawiki_destination }}/skins/{{ skin_name }}"
+    state: absent
+  when: not mediawiki__register_stat_skin_folder.stat.exists
+
+- name: Download {{ skin_name }}-Skin from Git Repository
+  ansible.builtin.git:
+    repo: "{{ skin_git_url }}"
+    dest: "{{ mediawiki_destination }}/skins/{{ skin_name }}"
+    version: "{{ skin_git_version }}"
