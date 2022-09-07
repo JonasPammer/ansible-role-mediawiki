@@ -19,21 +19,21 @@ https://galaxy.ansible.com/jonaspammer/mediawiki[image:https://img.shields.io/ba
 https://github.com/JonasPammer/ansible-role-mediawiki/actions/workflows/ci.yml[image:https://github.com/JonasPammer/ansible-role-mediawiki/actions/workflows/ci.yml/badge.svg[Testing CI]]
 
 
-An Ansible role for 
+An Ansible role for
 
-* downloading mediawiki into a specified directory, 
-* installing recommended system packages 
+* downloading mediawiki into a specified directory,
+* installing recommended system packages
 * downloading additional extensions and skins through Git or Composer
 
 This role does *not* install/configure an SQL-Server.
 
 This role does *not* install/configure a Webserver.
 
-This role does *not* generate a LocalSettings.php 
+This role does *not* generate a LocalSettings.php
 (https://github.com/JonasPammer/ansible-role-mediawiki/issues/2[yet]).
 
 This role does *not* execute any of Mediawiki's maintenance scripts
-(like `update.php` which you'll want to run for most extensions to work) 
+(like `update.php` which you'll want to run for most extensions to work)
 https://github.com/JonasPammer/ansible-role-mediawiki/issues/3[yet].
 
 This role *does* try to ensure permissions of Mediawiki's files.
