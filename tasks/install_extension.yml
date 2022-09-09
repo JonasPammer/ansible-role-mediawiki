@@ -66,7 +66,7 @@
       environment:
         COMPOSER: composer.local.json
       failed_when: false
-      when: extension_composer_name != ''
+      when: extension_composer_name|length > 0
 
     - name: Download {{ extension_name }}-Extension from Git Mediawiki's 'extensions/'-directory as Mediawiki's Linux User
       ansible.builtin.git:
@@ -97,4 +97,4 @@
   ansible.builtin.package:
     name: "{{ system_package_dependencies }}"
     state: present
-  when: system_package_dependencies != ''
+  when: system_package_dependencies|length > 0
