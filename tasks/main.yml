@@ -41,7 +41,7 @@
     recurse: true
     owner: "{{ mediawiki_linux_username }}"
     group: "{{ mediawiki_linux_group }}"
-  when: mediawiki__register_unarchive.changed
+  when: mediawiki__register_unarchive.changed # noqa: no-handler
 
 - name: Install required/recommended Packages for running Mediawiki.
   ansible.builtin.package:
