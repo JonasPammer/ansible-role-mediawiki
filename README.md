@@ -70,19 +70,153 @@ The Ansible User needs to be able to `become`.
 
 The [`community.general` collection](https://galaxy.ansible.com/community/general) must be installed on the Ansible controller.
 
+Composer needs to be installed on the Host.
+
 # 📜 Role Variables
 
-    variable: default value
+    mediawiki_version_major: 1
+    mediawiki_version_minor: 36
+    mediawiki_version_release: 0
 
-Description
+Version of Mediawiki to download. See [releases.wikimedia.org](https://releases.wikimedia.org/mediawiki/) and [Wikipedia: MediaWiki Version History](https://en.wikipedia.org/wiki/MediaWiki_version_history).
 
-    variable: [OS-specific by default, see /vars directory]
+    mediawiki_destination: [default htdocs of distro]/mediawiki
 
-Description
+Folder in which to extract the downloaded mediawiki archive into. Must **not** end with an "/".
 
-    variable: [OS-specific by default, see /vars directory]
+The default points to a directory named `mediawiki` in the default httpd' directory of the distribution:
 
-(Debian/Ubuntu only) Description
+- default: `/var/www/html`
+
+- Alpine: `/var/www/{{ httpd_servername | default(ansible_fqdn) }}`
+
+- Suse: `/srv/www/htdocs`
+
+<!-- -->
+
+    mediawiki_destination_permissions: u=rwx,g=rx,o=rx
+
+The permissions the resulting directory should have.
+
+    mediawiki_linux_username: ~
+    mediawiki_linux_group: ~
+
+User and Group that should own the destination directory itself.
+
+You will need to ensure these are created **beforehand** (e.g. using `pre_tasks`) - the machine’s passwd configuration is no business to this role.
+
+    php_version: ""
+
+Used in the names of the installed PHP Packages. Variable-Name comes from the `php-versions` role.
+
+Leaving this blank will result in the installation of the symlink-packages of the system. Consult the README of the `php-versions`-role for more information on this WARNING.
+
+## Downloading Extensions
+
+This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki_prepare::extensions`.
+
+By using this role in combination with this variable and its structure you could have something like this in your LocalSettings.php Template:
+
+    {% for category_identfier, extensions_array in mediawiki_extensions.items() %}
+    # {{ category_identfier }} extensions
+    {%  for extension in extensions_array %}
+    {%      if extension.load %}
+    wfLoadExtension("{{ extension.name }}");
+    {%      endif %}
+    {%  endfor %}
+    {% endfor %}
+
+    mediawiki_extensions:
+      unsorted: []
+
+A _dictionary of lists_ of Extensions to download.
+
+The dictionary keys are to attach an _arbitrary_ "category" to each extension. How you name these "categories" is to your business only.
+
+Each entry of a list may have the following properties (Consult the [📚 Example Playbook Usages](#example_playbooks)-Section for Examples):
+
+name
+Name of the Extension as used when registering the extension in `LocalSettings.php`.
+
+load
+Boolean. Can be used in the Jinja2 Template to decide if the extension shall be loaded. Does not have any effect in this role.
+
+gather_type
+This variable defines how to gather the extension. Possible values: "composer", "git". Defaults to "git".
+
+Extensions can be **gathered** for a given MediaWiki-Version through various ways. As of 2021, the most common/supported way is by…
+
+- Downloading the extension from Git to the `/extensions`-directory
+
+- Optionally running `composer install [--no-dev …]` in the cloned directory to install its dependencies in _its_ directory (kind-of-like `npm install`).
+
+  When you download an extension from [ MediaWiki’s Extension distributor](https://www.mediawiki.org/wiki/Special:ExtensionDistributor), this step has already been done beforehand.
+
+A more recent initiative attempts to implement the **sole** use of Composer to gather Mediawiki’s Extensions (instead of just using it for gathering libraries), for-example by issuing `composer require mediawiki/semantic-media-wiki` in Mediawiki’s base directory. This is still [an actively discussed RFC](https://phabricator.wikimedia.org/T250406).
+
+This method can only be done if the extension exists as a "Composer package" of-course.
+
+No-matter which version is used to gather the extension, you’ll still need to issue `wfLoadExtension` in your "LocalSettings.php"-file.
+
+composer_name
+Name of the composer package of the Extension, for example as found on [ packagist.org](https://packagist.org/search/?type=mediawiki-extension).
+
+It’s a good Idea to pass in this value even if you plan to use git as the gather-method, assuming your Extensions [ exists as a composer package](https://www.mediawiki.org/wiki/Category:Extensions_supporting_Composer). By doing so, this role can make sure Mediawiki’s Composer does not contain this Composer Package (which could cause the weirdest conflicts).
+
+Also, if you do this, I like to explicitly specify the `gather_type` to be "git" myself.
+
+composer_version
+[Version Constraint](https://getcomposer.org/doc/articles/versions.md#writing-version-constraints) for the Composer Package.
+
+_git_mwrepo_name_
+If your extensions is under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control), but uses a different name for their Repository than provided in `name`, you can use this to supply the name as used in the MediaWiki Repository. Look at the default of `git_url` to understand this. Defaults to `name`.
+
+git_url
+URL to `.git` from the repository of the extension. Defaults to `https://github.com/wikimedia/mediawiki-extensions-{{ git_mwrepo_name }}.git`.
+
+git*version
+What version of the repository to check out. This can be the literal string HEAD, a branch name, a tag name. Defaults to `REL{{ mediawiki_version_major }}*{{ mediawiki_version_minor }}` if not provided.
+
+git_run_composer_install
+Boolean or "always". Whether to run `composer install` in the directory of the Extension. Defaults to value of `mediawiki_extensions_git_run_composer_install_default`.
+
+- If set to "always", the command will be executed on every run.
+
+- If set to a truthy boolean value, the command will be executed if the issued git module reports a change.
+
+_system_package_dependencies_
+Package name(s) to install to the system using [ ansible.builtin.package](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html#parameter-name).
+
+<!-- -->
+
+    mediawiki_extensions_git_run_composer_install_default: true
+
+Overwrites the default value for `git_run_composer_install` of every extension.
+
+## Downloading Skins
+
+This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki_prepare::skins`.
+
+By using this role in combination with this variable and its structure you could have something like this in your LocalSettings.php Template:
+
+    {% for skin in mediawiki_skins %}
+    wfLoadSkin( '{{ skin.name }}' );
+    {% endfor %}
+
+    mediawiki_skins: []
+
+A list of Skins to download.
+
+Each entry of the list may have the following properties (Consult the [📚 Example Playbook Usages](#example_playbooks)-Section for Examples):
+
+name
+Official Name, as used when loading the skin. If your extensions falls under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control) you will only need to supply this value.
+
+git_url
+URL to `.git` from the repository of the extension. Defaults to `https://github.com/wikimedia/mediawiki-extensions-{{ name }}.git` if not provided.
+
+git*version
+What version of the repository to check out. This can be the literal string HEAD, a branch name, a tag name. Defaults to `REL{{ mediawiki_version_major }}*{{ mediawiki_version_minor }}` if not provided.
 
 # 📜 Facts/Variables defined by this role
 
@@ -114,6 +248,10 @@ You can use Ansible to skip tasks, or only run certain tasks by using these tags
 
 # 👫 Dependencies
 
+- [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php) (This role only installs packages not included in the defaults of linked role)
+
+- [geerlingguy.php-mysql](https://github.com/geerlingguy/ansible-role-php-mysql)
+
 # 📚 Example Playbook Usages
 
 This role is part of [ many compatible purpose-specific roles of mine](https://github.com/JonasPammer/ansible-roles).
@@ -137,10 +275,58 @@ The following diagram is a compilation of the "soft dependencies" of this role a
 ![requirements.yml dependency graph of jonaspammer.mediawiki](https://raw.githubusercontent.com/JonasPammer/ansible-roles/master/graphs/dependencies_mediawiki.svg)
 
     roles:
-      - role: jonaspammer.mediawiki
+      - geerlingguy.php
+      - geerlingguy.php-mysql
+      - jonaspammer.mediawiki
 
     vars:
-      some_var: "some_value"
+      mediawiki_destination: "/opt/my_wiki"
+      mediawiki_linux_username: "root"
+      mediawiki_linux_group: "root"
+      php_version: "7.4"
+
+If an extensions is under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control), you will only need to supply the `name` property.
+
+    roles:
+      - geerlingguy.php
+      - geerlingguy.php-mysql
+      - geerlingguy.git
+      - jonaspammer.mediawiki
+
+    vars:
+      mediawiki_extensions:
+        special_page:
+          - name: "ExtendedFilelist"
+            git_mwrepo_name: "BlueSpiceExtendedFilelist"
+            git_run_composer_install: true
+
+        editor:
+          - name: "CodeEditor"
+          - name: "CodeMirror"
+          - name: "VisualEditor"
+          - name: "WikiEditor"
+
+        parser:
+          - name: "BOFH"
+            git_url: "https://github.com/tessus/mwExtensionBOFH"
+            git_version: "1.8"
+
+      semantic_mediawiki:
+        - name: "SemanticMediaWiki"
+          gather_type: composer
+          composer_name: "mediawiki/semantic-media-wiki"
+          composer_version: "~3.0"
+
+      variable:
+        - name: "HitCounters"
+          gather_type: git  # We get it from git...
+          composer_name: "mediawiki/hit-counters"  # ...but make sure that, if it was previously installed through composer, this role removes it from Mediawiki's Composer packages
+
+      mediawiki_skins:
+        - name: "Timeless"
+        - name: "Vector"
+        - name: "MonoBook"
+        - name: "MinervaNeue"
 
 # 🧪 Tested Distributions
 
