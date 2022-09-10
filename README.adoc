@@ -407,7 +407,9 @@ which sources its soft dependencies from `requirements.yml`:
     - role: geerlingguy.repo-epel
       when: ansible_os_family == "RedHat"
     - role: geerlingguy.repo-remi
-      when: ansible_os_family == "RedHat"
+      when: >
+        ansible_os_family == "RedHat" and not
+        (ansible_distribution_major_version == 8 and ansible_distribution_minor_version < 6)
     - role: geerlingguy.php-versions
     - role: geerlingguy.php
     - role: geerlingguy.php-mysql
@@ -427,17 +429,9 @@ requirements.yml dependency graph of jonaspammer.mediawiki]
 [source,yaml]
 ----
 roles:
-  - name: geerlingguy.repo-epel
-    when: ansible_os_family == "RedHat"
-  - name: geerlingguy.repo-remi
-    when: ansible_os_family == "RedHat"
-  - geerlingguy.php-versions
-  - geerlingguy.php
-  - geerlingguy.php-mysql
   - jonaspammer.mediawiki
 
 vars:
-  php_version: "7.4"
   mediawiki_destination: "/opt/my_wiki"
   mediawiki_linux_username: "root"
   mediawiki_linux_group: "root"
@@ -457,8 +451,6 @@ Wikimedias' version control], you will only need to supply the `name` property.
 [source,yaml]
 ----
 roles:
-  - geerlingguy.php
-  - geerlingguy.php-mysql
   - geerlingguy.git
   - jonaspammer.mediawiki
 
