@@ -273,6 +273,8 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
 
       roles:
         - role: jonaspammer.bootstrap
+        - role: geerlingguy.repo-epel
+          when: ansible_os_family == "RedHat"
         - role: geerlingguy.repo-remi
           when: ansible_os_family == "RedHat"
         - role: geerlingguy.php-versions
@@ -286,6 +288,8 @@ The following diagram is a compilation of the "soft dependencies" of this role a
 ![requirements.yml dependency graph of jonaspammer.mediawiki](https://raw.githubusercontent.com/JonasPammer/ansible-roles/master/graphs/dependencies_mediawiki.svg)
 
     roles:
+      - name: geerlingguy.repo-epel
+        when: ansible_os_family == "RedHat"
       - name: geerlingguy.repo-remi
         when: ansible_os_family == "RedHat"
       - geerlingguy.php-versions
