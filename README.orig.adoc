@@ -382,15 +382,18 @@ requirements.yml dependency graph of jonaspammer.mediawiki]
 [source,yaml]
 ----
 roles:
+  - name: geerlingguy.repo-remi
+    when: ansible_os_family == "RedHat"
+  - geerlingguy.php-versions
   - geerlingguy.php
   - geerlingguy.php-mysql
   - jonaspammer.mediawiki
 
 vars:
+  php_version: "7.2"
   mediawiki_destination: "/opt/my_wiki"
   mediawiki_linux_username: "root"
   mediawiki_linux_group: "root"
-  php_version: "7.4"
 ----
 ====
 
