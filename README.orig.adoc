@@ -433,16 +433,16 @@ vars:
         git_url: "https://github.com/tessus/mwExtensionBOFH"
         git_version: "1.8"
 
-  semantic_mediawiki:
-    - name: "SemanticMediaWiki"
-      gather_type: composer
-      composer_name: "mediawiki/semantic-media-wiki"
-      composer_version: "~3.0"
+    semantic_mediawiki:
+      - name: "SemanticMediaWiki"
+        gather_type: composer
+        composer_name: "mediawiki/semantic-media-wiki"
+        composer_version: "~3.0"
 
-  variable:
-    - name: "HitCounters"
-      gather_type: git  # We get it from git...
-      composer_name: "mediawiki/hit-counters"  # ...but make sure that, if it was previously installed through composer, this role removes it from Mediawiki's Composer packages
+    variable:
+      - name: "HitCounters"
+        gather_type: git  # We get it from git...
+        composer_name: "mediawiki/hit-counters"  # ...but make sure that, if it was previously installed through composer, this role removes it from Mediawiki's Composer packages
 
   mediawiki_skins:
     - name: "Timeless"
