@@ -390,7 +390,7 @@ roles:
   - jonaspammer.mediawiki
 
 vars:
-  php_version: "7.2"
+  php_version: "7.4"
   mediawiki_destination: "/opt/my_wiki"
   mediawiki_linux_username: "root"
   mediawiki_linux_group: "root"
