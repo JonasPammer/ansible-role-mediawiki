@@ -10,8 +10,10 @@
     php_version: "7.4"
 
   roles:
-    - name: jonaspammer.bootstrap
-    - name: geerlingguy.repo-remi
+    - role: jonaspammer.bootstrap
+    - role: geerlingguy.repo-epel
+      when: ansible_os_family == "RedHat"
+    - role: geerlingguy.repo-remi
       when: ansible_os_family == "RedHat"
     - name: geerlingguy.php-versions
     - name: geerlingguy.php
