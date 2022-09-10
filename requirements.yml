@@ -1,7 +1,9 @@
 ---
 roles:
   - name: jonaspammer.bootstrap
-#  - name: jonaspammer.core_dependencies
+  - name: geerlingguy.php
+  - name: geerlingguy.php-mysql
+  - name: geerlingguy.git
 
 # NOTE: list all collections used here (even if included in `ansible`)
 collections:
