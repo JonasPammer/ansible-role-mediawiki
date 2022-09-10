@@ -278,7 +278,7 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
         - role: geerlingguy.repo-remi
           when: >
             ansible_os_family == "RedHat" and not
-            (ansible_distribution_major_version == 8 and ansible_distribution_version|split(".")[1]|int < 6)
+            (ansible_distribution_major_version == 8 and ansible_distribution_version.split(".")[1]|int < 6)
         - role: geerlingguy.php-versions
         - role: geerlingguy.php
         - role: geerlingguy.php-mysql
