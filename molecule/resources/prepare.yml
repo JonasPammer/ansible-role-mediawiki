@@ -5,5 +5,8 @@
   gather_facts: false
 
   roles:
-    - role: jonaspammer.bootstrap
-    #    - name: jonaspammer.core_dependencies
+    - name: jonaspammer.bootstrap
+    - name: geerlingguy.php
+    - name: geerlingguy.php-mysql
+    - name: geerlingguy.git
+    #    - role: jonaspammer.core_dependencies
