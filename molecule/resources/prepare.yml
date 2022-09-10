@@ -4,9 +4,16 @@
   become: true
   gather_facts: false
 
+  vars:
+    # https://www.mediawiki.org/wiki/Compatibility
+    php_version: "7.2"
+  
   roles:
     - name: jonaspammer.bootstrap
+    - name: geerlingguy.repo-remi
+      when: ansible_os_family == "RedHat"
+    - name: geerlingguy.php-versions
     - name: geerlingguy.php
     - name: geerlingguy.php-mysql
     - name: geerlingguy.git
-    #    - role: jonaspammer.core_dependencies
+    #    - name: jonaspammer.core_dependencies
