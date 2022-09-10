@@ -1,6 +1,7 @@
 ---
 roles:
   - name: jonaspammer.bootstrap
+  - name: geerlingguy.repo-epel
   - name: geerlingguy.repo-remi
   - name: geerlingguy.php
   - name: geerlingguy.php-versions
