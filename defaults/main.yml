@@ -6,7 +6,7 @@ mediawiki_version_major: 1
 mediawiki_version_minor: 36
 mediawiki_version_release: 0
 mediawiki_version: "{{ mediawiki_version_major }}.{{ mediawiki_version_minor }}.{{ mediawiki_version_release }}"
-mediawiki_download_url: "https://releases.wikimedia.org/mediawiki/
+mediawiki_download_url: "https://releases.wikimedia.org/mediawiki/\
   {{ mediawiki_version_major}}.{{ mediawiki_version_minor }}/mediawiki-{{ mediawiki_version }}.tar.gz"
 
 mediawiki_destination: "{{ _mediawiki_destination_base[ansible_distribution] | default(_mediawiki_destination_base['default']) }}/mediawiki"
