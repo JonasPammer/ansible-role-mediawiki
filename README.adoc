@@ -399,6 +399,7 @@ which sources its soft dependencies from `requirements.yml`:
 
   vars:
     # https://www.mediawiki.org/wiki/Compatibility
+    # https://www.php.net/supported-versions.php
     php_version: "7.4"
 
   roles:
