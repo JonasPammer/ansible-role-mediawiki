@@ -266,8 +266,15 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
       become: true
       gather_facts: false
 
+      vars:
+        # https://www.mediawiki.org/wiki/Compatibility
+        php_version: "7.2"
+
       roles:
         - role: jonaspammer.bootstrap
+        - role: geerlingguy.repo-remi
+          when: ansible_os_family == "RedHat"
+        - role: geerlingguy.php-versions
         - role: geerlingguy.php
         - role: geerlingguy.php-mysql
         - role: geerlingguy.git
@@ -278,15 +285,18 @@ The following diagram is a compilation of the "soft dependencies" of this role a
 ![requirements.yml dependency graph of jonaspammer.mediawiki](https://raw.githubusercontent.com/JonasPammer/ansible-roles/master/graphs/dependencies_mediawiki.svg)
 
     roles:
+      - name: geerlingguy.repo-remi
+        when: ansible_os_family == "RedHat"
+      - geerlingguy.php-versions
       - geerlingguy.php
       - geerlingguy.php-mysql
       - jonaspammer.mediawiki
 
     vars:
+      php_version: "7.2"
       mediawiki_destination: "/opt/my_wiki"
       mediawiki_linux_username: "root"
       mediawiki_linux_group: "root"
-      php_version: "7.4"
 
 If an extensions is under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control), you will only need to supply the `name` property.
 
@@ -314,16 +324,16 @@ If an extensions is under [ Wikimedias' version control](https://www.mediawiki.o
             git_url: "https://github.com/tessus/mwExtensionBOFH"
             git_version: "1.8"
 
-      semantic_mediawiki:
-        - name: "SemanticMediaWiki"
-          gather_type: composer
-          composer_name: "mediawiki/semantic-media-wiki"
-          composer_version: "~3.0"
+        semantic_mediawiki:
+          - name: "SemanticMediaWiki"
+            gather_type: composer
+            composer_name: "mediawiki/semantic-media-wiki"
+            composer_version: "~3.0"
 
-      variable:
-        - name: "HitCounters"
-          gather_type: git  # We get it from git...
-          composer_name: "mediawiki/hit-counters"  # ...but make sure that, if it was previously installed through composer, this role removes it from Mediawiki's Composer packages
+        variable:
+          - name: "HitCounters"
+            gather_type: git  # We get it from git...
+            composer_name: "mediawiki/hit-counters"  # ...but make sure that, if it was previously installed through composer, this role removes it from Mediawiki's Composer packages
 
       mediawiki_skins:
         - name: "Timeless"
