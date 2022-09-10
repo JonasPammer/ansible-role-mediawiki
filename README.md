@@ -268,7 +268,7 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
 
       vars:
         # https://www.mediawiki.org/wiki/Compatibility
-        php_version: "7.2"
+        php_version: "7.4"
 
       roles:
         - role: jonaspammer.bootstrap
@@ -293,7 +293,7 @@ The following diagram is a compilation of the "soft dependencies" of this role a
       - jonaspammer.mediawiki
 
     vars:
-      php_version: "7.2"
+      php_version: "7.4"
       mediawiki_destination: "/opt/my_wiki"
       mediawiki_linux_username: "root"
       mediawiki_linux_group: "root"
