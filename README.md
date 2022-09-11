@@ -270,6 +270,7 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
         # https://www.mediawiki.org/wiki/Compatibility
         # https://www.php.net/supported-versions.php
         php_version: "7.4"
+        php_enable_webserver: false
 
       roles:
         - role: jonaspammer.bootstrap
