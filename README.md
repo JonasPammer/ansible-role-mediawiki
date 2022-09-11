@@ -277,6 +277,8 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
         - role: geerlingguy.repo-epel
           when: ansible_os_family == "RedHat"
         - role: geerlingguy.repo-remi
+          # repo-remi only supported on redhat
+          when: ansible_os_family == "RedHat"
         - role: geerlingguy.php-versions
         - role: geerlingguy.php
         - role: geerlingguy.php-mysql
