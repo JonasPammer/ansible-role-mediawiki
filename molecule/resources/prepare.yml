@@ -16,18 +16,18 @@
       when: ansible_os_family == "RedHat"
     - role: geerlingguy.repo-remi
       # repo-remi only supported on redhat
-      # repo-remi only supports 8 with >=8.6 
+      # repo-remi only supports 8 with >=8.6
       # (https://stackoverflow.com/questions/73335143/cannot-download-remirepo-for-centos-8)
       when: >
         ansible_os_family == "RedHat" and not
-        (ansible_distribution_major_version == "8" and 
+        (ansible_distribution_major_version == "8" and
          ansible_distribution_version.split(".")[1]|int < 6)
     - name: geerlingguy.php-versions
       # centos8 has php7.2
       when: >
-        not 
-        (ansible_os_family == "RedHat" and 
-         ansible_distribution_major_version == "8" and 
+        not
+        (ansible_os_family == "RedHat" and
+         ansible_distribution_major_version == "8" and
          ansible_distribution_version.split(".")[1]|int < 6)
     - name: geerlingguy.php
     - name: geerlingguy.php-mysql
