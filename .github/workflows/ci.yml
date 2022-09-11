@@ -130,13 +130,14 @@ jobs:
       max-parallel: 4
       matrix:
         distro:
-          # ensure diversity in first half:
-          - ubuntu2204
-          - debian12
-          - rockylinux9
-          - fedora39
-          # other:
+          - centos7
+          # - centos8
+          - debian10
+          - debian11
+          - fedora35
           - rockylinux8
+          # - ubuntu1604
+          - ubuntu1804
           - ubuntu2004
           - debian11
 
