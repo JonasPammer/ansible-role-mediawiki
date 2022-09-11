@@ -15,6 +15,8 @@
     - role: geerlingguy.repo-epel
       when: ansible_os_family == "RedHat"
     - role: geerlingguy.repo-remi
+      # repo-remi only supported on redhat
+      when: ansible_os_family == "RedHat"
     - name: geerlingguy.php-versions
     - name: geerlingguy.php
     - name: geerlingguy.php-mysql
