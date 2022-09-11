@@ -17,7 +17,8 @@ name: CI (Lint + Molecule)
         options:
           - ALL
           - centos7
-          - centos8
+          # too much php-versions/php/php-mysql role boilerplate needed to support this old centos8
+          # - centos8
           - debian10
           - debian11
           - fedora35
