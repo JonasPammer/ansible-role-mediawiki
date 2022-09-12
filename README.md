@@ -275,9 +275,10 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
       roles:
         - role: jonaspammer.bootstrap
         - role: geerlingguy.repo-epel
-          when: ansible_os_family == "RedHat"
+          # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
+          when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
         - role: geerlingguy.repo-remi
-          # repo-remi only supported on redhat
+          # repo-remi is only supported on redhat
           when: ansible_os_family == "RedHat"
         - role: geerlingguy.php-versions
         - role: geerlingguy.php
