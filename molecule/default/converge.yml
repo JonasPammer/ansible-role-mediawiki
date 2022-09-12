@@ -5,6 +5,7 @@
   vars:
     # must be same as in prepare.yml
     php_version: "7.4"
+    mediawiki_enable_webserver: false
 
   roles:
     - role: "ansible-role-mediawiki"
