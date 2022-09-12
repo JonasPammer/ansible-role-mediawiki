@@ -121,7 +121,7 @@ Enable/Disable this role’s `restart httpd` handler.
 
 ## Downloading Extensions
 
-This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki_prepare::extensions`.
+This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki::extensions`.
 
 By using this role in combination with this variable and its structure you could have something like this in your LocalSettings.php Template:
 
@@ -203,7 +203,7 @@ Overwrites the default value for `git_run_composer_install` of every extension.
 
 ## Downloading Skins
 
-This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki_prepare::skins`.
+This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki::skins`.
 
 By using this role in combination with this variable and its structure you could have something like this in your LocalSettings.php Template:
 
@@ -247,7 +247,12 @@ Tasks are tagged with the following [tags](https://docs.ansible.com/ansible/late
 </thead>
 <tbody>
 <tr class="odd">
-<td colspan="2" style="text-align: left;"><p>This role does not have officially documented tags yet.</p></td>
+<td style="text-align: left;"><p>mediawiki::extensions</p></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>mediawiki::skins</p></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>

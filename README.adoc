@@ -171,7 +171,7 @@ Enable/Disable this role's `restart httpd` handler.
 
 [TIP]
 This can be skipped by https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook[
-skipping the tag] `mediawiki_prepare::extensions`.
+skipping the tag] `mediawiki::extensions`.
 
 [TIP]
 ======
@@ -189,8 +189,6 @@ wfLoadExtension("{{ extension.name }}");
 {% endfor %}
 ----
 ======
-
-
 
 [source,yaml]
 ----
@@ -307,7 +305,7 @@ Overwrites the default value for `git_run_composer_install` of every extension.
 
 [TIP]
 This can be skipped by https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook[
-skipping the tag] `mediawiki_prepare::skins`.
+skipping the tag] `mediawiki::skins`.
 
 [TIP]
 ====
@@ -368,16 +366,10 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#adding-ta
 |===
 |Tag | Purpose
 
-2+| This role does not have officially documented tags yet.
-
-// | download-xyz
-// |
-// | install-prerequisites
-// |
-// | install
-// |
-// | create-xyz
-// |
+| mediawiki::extensions
+|
+| mediawiki::skins
+|
 |===
 
 You can use Ansible to skip tasks, or only run certain tasks by using these tags. By default, all tasks are run when no tags are specified.
