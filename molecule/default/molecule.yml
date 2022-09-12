@@ -34,10 +34,10 @@ provisioner:
       stdout_callback: yaml
   inventory:
     host_vars:
-      instance-ansible-4-fedora35:
+      instance-py3-ansible-4-fedora35:
         remi_repo_url: https://rpms.remirepo.net/fedora/remi-release-35.rpm
         remi_repo_gpg_key_url: https://rpms.remirepo.net/RPM-GPG-KEY-remi2021
-      instance-ansible-5-fedora35:
+      instance-py3-ansible-5-fedora35:
         remi_repo_url: https://rpms.remirepo.net/fedora/remi-release-35.rpm
         remi_repo_gpg_key_url: https://rpms.remirepo.net/RPM-GPG-KEY-remi2021
 
