@@ -14,7 +14,7 @@
     group: "{{ mediawiki_linux_group }}"
     owner: "{{ mediawiki_linux_username }}"
 
-- name: Download mediawiki-archive into destination directory if it does not exist and ensure correct mode/group/owner.
+- name: Download mediawiki archive into destination directory if it does not exist and ensure correct mode/group/owner.
   ansible.builtin.get_url:
     url: "{{ mediawiki_download_url }}"
     dest: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}.tar.gz"
@@ -22,7 +22,7 @@
     group: "{{ mediawiki_linux_group }}"
     owner: "{{ mediawiki_linux_username }}"
 
-- name: Extract downloaded mediawiki-archive if index.php is missing in the destination directory.
+- name: Extract downloaded mediawiki archive if index.php is missing in the destination directory.
   ansible.builtin.unarchive:
     src: "{{ mediawiki_destination }}/mediawiki-{{ mediawiki_version }}.tar.gz"
     dest: "{{ mediawiki_destination }}/"
@@ -43,19 +43,19 @@
     group: "{{ mediawiki_linux_group }}"
   when: mediawiki__register_unarchive.changed # noqa: no-handler
 
-- name: Install required/recommended Packages for running Mediawiki.
+- name: Install system packages for running Mediawiki.
   ansible.builtin.package:
     name: "{{ mediawiki_packages }}"
     state: present
 
-- name: Install additionally required/recommended PHP-Packages for running Mediawiki.
+- name: Install additional PHP-Packages for running Mediawiki.
   ansible.builtin.package:
     name: "{{ mediawiki_packages_php }}"
     state: present
   notify: restart httpd
 
 - block:
-    - name: Ensure folders used for extension gathering (and everything inside them) have Mediawiki's linux user as their owner
+    - name: Ensure folders used for extension gathering (and everything inside them) have Mediawiki's linux user as their owner.
       become: true
       ansible.builtin.file:
         path: "{{ mediawiki_destination }}/{{ item }}"
@@ -64,7 +64,7 @@
       failed_when: false
       loop: [extensions, vendor] # "vendor" is for composer
 
-    - name: Include Tasks to gather/install Extensions
+    - name: include Tasks to gather/install Extensions
       ansible.builtin.include_tasks: install_extension1.yml
       loop: "{{ mediawiki_extensions | dict2items }}"
       loop_control:
@@ -72,7 +72,7 @@
   tags: [mediawiki::extensions]
 
 - block:
-    - name: Ensure folders used for skin gathering (and everything inside them) have Mediawiki's linux user as their owner
+    - name: Ensure folders used for skin gathering (and everything inside them) have Mediawiki's linux user as their owner.
       become: true
       ansible.builtin.file:
         path: "{{ mediawiki_destination }}/{{ item }}"
@@ -80,7 +80,7 @@
         recurse: true
         owner: "{{ mediawiki_linux_username }}"
       loop: [skins, vendor] # "vendor" is for composer
-    - name: Include Tasks to gather/install Skins
+    - name: include Tasks to gather/install Skins
       ansible.builtin.include_tasks: install_skin.yml
       vars:
         skin_name: "{{ skin.name }}"
