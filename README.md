@@ -74,6 +74,16 @@ Composer needs to be installed on the Host.
 
 # 📜 Role Variables
 
+    # php_version: "7.2"
+
+**Required to be set by yourself.** Used in the names of the installed PHP Packages. Variable-Name comes from the `php-versions` role.
+
+Keep in mind that the php version satisfies [MediaWiki’s Compatibility Matrix](https://www.mediawiki.org/wiki/Compatibility).
+
+This variable name intentionally overlaps with [ansible-role-php-versions](https://github.com/geerlingguy/ansible-role-php-versions). It’s recommended to have it be set in your host_vars specification, because if you accidentally install even just one php package using an alternating version specifier **it can mess up your entire system** (PHP system packages are weird).
+
+Leaving this blank will result in the installation of the symlink-packages of the system.
+
     mediawiki_version_major: 1
     mediawiki_version_minor: 36
     mediawiki_version_release: 0
@@ -104,12 +114,6 @@ The permissions the resulting directory should have.
 User and Group that should own the destination directory itself.
 
 You will need to ensure these are created **beforehand** (e.g. using `pre_tasks`) - the machine’s passwd configuration is no business to this role.
-
-    php_version: ""
-
-Used in the names of the installed PHP Packages. Variable-Name comes from the `php-versions` role.
-
-Leaving this blank will result in the installation of the symlink-packages of the system. Consult the README of the `php-versions`-role for more information on this WARNING.
 
 ## Downloading Extensions
 
