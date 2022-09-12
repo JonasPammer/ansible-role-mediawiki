@@ -8,11 +8,11 @@
       - extension_gather_type in ["git", "composer"]
     quiet: true
 
-- name: stat Folder of {{ extension_name }}-Extension
+- name: stat folder of {{ extension_name }}-Extension
   ansible.builtin.stat:
     path: "{{ mediawiki_destination }}/extensions/{{ extension_name }}/"
   register: mediawiki__register_stat_extension_folder
-- name: stat '.git' of {{ extension_name }}-Extension Folder
+- name: stat '.git' of {{ extension_name }}-Extension
   ansible.builtin.stat:
     path: "{{ mediawiki_destination }}/extensions/{{ extension_name }}/.git"
   register: mediawiki__register_stat_extension_dotgit
@@ -31,7 +31,7 @@
     state: absent
   when: mediawiki__register_stat_extension_dotgit.stat.exists and extension_gather_type == "composer"
 
-- name: Ensure Folder of {{ extension_name }}-Extension has Mediawiki's linux user as its owner
+- name: Ensure folder of {{ extension_name }}-Extension has Mediawiki's linux user as its owner
   ansible.builtin.file:
     path: "{{ mediawiki_destination }}/extensions/{{ extension_name }}"
     state: directory
@@ -39,7 +39,7 @@
     owner: "{{ mediawiki_linux_username }}"
   when: mediawiki__register_stat_extension_folder.stat.exists
 
-- name: (Run Tasks as Mediawiki's Linux Users to gather Extension through Composer)
+- name: (Run tasks as Mediawiki's Linux Users to gather Extension through Composer)
   become_user: "{{ mediawiki_linux_username }}"
   block:
     - name:
@@ -93,7 +93,7 @@
         or extension_git_run_composer_install == "always"
   when: extension_gather_type == "git"
 
-- name: Install system package dependencies of {{ extension_name }}-Extension.
+- name: Install system package dependencies of {{ extension_name }}-Extension
   ansible.builtin.package:
     name: "{{ system_package_dependencies }}"
     state: present
