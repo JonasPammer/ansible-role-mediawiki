@@ -115,6 +115,10 @@ User and Group that should own the destination directory itself.
 
 You will need to ensure these are created **beforehand** (e.g. using `pre_tasks`) - the machine’s passwd configuration is no business to this role.
 
+    mediawiki_enable_webserver: true
+
+Enable/Disable this role’s `restart httpd` handler.
+
 ## Downloading Extensions
 
 This can be skipped by [ skipping the tag](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#selecting-or-skipping-tags-when-you-run-a-playbook) `mediawiki_prepare::extensions`.
