@@ -29,3 +29,5 @@ mediawiki_extensions:
 mediawiki_extensions_git_run_composer_install_default: true
 
 mediawiki_skins: []
+
+mediawiki_enable_webserver: true

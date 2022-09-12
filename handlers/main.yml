@@ -5,3 +5,4 @@
   ansible.builtin.service:
     name: "{{ apache__service | default('apache2') }}"
     state: restarted
+  when: mediawiki_enable_webserver
