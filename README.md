@@ -70,7 +70,7 @@ The Ansible User needs to be able to `become`.
 
 The [`community.general` collection](https://galaxy.ansible.com/community/general) must be installed on the Ansible controller.
 
-Composer needs to be installed on the Host.
+Composer needs to be installed on the Host in order for the extension downloading functionality to work (even when only using roles sourced from git only).
 
 # 📜 Role Variables
 
