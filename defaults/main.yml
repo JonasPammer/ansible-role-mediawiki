@@ -19,12 +19,15 @@ _mediawiki_packages_php:
   default:
     - php{{ php_version }}-bcmath
     - php{{ php_version }}-intl
+    - php{{ php_version }}-zip
   RedHat:
     - php-bcmath
     - php-intl
+    - php-zip
   RedHat_7:
     - php{{ php_version | replace('.', '') }}-php-bcmath
     - php{{ php_version | replace('.', '') }}-php-intl
+    - php{{ php_version | replace('.', '') }}-php-zip
 
 mediawiki_packages_php: "{{
   _mediawiki_packages_php[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
