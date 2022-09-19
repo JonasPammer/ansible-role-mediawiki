@@ -3,6 +3,43 @@
   hosts: all
 
   vars:
+    mediawiki_extensions:
+      special_page:
+        - name: "ExtendedFilelist"
+          git_mwrepo_name: "BlueSpiceExtendedFilelist"
+          git_run_composer_install: true
+
+      editor:
+        - name: "CodeEditor"
+        - name: "CodeMirror"
+        - name: "VisualEditor"
+        - name: "WikiEditor"
+
+      parser:
+        - name: "BOFH"
+          git_url: "https://github.com/tessus/mwExtensionBOFH"
+          git_version: "1.8"
+
+      semantic_mediawiki:
+        - name: "SemanticMediaWiki"
+          gather_type: composer
+          composer_name: "mediawiki/semantic-media-wiki"
+          composer_version: "~3.0"
+
+      variable:
+        - name: "HitCounters"
+          gather_type:
+            git # We get it from git...
+            # ...but make sure that, if it was previously installed through composer,
+            # this role removes it from Mediawiki's Composer packages
+          composer_name: "mediawiki/hit-counters"
+
+    mediawiki_skins:
+      - name: "Timeless"
+      - name: "Vector"
+      - name: "MonoBook"
+      - name: "MinervaNeue"
+
     # must be same as in prepare.yml
     php_version: "7.4"
     mediawiki_enable_webserver: false
