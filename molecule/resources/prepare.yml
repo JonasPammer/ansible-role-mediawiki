@@ -22,4 +22,5 @@
     - name: geerlingguy.php
     - name: geerlingguy.php-mysql
     - name: geerlingguy.git
+    - role: geerlingguy.composer
     #    - name: jonaspammer.core_dependencies
