@@ -87,9 +87,15 @@ The Ansible User needs to be able to `become`.
 The https://galaxy.ansible.com/community/general[`community.general` collection]
 must be installed on the Ansible controller.
 
-Composer needs to be installed on the Host
+`composer` needs to be installed on the Host
 in order for the extension downloading functionality to work
 (even when only using roles sourced from git only).
+
+`git` needs to be installed on the Host
+in order for the extension downloading functionality to work.
+
+`unzip` is recommended to be installed
+in order for composer to correctly unzip downloaded packets.
 
 
 [[variables]]
@@ -416,6 +422,7 @@ which sources its soft dependencies from `requirements.yml`:
 
   roles:
     - role: jonaspammer.bootstrap
+    - role: jonaspammer.core_dependencies
     - role: geerlingguy.repo-epel
       # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
       when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
@@ -464,7 +471,6 @@ Wikimedias' version control], you will only need to supply the `name` property.
 [source,yaml]
 ----
 roles:
-  - geerlingguy.git
   - jonaspammer.mediawiki
 
 vars:

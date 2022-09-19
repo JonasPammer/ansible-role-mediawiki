@@ -70,7 +70,11 @@ The Ansible User needs to be able to `become`.
 
 The [`community.general` collection](https://galaxy.ansible.com/community/general) must be installed on the Ansible controller.
 
-Composer needs to be installed on the Host in order for the extension downloading functionality to work (even when only using roles sourced from git only).
+`composer` needs to be installed on the Host in order for the extension downloading functionality to work (even when only using roles sourced from git only).
+
+`git` needs to be installed on the Host in order for the extension downloading functionality to work.
+
+`unzip` is recommended to be installed in order for composer to correctly unzip downloaded packets.
 
 # 📜 Role Variables
 
@@ -287,6 +291,7 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
 
       roles:
         - role: jonaspammer.bootstrap
+        - role: jonaspammer.core_dependencies
         - role: geerlingguy.repo-epel
           # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
           when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
@@ -315,7 +320,6 @@ The following diagram is a compilation of the "soft dependencies" of this role a
 If an extensions is under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control), you will only need to supply the `name` property.
 
     roles:
-      - geerlingguy.git
       - jonaspammer.mediawiki
 
     vars:
