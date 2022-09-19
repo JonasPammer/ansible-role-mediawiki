@@ -297,6 +297,7 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
         - role: geerlingguy.php
         - role: geerlingguy.php-mysql
         - role: geerlingguy.git
+        - role: geerlingguy.composer
         #    - role: jonaspammer.core_dependencies
 
 The following diagram is a compilation of the "soft dependencies" of this role as well as the recursive tree of their soft dependencies.

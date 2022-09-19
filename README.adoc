@@ -424,6 +424,7 @@ which sources its soft dependencies from `requirements.yml`:
     - role: geerlingguy.php
     - role: geerlingguy.php-mysql
     - role: geerlingguy.git
+    - role: geerlingguy.composer
     #    - role: jonaspammer.core_dependencies
 ----
 
