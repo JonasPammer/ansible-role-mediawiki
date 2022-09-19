@@ -16,8 +16,8 @@ mediawiki_linux_username: ~
 
 # Note: Packages brought by dependant php/php-mysql role are not listed.
 mediawiki_packages_php:
-  - php{{ php_version }}-bcmath
-  - php{{ php_version }}-intl
+  - php{{ php_version if ansible_os_family == 'Debian' else '' }}-bcmath
+  - php{{ php_version if ansible_os_family == 'Debian' else '' }}-intl
 
 _mediawiki_packages:
   default:
