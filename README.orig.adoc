@@ -63,9 +63,15 @@ The Ansible User needs to be able to `become`.
 The https://galaxy.ansible.com/community/general[`community.general` collection]
 must be installed on the Ansible controller.
 
-Composer needs to be installed on the Host
+`composer` needs to be installed on the Host
 in order for the extension downloading functionality to work
 (even when only using roles sourced from git only).
+
+`git` needs to be installed on the Host
+in order for the extension downloading functionality to work.
+
+`unzip` is recommended to be installed
+in order for composer to correctly unzip downloaded packets.
 
 
 [[variables]]
@@ -415,7 +421,6 @@ Wikimedias' version control], you will only need to supply the `name` property.
 [source,yaml]
 ----
 roles:
-  - geerlingguy.git
   - jonaspammer.mediawiki
 
 vars:
