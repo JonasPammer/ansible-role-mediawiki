@@ -12,6 +12,7 @@
 
   roles:
     - role: jonaspammer.bootstrap
+    - role: jonaspammer.core_dependencies
     - role: geerlingguy.repo-epel
       # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
       when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"

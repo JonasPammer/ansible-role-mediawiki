@@ -40,13 +40,9 @@ _mediawiki_packages:
   default:
     - imagemagick
     - inkscape
-    - git
-    - unzip
   RedHat:
     - ImageMagick
     - inkscape
-    - git
-    - unzip
 
 mediawiki_packages: "{{
   _mediawiki_packages[ansible_distribution ~ '_' ~ ansible_distribution_major_version]|default(
