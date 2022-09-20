@@ -301,7 +301,6 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
         - role: geerlingguy.php-versions
         - role: geerlingguy.php
         - role: geerlingguy.php-mysql
-        - role: geerlingguy.git
         - role: geerlingguy.composer
         #    - role: jonaspammer.core_dependencies
 
