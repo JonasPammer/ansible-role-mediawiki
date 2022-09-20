@@ -19,9 +19,8 @@
     - role: geerlingguy.repo-remi
       # repo-remi is only supported on redhat
       when: ansible_os_family == "RedHat"
-    - name: geerlingguy.php-versions
-    - name: geerlingguy.php
-    - name: geerlingguy.php-mysql
-    - name: geerlingguy.git
+    - role: geerlingguy.php-versions
+    - role: geerlingguy.php
+    - role: geerlingguy.php-mysql
     - role: geerlingguy.composer
     #    - name: jonaspammer.core_dependencies
