@@ -290,19 +290,19 @@ The machine needs to be prepared. In CI, this is done in `molecule/resources/pre
         php_enable_webserver: false
 
       roles:
-        - role: jonaspammer.bootstrap
-        - role: jonaspammer.core_dependencies
-        - role: geerlingguy.repo-epel
+        - name: jonaspammer.bootstrap
+        - name: jonaspammer.core_dependencies
+        - name: geerlingguy.repo-epel
           # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
           when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
-        - role: geerlingguy.repo-remi
+        - name: geerlingguy.repo-remi
           # repo-remi is only supported on redhat
           when: ansible_os_family == "RedHat"
-        - role: geerlingguy.php-versions
-        - role: geerlingguy.php
-        - role: geerlingguy.php-mysql
-        - role: geerlingguy.composer
-        #    - role: jonaspammer.core_dependencies
+        - name: geerlingguy.php-versions
+        - name: geerlingguy.php
+        - name: geerlingguy.php-mysql
+        - name: geerlingguy.composer
+        #    - name: jonaspammer.core_dependencies
 
 The following diagram is a compilation of the "soft dependencies" of this role as well as the recursive tree of their soft dependencies.
 
