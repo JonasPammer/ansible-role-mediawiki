@@ -8,6 +8,8 @@
         - name: "ExtendedFilelist"
           git_mwrepo_name: "BlueSpiceExtendedFilelist"
           git_run_composer_install: true
+          composer_install_pre_config_actions:
+            - "--no-plugins allow-plugins.composer/installers true"
 
       editor:
         - name: "CodeEditor"
@@ -25,6 +27,8 @@
           gather_type: composer
           composer_name: "mediawiki/semantic-media-wiki"
           composer_version: "~3.0"
+          composer_install_pre_config_actions:
+            - "--no-plugins allow-plugins.wikimedia/composer-merge-plugin true"
 
       variable:
         - name: "HitCounters"
@@ -45,4 +49,4 @@
     mediawiki_enable_webserver: false
 
   roles:
-    - role: "ansible-role-mediawiki"
+    - "ansible-role-mediawiki"
