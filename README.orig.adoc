@@ -254,7 +254,7 @@ composer_install_pre_config_actions::
 For each value in this list an appropiate `composer config ...` command will be executed
 prelimentary to the `composer <install/require> ...` that follows it.
 
-Each value in this list may either be a string (equals to `{arguments: "[insert string]"}`) 
+Each value in this list may either be a string (equals to `{arguments: "[insert string]"}`)
 or the following data type:
 
 ======

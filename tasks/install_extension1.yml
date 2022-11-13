@@ -15,7 +15,8 @@
       default('REL' + mediawiki_version_major | string + '_' + mediawiki_version_minor | string, true) }}"
     extension_git_run_composer_install: "{{ extension.git_run_composer_install |
       default(mediawiki_extensions_git_run_composer_install_default, true) }}"
-    extension_composer_install_pre_config_actions: "{{ extension.composer_install_pre_config_actions |
+    extension_composer_install_pre_config_actions:
+      "{{ extension.composer_install_pre_config_actions |
       default([], true) }}"
     system_package_dependencies: "{{ extension.system_package_dependencies | default('', true) }}"
   loop: "{{ item.value }}"
