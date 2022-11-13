@@ -54,7 +54,8 @@
     state: present
   notify: restart httpd
 
-- block:
+- tags: [mediawiki::extensions]
+  block:
     - name: Ensure folders used for extension gathering (and everything inside them) have Mediawiki's linux user as their owner.
       become: true
       ansible.builtin.file:
@@ -69,9 +70,9 @@
       loop: "{{ mediawiki_extensions | dict2items }}"
       loop_control:
         label: "{{ item.key }}"
-  tags: [mediawiki::extensions]
 
-- block:
+- tags: [mediawiki::skins]
+  block:
     - name: Ensure folders used for skin gathering (and everything inside them) have Mediawiki's linux user as their owner.
       become: true
       ansible.builtin.file:
@@ -86,8 +87,7 @@
         skin_name: "{{ skin.name }}"
         skin_git_url: "{{ skin.git_url | default('https://github.com/wikimedia/mediawiki-skins-' + skin_name + '.git', true) }}"
         skin_git_version: "{{ skin.git_version
-          | default('REL' + mediawiki_version_major|string + '_' + mediawiki_version_minor|string, true) }}"
+          | default('REL' + mediawiki_version_major | string + '_' + mediawiki_version_minor | string, true) }}"
       loop: "{{ mediawiki_skins }}"
       loop_control:
         loop_var: "skin"
-  tags: [mediawiki::skins]

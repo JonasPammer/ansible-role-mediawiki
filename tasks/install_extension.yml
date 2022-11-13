@@ -41,6 +41,7 @@
 
 - name: (Run tasks as Mediawiki's Linux Users to gather Extension through Composer)
   become_user: "{{ mediawiki_linux_username }}"
+  when: extension_gather_type == "composer"
   block:
     - name:
         Run 'COMPOSER=composer.local.json composer require --no-update {{ extension_composer_name }} {{ extension_composer_version }}'
@@ -51,10 +52,10 @@
         working_dir: "{{ mediawiki_destination }}"
       environment:
         COMPOSER: composer.local.json
-  when: extension_gather_type == "composer"
 
 - name: (Run Tasks as Mediawiki's Linux Users to gather Extension through Git)
   become_user: "{{ mediawiki_linux_username }}"
+  when: extension_gather_type == "git"
   block:
     - name:
         Run 'COMPOSER=composer.local.json composer remove {{ extension_composer_name }} {{ extension_composer_version }}'
@@ -77,6 +78,9 @@
       failed_when: mediawiki__register_extension_git.failed and "Local modifications" not in mediawiki__register_extension_git.msg
 
     - become: true
+      when: |
+        (extension_git_run_composer_install and mediawiki__register_extension_git.changed | bool)
+        or extension_git_run_composer_install == "always"
       block:
         - name: stat if Folder of {{ extension_name }}-Extension contains 'composer.json'
           ansible.builtin.stat:
@@ -88,10 +92,6 @@
             command: install
             working_dir: "{{ mediawiki_destination }}/extensions/{{ extension_name }}"
           when: mediawiki__register_stat_extension_composer_json.stat.exists
-      when: |
-        (extension_git_run_composer_install and mediawiki__register_extension_git.changed | bool)
-        or extension_git_run_composer_install == "always"
-  when: extension_gather_type == "git"
 
 - name: Install system package dependencies of {{ extension_name }}-Extension
   ansible.builtin.package:
