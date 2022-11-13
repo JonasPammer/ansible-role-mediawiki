@@ -43,6 +43,31 @@
   become_user: "{{ mediawiki_linux_username }}"
   when: extension_gather_type == "composer"
   block:
+    # 'composer config' complains if the `COMPOSER` file does not at least exist and does not have JSON
+    - name: Ensure composer.local.json exists with correct owner/group/mode.
+      ansible.builtin.copy:
+        dest: "{{ mediawiki_destination }}/composer.local.json"
+        owner: root
+        group: root
+        mode: u=rwx,g=r,o=r
+        force: false
+        content: "{}" # composer expects file to contain valid json
+
+    - name:
+        Run the supplied prelimentary 'composer config' commands needed for require
+        of {{ extension_composer_name }} Extension into Mediawiki's composer.local.json file
+        as Mediawiki's Linux User.
+      community.general.composer:
+        command: config
+        arguments: "{{ composer_config_action.arguments | default(composer_config_action) }}"
+        working_dir: "{{ mediawiki_destination }}"
+      changed_when: false
+      environment:
+        COMPOSER: composer.local.json
+      loop: "{{ extension_composer_install_pre_config_actions }}"
+      loop_control:
+        loop_var: composer_config_action
+
     - name:
         Run 'COMPOSER=composer.local.json composer require --no-update {{ extension_composer_name }} {{ extension_composer_version }}'
         in Mediawiki's directory as Mediawiki's Linux User.
@@ -86,6 +111,19 @@
           ansible.builtin.stat:
             path: "{{ mediawiki_destination }}/extensions/{{ extension_name }}/composer.json"
           register: mediawiki__register_stat_extension_composer_json
+
+        - name:
+            Run the supplied prelimentary 'composer config' commands needed for composer install
+            of {{ extension_name }}-Extension as Mediawiki's Linux User in the Extensions' own directory.
+          community.general.composer:
+            command: config
+            arguments: "{{ composer_config_action.arguments | default(composer_config_action) }}"
+            working_dir: "{{ mediawiki_destination }}/extensions/{{ extension_name }}"
+          changed_when: false
+          when: mediawiki__register_stat_extension_composer_json.stat.exists
+          loop: "{{ extension_composer_install_pre_config_actions }}"
+          loop_control:
+            loop_var: composer_config_action
 
         - name: Run 'composer install' in Directory of {{ extension_name }}-Extension as Mediawiki's Linux User
           community.general.composer:
