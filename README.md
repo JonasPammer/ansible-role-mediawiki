@@ -180,6 +180,23 @@ Also, if you do this, I like to explicitly specify the `gather_type` to be "git"
 composer_version
 [Version Constraint](https://getcomposer.org/doc/articles/versions.md#writing-version-constraints) for the Composer Package.
 
+composer_install_pre_config_actions
+For each value in this list an appropiate `composer config …​` command will be executed prelimentary to the `composer <install/require> …​` that follows it.
+
+Each value in this list may either be a string (equals to `{arguments: "[insert string]"}`) or the following data type:
+
+arguments
+literal value passed to [community.general.composer’s `arguments`](https://docs.ansible.com/ansible/latest/collections/community/general/composer_module.html#parameter-arguments).
+
+One reason for this variable was the following error message:
+
+            composer/installers contains a Composer plugin which is blocked by your all
+            ow-plugins config. You may add it to the list if you consider it safe.
+            You can run "composer config --no-plugins allow-plugins.composer/installers
+             [true|false]" to enable it (true) or disable it explicitly and suppress th
+            is exception (false)
+            See https://getcomposer.org/allow-plugins
+
 _git_mwrepo_name_
 If your extensions is under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control), but uses a different name for their Repository than provided in `name`, you can use this to supply the name as used in the MediaWiki Repository. Look at the default of `git_url` to understand this. Defaults to `name`.
 
@@ -327,6 +344,8 @@ If an extensions is under [ Wikimedias' version control](https://www.mediawiki.o
           - name: "ExtendedFilelist"
             git_mwrepo_name: "BlueSpiceExtendedFilelist"
             git_run_composer_install: true
+            composer_install_pre_config_actions:
+              - "--no-plugins allow-plugins.composer/installers true"
 
         editor:
           - name: "CodeEditor"
@@ -344,6 +363,8 @@ If an extensions is under [ Wikimedias' version control](https://www.mediawiki.o
             gather_type: composer
             composer_name: "mediawiki/semantic-media-wiki"
             composer_version: "~3.0"
+            composer_install_pre_config_actions:
+              - "--no-plugins allow-plugins.wikimedia/composer-merge-plugin true"
 
         variable:
           - name: "HitCounters"
