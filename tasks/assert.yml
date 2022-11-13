@@ -2,10 +2,37 @@
 # tasks file for testing that variables of ansible-role jonaspammer.mediawiki are set correctly
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html
 
-# - name: test if variable_name is set correctly
-#   ansible.builtin.assert:
-#     that:
-#       - variable_name is defined
-#       - variable_name is number
-#       - variable_name >= 0
-#     quiet: true
+- name: test if 'mediawiki_version_major' is set correctly
+  ansible.builtin.assert:
+    that:
+      - mediawiki_version_major is defined
+      - mediawiki_version_major is number
+    quiet: true
+
+- name: test if 'mediawiki_version_minor' is set correctly
+  ansible.builtin.assert:
+    that:
+      - mediawiki_version_minor is defined
+      - mediawiki_version_minor is number
+    quiet: true
+
+- name: test if 'mediawiki_version_release' is set correctly
+  ansible.builtin.assert:
+    that:
+      - mediawiki_version_release is defined
+      - mediawiki_version_release is number
+    quiet: true
+
+- name: test if 'mediawiki_version' is set correctly
+  ansible.builtin.assert:
+    that:
+      - mediawiki_version is defined
+      - mediawiki_version is string
+    quiet: true
+
+- name: test if 'mediawiki_destination' is set correctly
+  ansible.builtin.assert:
+    that:
+      - mediawiki_destination is defined
+      - mediawiki_destination is string
+    quiet: true

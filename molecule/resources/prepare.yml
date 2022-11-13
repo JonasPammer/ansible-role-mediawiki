@@ -4,6 +4,23 @@
   become: true
   gather_facts: false
 
+  vars:
+    # https://www.mediawiki.org/wiki/Compatibility
+    # https://www.php.net/supported-versions.php
+    php_version: "7.4"
+    php_enable_webserver: false
+
   roles:
     - name: jonaspammer.bootstrap
+    - name: jonaspammer.core_dependencies
+    - name: geerlingguy.repo-epel
+      # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
+      when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
+    - name: geerlingguy.repo-remi
+      # repo-remi is only supported on redhat
+      when: ansible_os_family == "RedHat"
+    - name: geerlingguy.php-versions
+    - name: geerlingguy.php
+    - name: geerlingguy.php-mysql
+    - name: geerlingguy.composer
     #    - name: jonaspammer.core_dependencies
