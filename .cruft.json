@@ -16,7 +16,7 @@
       "min_ansible_version": "2.11",
       "allow_duplicates": "no",
       "ansible_user_needs_to_become": "True",
-      "use_renovate": "False",
+      "use_renovate": "y",
       "role_name": "mediawiki",
       "project_slug": "ansible-role-mediawiki",
       "project_short_purpose": "downloading mediawiki into specified directory, installing recommended system packages and downloading additional extensions and skins",
