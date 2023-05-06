@@ -67,10 +67,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check out the codebase
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
 
       - name: set up python 3
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@57ded4d7d5e986d7296eab16560982c6dd7c923b # v4
         with:
           python-version: "3.9"
 
@@ -124,15 +124,15 @@ jobs:
         if: github.event_name != 'workflow_dispatch' || env.WORKFLOW_DISPATCH_IF == 'true'
 
       - name: check out the codebase
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
 
       - name: set up python 3
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@57ded4d7d5e986d7296eab16560982c6dd7c923b # v4
         with:
           python-version: "3.9"
 
       - name: setup/activate pre-commit cache
-        uses: actions/cache@v3
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3
         with:
           path: ~/.cache/pre-commit
           key: ${{ hashFiles('**/.pre-commit-config.yaml') }}
@@ -159,7 +159,7 @@ jobs:
         if: env.WORKFLOW_DISPATCH_IF == 'true'
 
       - name: Upload output of /molecule/resources/debug.yml as CI Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
         with:
           name: debug-${{ matrix.distro }}.yml
           path: |
@@ -169,5 +169,5 @@ jobs:
 
       - name: setup tmate session if previous step failed and if this is a manual run
         if: failure() && env.WORKFLOW_DISPATCH_IF == 'true'
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@1005f9c9db5f1b055a495e72c6e589764984baf6 # v3
         timeout-minutes: 30
