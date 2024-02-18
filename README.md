@@ -21,7 +21,6 @@ Below you can find information on…
       description:
         "An ansible role for downloading mediawiki into specified directory,
         installing recommended system packages and downloading additional extensions and skins."
-      standalone: true
 
       author: "jonaspammer"
       license: "MIT"
