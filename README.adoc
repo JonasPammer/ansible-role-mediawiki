@@ -548,13 +548,6 @@ even though there is no test for this exact distribution.
 |===
 | OS Family | Distribution | Distribution Release Date | Distribution End of Life | Accompanying Docker Image
 
-// https://endoflife.date/rocky-linux
-| Rocky
-| Rocky Linux 8 (https://www.howtogeek.com/devops/is-rocky-linux-the-new-centos/[RHEL/CentOS 8 in disguise])
-| 2021-06
-| 2029-05
-| https://github.com/geerlingguy/docker-rockylinux8-ansible/actions?query=workflow%3ABuild[image:https://github.com/geerlingguy/docker-rockylinux8-ansible/workflows/Build/badge.svg?branch=master[CI]]
-
 | Rocky
 | Rocky Linux 9
 | 2022-07
