@@ -471,7 +471,7 @@ requirements.yml dependency graph of jonaspammer.mediawiki]
 [source,yaml]
 ----
 roles:
-  - role: jonaspammer.mediawiki
+  - jonaspammer.mediawiki
 
 vars:
   mediawiki_destination: "/opt/my_wiki"
