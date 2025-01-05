@@ -16,18 +16,10 @@ name: CI (Lint + Molecule)
         default: "ubuntu2204"
         options:
           - ALL
-          - debian10
-          - debian11
-          # - fedora35
-          # ondrej/php does not support 16.04 anymore
-          # mediawiki does not support 7.0
-          # - ubuntu1604
-          - ubuntu1804
           - ubuntu2004
           - ubuntu2204
           - debian11
           - debian12
-          - ALL
       ansible_version:
         description: "Select Ansible Versions to run"
         required: false
@@ -123,11 +115,10 @@ jobs:
       max-parallel: 4
       matrix:
         distro:
-          - debian10
           - debian11
-          - ubuntu1804
+          - debian12
           - ubuntu2004
-          - debian11
+          - ubuntu2204
 
     env:
       WORKFLOW_DISPATCH_IF: >-
