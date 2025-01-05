@@ -16,13 +16,9 @@ name: CI (Lint + Molecule)
         default: "ubuntu2204"
         options:
           - ALL
-          # too much php-versions/php/php-mysql role boilerplate needed to support this old centos8
-          # - centos7
-          # - centos8
           - debian10
           - debian11
-          - fedora35
-          - rockylinux8
+          # - fedora35
           # ondrej/php does not support 16.04 anymore
           # mediawiki does not support 7.0
           # - ubuntu1604
@@ -31,9 +27,6 @@ name: CI (Lint + Molecule)
           - ubuntu2204
           - debian11
           - debian12
-          - rockylinux8
-          - rockylinux9
-          - fedora39
           - ALL
       ansible_version:
         description: "Select Ansible Versions to run"
@@ -130,13 +123,8 @@ jobs:
       max-parallel: 4
       matrix:
         distro:
-          # - centos7
-          # - centos8
           - debian10
           - debian11
-          - fedora35
-          - rockylinux8
-          # - ubuntu1604
           - ubuntu1804
           - ubuntu2004
           - debian11

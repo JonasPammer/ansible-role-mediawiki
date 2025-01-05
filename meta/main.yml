@@ -11,13 +11,6 @@ galaxy_info:
   min_ansible_version: "2.11"
   platforms:
     # note: text after "actively tested: " represent the docker image name
-    - name: EL # (Enterprise Linux)
-      versions:
-        - "9" # actively tested: rockylinux9
-    - name: Fedora
-      versions:
-        - "38" # actively tested: fedora38
-        - "39" # actively tested: fedora39
     - name: Debian
       versions:
         - bullseye # actively tested: debian11
