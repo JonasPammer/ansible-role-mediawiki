@@ -82,7 +82,7 @@ This variable name intentionally overlaps with [ansible-role-php-versions](https
 Leaving this blank will result in the installation of the symlink-packages of the system.
 
     mediawiki_version_major: 1
-    mediawiki_version_minor: 36
+    mediawiki_version_minor: 39
     mediawiki_version_release: 0
 
 Version of Mediawiki to download. See [releases.wikimedia.org](https://releases.wikimedia.org/mediawiki/) and [Wikipedia: MediaWiki Version History](https://en.wikipedia.org/wiki/MediaWiki_version_history).
