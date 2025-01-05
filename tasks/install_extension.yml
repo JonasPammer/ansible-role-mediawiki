@@ -75,6 +75,7 @@
         command: require
         arguments: "--no-update  '{{ extension_composer_name }}' {{ extension_composer_version }}"
         working_dir: "{{ mediawiki_destination }}"
+      changed_when: false
       environment:
         COMPOSER: composer.local.json
 
