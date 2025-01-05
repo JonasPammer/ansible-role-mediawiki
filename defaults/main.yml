@@ -3,7 +3,7 @@
 # See README.adoc for documentation. If you change a default here, also update it in the README.
 
 mediawiki_version_major: 1
-mediawiki_version_minor: 36
+mediawiki_version_minor: 39
 mediawiki_version_release: 0
 mediawiki_version: "{{ mediawiki_version_major }}.{{ mediawiki_version_minor }}.{{ mediawiki_version_release }}"
 mediawiki_download_url: "https://releases.wikimedia.org/mediawiki/\
@@ -15,7 +15,9 @@ mediawiki_linux_group: ~
 mediawiki_linux_username: ~
 
 # Note: Packages brought by dependant php/php-mysql role are not listed.
+# (common, *cli*, dev, fpm, *gd*, *curl*, imap, opcache, xml, mbstring, *apcu*, sqlite3)
 _mediawiki_packages_php:
+  # https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Debian_or_Ubuntu#Optional_useful_packages
   default:
     - php{{ php_version }}-bcmath
     - php{{ php_version }}-intl
