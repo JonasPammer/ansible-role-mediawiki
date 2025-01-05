@@ -254,17 +254,17 @@ Tasks are tagged with the following [tags](https://docs.ansible.com/ansible/late
 <col style="width: 50%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">Tag</th>
 <th style="text-align: left;">Purpose</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>mediawiki::extensions</p></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><p>mediawiki::skins</p></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -383,7 +383,7 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 <col style="width: 20%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: left;">OS Family</th>
 <th style="text-align: left;">Distribution</th>
 <th style="text-align: left;">Distribution Release Date</th>
@@ -392,28 +392,28 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Ubuntu 20.04 LTS</p></td>
 <td style="text-align: left;"><p>2021-04</p></td>
 <td style="text-align: left;"><p>2025-04</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2004-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2004-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Ubuntu 22.04 LTS</p></td>
 <td style="text-align: left;"><p>2022-04</p></td>
 <td style="text-align: left;"><p>2027-04</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-ubuntu2204-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-ubuntu2204-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Debian 11</p></td>
 <td style="text-align: left;"><p>2021-08</p></td>
 <td style="text-align: left;"><p>2024-06 (2026-06 LTS)</p></td>
 <td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-debian11-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-debian11-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Debian 12</p></td>
 <td style="text-align: left;"><p>2023-06</p></td>
