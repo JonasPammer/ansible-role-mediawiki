@@ -16,8 +16,8 @@ name: CI (Lint + Molecule)
         default: "ubuntu2204"
         options:
           - ALL
-          - centos7
           # too much php-versions/php/php-mysql role boilerplate needed to support this old centos8
+          # - centos7
           # - centos8
           - debian10
           - debian11
@@ -130,7 +130,7 @@ jobs:
       max-parallel: 4
       matrix:
         distro:
-          - centos7
+          # - centos7
           # - centos8
           - debian10
           - debian11
