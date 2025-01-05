@@ -179,7 +179,7 @@ jobs:
         if: env.WORKFLOW_DISPATCH_IF == 'true'
 
       - name: Upload output of /molecule/resources/debug.yml as CI Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
         with:
           name: debug-${{ matrix.distro }}.yml
           path: |
@@ -188,5 +188,5 @@ jobs:
 
       - name: setup tmate session if previous step failed and if this is a manual run
         if: failure() && env.WORKFLOW_DISPATCH_IF == 'true'
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@e5c7151931ca95bad1c6f4190c730ecf8c7dde48 # v3
         timeout-minutes: 30
