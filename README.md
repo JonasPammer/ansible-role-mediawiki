@@ -44,13 +44,6 @@ Below you can find information on…
       min_ansible_version: "2.11"
       platforms:
         # note: text after "actively tested: " represent the docker image name
-        - name: EL # (Enterprise Linux)
-          versions:
-            - "9" # actively tested: rockylinux9
-        - name: Fedora
-          versions:
-            - "38" # actively tested: fedora38
-            - "39" # actively tested: fedora39
         - name: Debian
           versions:
             - bullseye # actively tested: debian11
@@ -399,20 +392,6 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><p>Rocky</p></td>
-<td style="text-align: left;"><p>Rocky Linux 9</p></td>
-<td style="text-align: left;"><p>2022-07</p></td>
-<td style="text-align: left;"><p>2032-05</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-rockylinux9-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-rockylinux9-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><p>RedHat</p></td>
-<td style="text-align: left;"><p>Fedora 39</p></td>
-<td style="text-align: left;"><p>2023-11</p></td>
-<td style="text-align: left;"><p>2024-12</p></td>
-<td style="text-align: left;"><p><a href="https://github.com/geerlingguy/docker-fedora39-ansible/actions?query=workflow%3ABuild"><img src="https://github.com/geerlingguy/docker-fedora39-ansible/workflows/Build/badge.svg?branch=master" alt="CI" /></a></p></td>
-</tr>
 <tr class="odd">
 <td style="text-align: left;"><p>Debian</p></td>
 <td style="text-align: left;"><p>Ubuntu 20.04 LTS</p></td>
