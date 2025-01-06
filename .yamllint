@@ -9,3 +9,4 @@ rules:
 
 ignore: |
   .tox/
+  defaults/main.yml
