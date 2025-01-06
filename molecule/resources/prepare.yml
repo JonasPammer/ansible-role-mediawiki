@@ -50,5 +50,5 @@
     - name: geerlingguy.mysql
     # apache vhost with https
     - name: jonaspammer.pip
-    - name: jonaspammer.ssl
+    - name: jonaspammer.openssl
     - name: jonaspammer.apache2
