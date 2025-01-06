@@ -18,3 +18,8 @@
   loop:
     - "{{ inventory_hostname }}"
     - localhost
+
+- name: DEBUG LocalSettings.php
+  ansible.builtin.fetch:
+    src: "{{ mediawiki_destination }}/{{ mediawiki_localsettings_filename }}"
+    dest: /var/tmp/LocalSettings.php
