@@ -1,1505 +1,1528 @@
 <?php
-# {{ ansible_managed }}
+{# Macro for boolean settings #}
+{% macro bool_setting(var_name, config_name) %}
+{% if var_name is defined %}
+${{ config_name }} = {{ var_name | lower }};
+{% endif %}
+{% endmacro %}
+
+{# Macro for string settings #}
+{% macro string_setting(var_name, config_name) %}
+{% if var_name is defined %}
+${{ config_name }} = "{{ var_name }}";
+{% endif %}
+{% endmacro %}
+
+{# Macro for numeric settings #}
+{% macro setting(var_name, config_name) %}
+{% if var_name is defined %}
+${{ config_name }} = {{ var_name }} ;
+{% endif %}
+{% endmacro %}
+
+
+{# Import macros for use #}
+{% import _self as settings %}
 
 // General Settings
-$wgSitename = "{{ mediawiki_sitename | default('MediaWiki') }}";
+{{ settings.string_setting(mediawiki_sitename, "wgSitename") }}
 
 // Global Objects
-{% if mediawiki_autoload_local_classes is defined %}
-$wgAutoloadLocalClasses = {{ mediawiki_autoload_local_classes }};
-{% endif %}
-{% if mediawiki_conf is defined %}
-$wgConf = {{ mediawiki_conf }};
-{% endif %}
+
+{{ settings.setting(mediawiki_autoload_local_classes, "wgAutoloadLocalClasses") }}
+
+
+{{ settings.setting(mediawiki_conf, "wgConf") }}
+
 
 // Server URLs and file paths
-{% if mediawiki_ip is defined %}
-$IP = "{{ mediawiki_ip }}";
-{% endif %}
-{% if mediawiki_action_paths is defined %}
-$wgActionPaths = {{ mediawiki_action_paths }};
-{% endif %}
-{% if mediawiki_apple_touch_icon is defined %}
-$wgAppleTouchIcon = "{{ mediawiki_apple_touch_icon }}";
-{% endif %}
-{% if mediawiki_article_path is defined %}
-$wgArticlePath = "{{ mediawiki_article_path }}";
-{% endif %}
-{% if mediawiki_assume_proxies_use_default_protocol_ports is defined %}
-$wgAssumeProxiesUseDefaultProtocolPorts = {{ mediawiki_assume_proxies_use_default_protocol_ports | lower }};
-{% endif %}
-{% if mediawiki_base_directory is defined %}
-$wgBaseDirectory = "{{ mediawiki_base_directory }}";
-{% endif %}
-{% if mediawiki_canonical_server is defined %}
-$wgCanonicalServer = "{{ mediawiki_canonical_server }}";
-{% endif %}
-{% if mediawiki_config_registry is defined %}
-$wgConfigRegistry = {{ mediawiki_config_registry }};
-{% endif %}
-{% if mediawiki_extension_assets_path is defined %}
-$wgExtensionAssetsPath = "{{ mediawiki_extension_assets_path }}";
-{% endif %}
-{% if mediawiki_extension_directory is defined %}
-$wgExtensionDirectory = "{{ mediawiki_extension_directory }}";
-{% endif %}
-{% if mediawiki_favicon is defined %}
-$wgFavicon = "{{ mediawiki_favicon }}";
-{% endif %}
-{% if mediawiki_ffmpeg_location is defined %}
-$wgFFmpegLocation = "{{ mediawiki_ffmpeg_location }}";
-{% endif %}
-{% if mediawiki_ffprobe_location is defined %}
-$wgFFprobeLocation = "{{ mediawiki_ffprobe_location }}";
-{% endif %}
-{% if mediawiki_file_cache_directory is defined %}
-$wgFileCacheDirectory = "{{ mediawiki_file_cache_directory }}";
-{% endif %}
-{% if mediawiki_force_https is defined %}
-$wgForceHTTPS = {{ mediawiki_force_https | lower }};
-{% endif %}
-{% if mediawiki_https_port is defined %}
-$wgHTTPSPort = {{ mediawiki_https_port }};
-{% endif %}
-{% if mediawiki_img_auth_path is defined %}
-$wgImgAuthPath = "{{ mediawiki_img_auth_path }}";
-{% endif %}
-{% if mediawiki_load_script is defined %}
-$wgLoadScript = "{{ mediawiki_load_script }}";
-{% endif %}
-{% if mediawiki_local_style_path is defined %}
-$wgLocalStylePath = "{{ mediawiki_local_style_path }}";
-{% endif %}
-{% if mediawiki_logos is defined %}
-$wgLogos = {{ mediawiki_logos }};
-{% endif %}
-{% if mediawiki_logo is defined %}
-$wgLogo = "{{ mediawiki_logo }}";
-{% endif %}
-{% if mediawiki_main_page_is_domain_root is defined %}
-$wgMainPageIsDomainRoot = {{ mediawiki_main_page_is_domain_root | lower }};
-{% endif %}
-{% if mediawiki_referrer_policy is defined %}
-$wgReferrerPolicy = "{{ mediawiki_referrer_policy }}";
-{% endif %}
-{% if mediawiki_rest_path is defined %}
-$wgRestPath = "{{ mediawiki_rest_path }}";
-{% endif %}
-{% if mediawiki_script_path is defined %}
-$wgScriptPath = "{{ mediawiki_script_path }}";
-{% endif %}
-{% if mediawiki_script is defined %}
-$wgScript = "{{ mediawiki_script }}";
-{% endif %}
-{% if mediawiki_server_name is defined %}
-$wgServerName = "{{ mediawiki_server_name }}";
-{% endif %}
-{% if mediawiki_server is defined %}
-$wgServer = "{{ mediawiki_server }}";
-{% endif %}
-{% if mediawiki_style_directory is defined %}
-$wgStyleDirectory = "{{ mediawiki_style_directory }}";
-{% endif %}
-{% if mediawiki_style_path is defined %}
-$wgStylePath = "{{ mediawiki_style_path }}";
-{% endif %}
-{% if mediawiki_thumb_path is defined %}
-$wgThumbPath = "{{ mediawiki_thumb_path }}";
-{% endif %}
-{% if mediawiki_tmp_directory is defined %}
-$wgTmpDirectory = "{{ mediawiki_tmp_directory }}";
-{% endif %}
-{% if mediawiki_upload_base_url is defined %}
-$wgUploadBaseUrl = "{{ mediawiki_upload_base_url }}";
-{% endif %}
-{% if mediawiki_upload_directory is defined %}
-$wgUploadDirectory = "{{ mediawiki_upload_directory }}";
-{% endif %}
-{% if mediawiki_upload_path is defined %}
-$wgUploadPath = "{{ mediawiki_upload_path }}";
-{% endif %}
-{% if mediawiki_use_path_info is defined %}
-$wgUsePathInfo = {{ mediawiki_use_path_info | lower }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_ip, "IP") }}
+
+
+{{ settings.setting(mediawiki_action_paths, "wgActionPaths") }}
+
+
+{{ settings.string_setting(mediawiki_apple_touch_icon, "wgAppleTouchIcon") }}
+
+
+{{ settings.string_setting(mediawiki_article_path, "wgArticlePath") }}
+
+
+{{ settings.bool_setting(mediawiki_assume_proxies_use_default_protocol_ports, "wgAssumeProxiesUseDefaultProtocolPorts") }}
+
+
+{{ settings.string_setting(mediawiki_base_directory, "wgBaseDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_canonical_server, "wgCanonicalServer") }}
+
+
+{{ settings.setting(mediawiki_config_registry, "wgConfigRegistry") }}
+
+
+{{ settings.string_setting(mediawiki_extension_assets_path, "wgExtensionAssetsPath") }}
+
+
+{{ settings.string_setting(mediawiki_extension_directory, "wgExtensionDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_favicon, "wgFavicon") }}
+
+
+{{ settings.string_setting(mediawiki_ffmpeg_location, "wgFFmpegLocation") }}
+
+
+{{ settings.string_setting(mediawiki_ffprobe_location, "wgFFprobeLocation") }}
+
+
+{{ settings.string_setting(mediawiki_file_cache_directory, "wgFileCacheDirectory") }}
+
+
+{{ settings.bool_setting(mediawiki_force_https, "wgForceHTTPS") }}
+
+
+{{ settings.setting(mediawiki_https_port, "wgHTTPSPort") }}
+
+
+{{ settings.string_setting(mediawiki_img_auth_path, "wgImgAuthPath") }}
+
+
+{{ settings.string_setting(mediawiki_load_script, "wgLoadScript") }}
+
+
+{{ settings.string_setting(mediawiki_local_style_path, "wgLocalStylePath") }}
+
+
+{{ settings.setting(mediawiki_logos, "wgLogos") }}
+
+
+{{ settings.string_setting(mediawiki_logo, "wgLogo") }}
+
+
+{{ settings.bool_setting(mediawiki_main_page_is_domain_root, "wgMainPageIsDomainRoot") }}
+
+
+{{ settings.string_setting(mediawiki_referrer_policy, "wgReferrerPolicy") }}
+
+
+{{ settings.string_setting(mediawiki_rest_path, "wgRestPath") }}
+
+
+{{ settings.string_setting(mediawiki_script_path, "wgScriptPath") }}
+
+
+{{ settings.string_setting(mediawiki_script, "wgScript") }}
+
+
+{{ settings.string_setting(mediawiki_server_name, "wgServerName") }}
+
+
+{{ settings.string_setting(mediawiki_server, "wgServer") }}
+
+
+{{ settings.string_setting(mediawiki_style_directory, "wgStyleDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_style_path, "wgStylePath") }}
+
+
+{{ settings.string_setting(mediawiki_thumb_path, "wgThumbPath") }}
+
+
+{{ settings.string_setting(mediawiki_tmp_directory, "wgTmpDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_upload_base_url, "wgUploadBaseUrl") }}
+
+
+{{ settings.string_setting(mediawiki_upload_directory, "wgUploadDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_upload_path, "wgUploadPath") }}
+
+
+{{ settings.bool_setting(mediawiki_use_path_info, "wgUsePathInfo") }}
+
 
 // Files and file uploads
-{% if mediawiki_allow_copy_uploads is defined %}
-$wgAllowCopyUploads = {{ mediawiki_allow_copy_uploads | lower }};
-{% endif %}
-{% if mediawiki_attempt_failure_epoch is defined %}
-$wgAttemptFailureEpoch = {{ mediawiki_attempt_failure_epoch }};
-{% endif %}
-{% if mediawiki_check_file_extensions is defined %}
-$wgCheckFileExtensions = {{ mediawiki_check_file_extensions | lower }};
-{% endif %}
-{% if mediawiki_copy_upload_allow_on_wiki_domain_config is defined %}
-$wgCopyUploadAllowOnWikiDomainConfig = {{ mediawiki_copy_upload_allow_on_wiki_domain_config | lower }};
-{% endif %}
-{% if mediawiki_copy_upload_proxy is defined %}
-$wgCopyUploadProxy = "{{ mediawiki_copy_upload_proxy }}";
-{% endif %}
-{% if mediawiki_copy_uploads_domains is defined %}
-$wgCopyUploadsDomains = {{ mediawiki_copy_uploads_domains }};
-{% endif %}
-{% if mediawiki_copy_uploads_from_special_upload is defined %}
-$wgCopyUploadsFromSpecialUpload = {{ mediawiki_copy_uploads_from_special_upload | lower }};
-{% endif %}
-{% if mediawiki_copy_upload_timeout is defined %}
-$wgCopyUploadTimeout = {{ mediawiki_copy_upload_timeout }};
-{% endif %}
-{% if mediawiki_deleted_directory is defined %}
-$wgDeletedDirectory = "{{ mediawiki_deleted_directory }}";
-{% endif %}
-{% if mediawiki_directory_mode is defined %}
-$wgDirectoryMode = "{{ mediawiki_directory_mode }}";
-{% endif %}
-{% if mediawiki_disable_upload_script_checks is defined %}
-$wgDisableUploadScriptChecks = {{ mediawiki_disable_upload_script_checks | lower }};
-{% endif %}
-{% if mediawiki_enable_async_uploads is defined %}
-$wgEnableAsyncUploads = {{ mediawiki_enable_async_uploads | lower }};
-{% endif %}
-{% if mediawiki_enable_async_uploads_by_url is defined %}
-$wgEnableAsyncUploadsByUrl = {{ mediawiki_enable_async_uploads_by_url | lower }};
-{% endif %}
-{% if mediawiki_enable_uploads is defined %}
-$wgEnableUploads = {{ mediawiki_enable_uploads | lower }};
-{% endif %}
-{% if mediawiki_file_backends is defined %}
-$wgFileBackends = {{ mediawiki_file_backends }};
-{% endif %}
-{% if mediawiki_prohibited_file_extensions is defined %}
-$wgProhibitedFileExtensions = {{ mediawiki_prohibited_file_extensions }};
-{% endif %}
-{% if mediawiki_file_extensions is defined %}
-$wgFileExtensions = {{ mediawiki_file_extensions }};
-{% endif %}
-{% if mediawiki_hashed_upload_directory is defined %}
-$wgHashedUploadDirectory = {{ mediawiki_hashed_upload_directory | lower }};
-{% endif %}
-{% if mediawiki_image_preconnect is defined %}
-$wgImagePreconnect = "{{ mediawiki_image_preconnect }}";
-{% endif %}
-{% if mediawiki_img_auth_details is defined %}
-$wgImgAuthDetails = {{ mediawiki_img_auth_details | lower }};
-{% endif %}
-{% if mediawiki_img_auth_url_path_map is defined %}
-$wgImgAuthUrlPathMap = {{ mediawiki_img_auth_url_path_map }};
-{% endif %}
-{% if mediawiki_local_file_repo is defined %}
-$wgLocalFileRepo = {{ mediawiki_local_file_repo }};
-{% endif %}
-{% if mediawiki_lock_managers is defined %}
-$wgLockManagers = {{ mediawiki_lock_managers }};
-{% endif %}
-{% if mediawiki_max_upload_size is defined %}
-$wgMaxUploadSize = {{ mediawiki_max_upload_size }};
-{% endif %}
-{% if mediawiki_media_in_target_language is defined %}
-$wgMediaInTargetLanguage = {{ mediawiki_media_in_target_language | lower }};
-{% endif %}
-{% if mediawiki_min_upload_chunk_size is defined %}
-$wgMinUploadChunkSize = {{ mediawiki_min_upload_chunk_size }};
-{% endif %}
-{% if mediawiki_native_image_lazy_loading is defined %}
-$wgNativeImageLazyLoading = {{ mediawiki_native_image_lazy_loading | lower }};
-{% endif %}
-{% if mediawiki_parser_test_media_handlers is defined %}
-$wgParserTestMediaHandlers = {{ mediawiki_parser_test_media_handlers }};
-{% endif %}
-{% if mediawiki_strict_file_extensions is defined %}
-$wgStrictFileExtensions = {{ mediawiki_strict_file_extensions | lower }};
-{% endif %}
-{% if mediawiki_thumbnail_epoch is defined %}
-$wgThumbnailEpoch = {{ mediawiki_thumbnail_epoch }};
-{% endif %}
-{% if mediawiki_upload_dialog is defined %}
-$wgUploadDialog = {{ mediawiki_upload_dialog }};
-{% endif %}
-{% if mediawiki_upload_maintenance is defined %}
-$wgUploadMaintenance = {{ mediawiki_upload_maintenance | lower }};
-{% endif %}
-{% if mediawiki_upload_missing_file_url is defined %}
-$wgUploadMissingFileUrl = "{{ mediawiki_upload_missing_file_url }}";
-{% endif %}
-{% if mediawiki_upload_navigation_url is defined %}
-$wgUploadNavigationUrl = "{{ mediawiki_upload_navigation_url }}";
-{% endif %}
-{% if mediawiki_upload_size_warning is defined %}
-$wgUploadSizeWarning = {{ mediawiki_upload_size_warning }};
-{% endif %}
-{% if mediawiki_upload_stash_max_age is defined %}
-$wgUploadStashMaxAge = {{ mediawiki_upload_stash_max_age }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_allow_copy_uploads, "wgAllowCopyUploads") }}
+
+
+{{ settings.setting(mediawiki_attempt_failure_epoch, "wgAttemptFailureEpoch") }}
+
+
+{{ settings.bool_setting(mediawiki_check_file_extensions, "wgCheckFileExtensions") }}
+
+
+{{ settings.bool_setting(mediawiki_copy_upload_allow_on_wiki_domain_config, "wgCopyUploadAllowOnWikiDomainConfig") }}
+
+
+{{ settings.string_setting(mediawiki_copy_upload_proxy, "wgCopyUploadProxy") }}
+
+
+{{ settings.setting(mediawiki_copy_uploads_domains, "wgCopyUploadsDomains") }}
+
+
+{{ settings.bool_setting(mediawiki_copy_uploads_from_special_upload, "wgCopyUploadsFromSpecialUpload") }}
+
+
+{{ settings.setting(mediawiki_copy_upload_timeout, "wgCopyUploadTimeout") }}
+
+
+{{ settings.string_setting(mediawiki_deleted_directory, "wgDeletedDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_directory_mode, "wgDirectoryMode") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_upload_script_checks, "wgDisableUploadScriptChecks") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_async_uploads, "wgEnableAsyncUploads") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_async_uploads_by_url, "wgEnableAsyncUploadsByUrl") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_uploads, "wgEnableUploads") }}
+
+
+{{ settings.setting(mediawiki_file_backends, "wgFileBackends") }}
+
+
+{{ settings.setting(mediawiki_prohibited_file_extensions, "wgProhibitedFileExtensions") }}
+
+
+{{ settings.setting(mediawiki_file_extensions, "wgFileExtensions") }}
+
+
+{{ settings.bool_setting(mediawiki_hashed_upload_directory, "wgHashedUploadDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_image_preconnect, "wgImagePreconnect") }}
+
+
+{{ settings.bool_setting(mediawiki_img_auth_details, "wgImgAuthDetails") }}
+
+
+{{ settings.setting(mediawiki_img_auth_url_path_map, "wgImgAuthUrlPathMap") }}
+
+
+{{ settings.setting(mediawiki_local_file_repo, "wgLocalFileRepo") }}
+
+
+{{ settings.setting(mediawiki_lock_managers, "wgLockManagers") }}
+
+
+{{ settings.setting(mediawiki_max_upload_size, "wgMaxUploadSize") }}
+
+
+{{ settings.bool_setting(mediawiki_media_in_target_language, "wgMediaInTargetLanguage") }}
+
+
+{{ settings.setting(mediawiki_min_upload_chunk_size, "wgMinUploadChunkSize") }}
+
+
+{{ settings.bool_setting(mediawiki_native_image_lazy_loading, "wgNativeImageLazyLoading") }}
+
+
+{{ settings.setting(mediawiki_parser_test_media_handlers, "wgParserTestMediaHandlers") }}
+
+
+{{ settings.bool_setting(mediawiki_strict_file_extensions, "wgStrictFileExtensions") }}
+
+
+{{ settings.setting(mediawiki_thumbnail_epoch, "wgThumbnailEpoch") }}
+
+
+{{ settings.setting(mediawiki_upload_dialog, "wgUploadDialog") }}
+
+
+{{ settings.bool_setting(mediawiki_upload_maintenance, "wgUploadMaintenance") }}
+
+
+{{ settings.string_setting(mediawiki_upload_missing_file_url, "wgUploadMissingFileUrl") }}
+
+
+{{ settings.string_setting(mediawiki_upload_navigation_url, "wgUploadNavigationUrl") }}
+
+
+{{ settings.setting(mediawiki_upload_size_warning, "wgUploadSizeWarning") }}
+
+
+{{ settings.setting(mediawiki_upload_stash_max_age, "wgUploadStashMaxAge") }}
+
 
 // MIME types
-{% if mediawiki_mime_detector_command is defined %}
-$wgMimeDetectorCommand = "{{ mediawiki_mime_detector_command }}";
-{% endif %}
-{% if mediawiki_mime_info_file is defined %}
-$wgMimeInfoFile = "{{ mediawiki_mime_info_file }}";
-{% endif %}
-{% if mediawiki_mime_type_file is defined %}
-$wgMimeTypeFile = "{{ mediawiki_mime_type_file }}";
-{% endif %}
-{% if mediawiki_trivial_mime_detection is defined %}
-$wgTrivialMimeDetection = {{ mediawiki_trivial_mime_detection | lower }};
-{% endif %}
-{% if mediawiki_verify_mime_type is defined %}
-$wgVerifyMimeType = {{ mediawiki_verify_mime_type | lower }};
-{% endif %}
-{% if mediawiki_mime_type_exclusions is defined %}
-$wgMimeTypeExclusions = {{ mediawiki_mime_type_exclusions }};
-{% endif %}
-{% if mediawiki_xml_mime_types is defined %}
-$wgXMLMimeTypes = {{ mediawiki_xml_mime_types }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_mime_detector_command, "wgMimeDetectorCommand") }}
+
+
+{{ settings.string_setting(mediawiki_mime_info_file, "wgMimeInfoFile") }}
+
+
+{{ settings.string_setting(mediawiki_mime_type_file, "wgMimeTypeFile") }}
+
+
+{{ settings.bool_setting(mediawiki_trivial_mime_detection, "wgTrivialMimeDetection") }}
+
+
+{{ settings.bool_setting(mediawiki_verify_mime_type, "wgVerifyMimeType") }}
+
+
+{{ settings.setting(mediawiki_mime_type_exclusions, "wgMimeTypeExclusions") }}
+
+
+{{ settings.setting(mediawiki_xml_mime_types, "wgXMLMimeTypes") }}
+
 
 // Shared uploads
-{% if mediawiki_cache_shared_uploads is defined %}
-$wgCacheSharedUploads = {{ mediawiki_cache_shared_uploads | lower }};
-{% endif %}
-{% if mediawiki_foreign_file_repos is defined %}
-$wgForeignFileRepos = {{ mediawiki_foreign_file_repos }};
-{% endif %}
-{% if mediawiki_foreign_upload_targets is defined %}
-$wgForeignUploadTargets = {{ mediawiki_foreign_upload_targets }};
-{% endif %}
-{% if mediawiki_hashed_shared_upload_directory is defined %}
-$wgHashedSharedUploadDirectory = {{ mediawiki_hashed_shared_upload_directory | lower }};
-{% endif %}
-{% if mediawiki_repository_base_url is defined %}
-$wgRepositoryBaseUrl = "{{ mediawiki_repository_base_url }}";
-{% endif %}
-{% if mediawiki_shared_upload_dbname is defined %}
-$wgSharedUploadDBname = "{{ mediawiki_shared_upload_dbname }}";
-{% endif %}
-{% if mediawiki_shared_upload_dbprefix is defined %}
-$wgSharedUploadDBprefix = "{{ mediawiki_shared_upload_dbprefix }}";
-{% endif %}
-{% if mediawiki_shared_upload_directory is defined %}
-$wgSharedUploadDirectory = "{{ mediawiki_shared_upload_directory }}";
-{% endif %}
-{% if mediawiki_shared_upload_path is defined %}
-$wgSharedUploadPath = "{{ mediawiki_shared_upload_path }}";
-{% endif %}
-{% if mediawiki_use_shared_uploads is defined %}
-$wgUseSharedUploads = {{ mediawiki_use_shared_uploads | lower }};
-{% endif %}
-{% if mediawiki_fetch_commons_descriptions is defined %}
-$wgFetchCommonsDescriptions = {{ mediawiki_fetch_commons_descriptions | lower }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_cache_shared_uploads, "wgCacheSharedUploads") }}
+
+
+{{ settings.setting(mediawiki_foreign_file_repos, "wgForeignFileRepos") }}
+
+
+{{ settings.setting(mediawiki_foreign_upload_targets, "wgForeignUploadTargets") }}
+
+
+{{ settings.bool_setting(mediawiki_hashed_shared_upload_directory, "wgHashedSharedUploadDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_repository_base_url, "wgRepositoryBaseUrl") }}
+
+
+{{ settings.string_setting(mediawiki_shared_upload_dbname, "wgSharedUploadDBname") }}
+
+
+{{ settings.string_setting(mediawiki_shared_upload_dbprefix, "wgSharedUploadDBprefix") }}
+
+
+{{ settings.string_setting(mediawiki_shared_upload_directory, "wgSharedUploadDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_shared_upload_path, "wgSharedUploadPath") }}
+
+
+{{ settings.bool_setting(mediawiki_use_shared_uploads, "wgUseSharedUploads") }}
+
+
+{{ settings.bool_setting(mediawiki_fetch_commons_descriptions, "wgFetchCommonsDescriptions") }}
+
 
 // Images
-{% if mediawiki_custom_convert_command is defined %}
-$wgCustomConvertCommand = "{{ mediawiki_custom_convert_command }}";
-{% endif %}
-{% if mediawiki_enable_auto_rotation is defined %}
-$wgEnableAutoRotation = {{ mediawiki_enable_auto_rotation | lower }};
-{% endif %}
-{% if mediawiki_exiftool is defined %}
-$wgExiftool = "{{ mediawiki_exiftool }}";
-{% endif %}
-{% if mediawiki_exiv2_command is defined %}
-$wgExiv2Command = "{{ mediawiki_exiv2_command }}";
-{% endif %}
-{% if mediawiki_gallery_options is defined %}
-$wgGalleryOptions = {{ mediawiki_gallery_options }};
-{% endif %}
-{% if mediawiki_ignore_image_errors is defined %}
-$wgIgnoreImageErrors = {{ mediawiki_ignore_image_errors | lower }};
-{% endif %}
-{% if mediawiki_image_limits is defined %}
-$wgImageLimits = {{ mediawiki_image_limits }};
-{% endif %}
-{% if mediawiki_jpeg_quality is defined %}
-$wgJpegQuality = {{ mediawiki_jpeg_quality }};
-{% endif %}
-{% if mediawiki_jpeg_tran is defined %}
-$wgJpegTran = "{{ mediawiki_jpeg_tran }}";
-{% endif %}
-{% if mediawiki_max_image_area is defined %}
-$wgMaxImageArea = {{ mediawiki_max_image_area }};
-{% endif %}
-{% if mediawiki_media_handlers is defined %}
-$wgMediaHandlers = {{ mediawiki_media_handlers }};
-{% endif %}
-{% if mediawiki_trusted_media_formats is defined %}
-$wgTrustedMediaFormats = {{ mediawiki_trusted_media_formats }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_custom_convert_command, "wgCustomConvertCommand") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_auto_rotation, "wgEnableAutoRotation") }}
+
+
+{{ settings.string_setting(mediawiki_exiftool, "wgExiftool") }}
+
+
+{{ settings.string_setting(mediawiki_exiv2_command, "wgExiv2Command") }}
+
+
+{{ settings.setting(mediawiki_gallery_options, "wgGalleryOptions") }}
+
+
+{{ settings.bool_setting(mediawiki_ignore_image_errors, "wgIgnoreImageErrors") }}
+
+
+{{ settings.setting(mediawiki_image_limits, "wgImageLimits") }}
+
+
+{{ settings.setting(mediawiki_jpeg_quality, "wgJpegQuality") }}
+
+
+{{ settings.string_setting(mediawiki_jpeg_tran, "wgJpegTran") }}
+
+
+{{ settings.setting(mediawiki_max_image_area, "wgMaxImageArea") }}
+
+
+{{ settings.setting(mediawiki_media_handlers, "wgMediaHandlers") }}
+
+
+{{ settings.setting(mediawiki_trusted_media_formats, "wgTrustedMediaFormats") }}
+
 
 // DjVu
-{% if mediawiki_djvu_dump is defined %}
-$wgDjvuDump = "{{ mediawiki_djvu_dump }}";
-{% endif %}
-{% if mediawiki_djvu_output_extension is defined %}
-$wgDjvuOutputExtension = "{{ mediawiki_djvu_output_extension }}";
-{% endif %}
-{% if mediawiki_djvu_post_processor is defined %}
-$wgDjvuPostProcessor = "{{ mediawiki_djvu_post_processor }}";
-{% endif %}
-{% if mediawiki_djvu_renderer is defined %}
-$wgDjvuRenderer = "{{ mediawiki_djvu_renderer }}";
-{% endif %}
-{% if mediawiki_djvu_txt is defined %}
-$wgDjvuTxt = "{{ mediawiki_djvu_txt }}";
-{% endif %}
-{% if mediawiki_djvu_use_boxed_command is defined %}
-$wgDjvuUseBoxedCommand = {{ mediawiki_djvu_use_boxed_command | lower }};
-{% endif %}
-{% if mediawiki_shellbox_shell is defined %}
-$wgShellboxShell = "{{ mediawiki_shellbox_shell }}";
-{% endif %}
+
+{{ settings.string_setting(mediawiki_djvu_dump, "wgDjvuDump") }}
+
+
+{{ settings.string_setting(mediawiki_djvu_output_extension, "wgDjvuOutputExtension") }}
+
+
+{{ settings.string_setting(mediawiki_djvu_post_processor, "wgDjvuPostProcessor") }}
+
+
+{{ settings.string_setting(mediawiki_djvu_renderer, "wgDjvuRenderer") }}
+
+
+{{ settings.string_setting(mediawiki_djvu_txt, "wgDjvuTxt") }}
+
+
+{{ settings.bool_setting(mediawiki_djvu_use_boxed_command, "wgDjvuUseBoxedCommand") }}
+
+
+{{ settings.string_setting(mediawiki_shellbox_shell, "wgShellboxShell") }}
+
 
 // EXIF
-{% if mediawiki_show_exif is defined %}
-$wgShowEXIF = {{ mediawiki_show_exif | lower }};
-{% endif %}
-{% if mediawiki_update_compatible_metadata is defined %}
-$wgUpdateCompatibleMetadata = {{ mediawiki_update_compatible_metadata | lower }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_show_exif, "wgShowEXIF") }}
+
+
+{{ settings.bool_setting(mediawiki_update_compatible_metadata, "wgUpdateCompatibleMetadata") }}
+
 
 // ImageMagick
-{% if mediawiki_image_magick_convert_command is defined %}
-$wgImageMagickConvertCommand = "{{ mediawiki_image_magick_convert_command }}";
-{% endif %}
-{% if mediawiki_image_magick_temp_dir is defined %}
-$wgImageMagickTempDir = "{{ mediawiki_image_magick_temp_dir }}";
-{% endif %}
-{% if mediawiki_max_interlacing_areas is defined %}
-$wgMaxInterlacingAreas = {{ mediawiki_max_interlacing_areas }};
-{% endif %}
-{% if mediawiki_sharpen_parameter is defined %}
-$wgSharpenParameter = "{{ mediawiki_sharpen_parameter }}";
-{% endif %}
-{% if mediawiki_sharpen_reduction_threshold is defined %}
-$wgSharpenReductionThreshold = {{ mediawiki_sharpen_reduction_threshold }};
-{% endif %}
-{% if mediawiki_use_image_magick is defined %}
-$wgUseImageMagick = {{ mediawiki_use_image_magick | lower }};
-{% endif %}
-{% if mediawiki_use_tiny_rgb_for_jpg_thumbnails is defined %}
-$wgUseTinyRGBForJPGThumbnails = {{ mediawiki_use_tiny_rgb_for_jpg_thumbnails | lower }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_image_magick_convert_command, "wgImageMagickConvertCommand") }}
+
+
+{{ settings.string_setting(mediawiki_image_magick_temp_dir, "wgImageMagickTempDir") }}
+
+
+{{ settings.setting(mediawiki_max_interlacing_areas, "wgMaxInterlacingAreas") }}
+
+
+{{ settings.string_setting(mediawiki_sharpen_parameter, "wgSharpenParameter") }}
+
+
+{{ settings.setting(mediawiki_sharpen_reduction_threshold, "wgSharpenReductionThreshold") }}
+
+
+{{ settings.bool_setting(mediawiki_use_image_magick, "wgUseImageMagick") }}
+
+
+{{ settings.bool_setting(mediawiki_use_tiny_rgb_for_jpg_thumbnails, "wgUseTinyRGBForJPGThumbnails") }}
+
 
 // SVG
-{% if mediawiki_svg_converter is defined %}
-$wgSVGConverter = "{{ mediawiki_svg_converter }}";
-{% endif %}
-{% if mediawiki_svg_converter_path is defined %}
-$wgSVGConverterPath = "{{ mediawiki_svg_converter_path }}";
-{% endif %}
-{% if mediawiki_svg_converters is defined %}
-$wgSVGConverters = {{ mediawiki_svg_converters }};
-{% endif %}
-{% if mediawiki_svg_max_size is defined %}
-$wgSVGMaxSize = {{ mediawiki_svg_max_size }};
-{% endif %}
-{% if mediawiki_svg_metadata_cutoff is defined %}
-$wgSVGMetadataCutoff = {{ mediawiki_svg_metadata_cutoff }};
-{% endif %}
-{% if mediawiki_svg_native_rendering is defined %}
-$wgSVGNativeRendering = {{ mediawiki_svg_native_rendering | lower }};
-{% endif %}
-{% if mediawiki_svg_native_rendering_size_limit is defined %}
-$wgSVGNativeRenderingSizeLimit = {{ mediawiki_svg_native_rendering_size_limit }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_svg_converter, "wgSVGConverter") }}
+
+
+{{ settings.string_setting(mediawiki_svg_converter_path, "wgSVGConverterPath") }}
+
+
+{{ settings.setting(mediawiki_svg_converters, "wgSVGConverters") }}
+
+
+{{ settings.setting(mediawiki_svg_max_size, "wgSVGMaxSize") }}
+
+
+{{ settings.setting(mediawiki_svg_metadata_cutoff, "wgSVGMetadataCutoff") }}
+
+
+{{ settings.bool_setting(mediawiki_svg_native_rendering, "wgSVGNativeRendering") }}
+
+
+{{ settings.setting(mediawiki_svg_native_rendering_size_limit, "wgSVGNativeRenderingSizeLimit") }}
+
 
 // Thumbnail settings
-{% if mediawiki_use_image_resize is defined %}
-$wgUseImageResize = {{ mediawiki_use_image_resize | lower }};
-{% endif %}
-{% if mediawiki_generate_thumbnail_on_parse is defined %}
-$wgGenerateThumbnailOnParse = {{ mediawiki_generate_thumbnail_on_parse | lower }};
-{% endif %}
-{% if mediawiki_max_animated_gif_area is defined %}
-$wgMaxAnimatedGifArea = {{ mediawiki_max_animated_gif_area }};
-{% endif %}
-{% if mediawiki_shared_thumbnail_script_path is defined %}
-$wgSharedThumbnailScriptPath = "{{ mediawiki_shared_thumbnail_script_path }}";
-{% endif %}
-{% if mediawiki_show_archive_thumbnails is defined %}
-$wgShowArchiveThumbnails = {{ mediawiki_show_archive_thumbnails | lower }};
-{% endif %}
-{% if mediawiki_tiff_thumbnail_type is defined %}
-$wgTiffThumbnailType = "{{ mediawiki_tiff_thumbnail_type }}";
-{% endif %}
-{% if mediawiki_thumbnail_namespaces is defined %}
-$wgThumbnailNamespaces = {{ mediawiki_thumbnail_namespaces }};
-{% endif %}
-{% if mediawiki_thumbnail_script_path is defined %}
-$wgThumbnailScriptPath = "{{ mediawiki_thumbnail_script_path }}";
-{% endif %}
-{% if mediawiki_thumb_upright is defined %}
-$wgThumbUpright = {{ mediawiki_thumb_upright }};
-{% endif %}
-{% if mediawiki_thumb_limits is defined %}
-$wgThumbLimits = {{ mediawiki_thumb_limits }};
-{% endif %}
-{% if mediawiki_responsive_images is defined %}
-$wgResponsiveImages = {{ mediawiki_responsive_images | lower }};
-{% endif %}
-{% if mediawiki_thumbnail_buckets is defined %}
-$wgThumbnailBuckets = {{ mediawiki_thumbnail_buckets }};
-{% endif %}
-{% if mediawiki_thumbnail_minimum_bucket_distance is defined %}
-$wgThumbnailMinimumBucketDistance = {{ mediawiki_thumbnail_minimum_bucket_distance }};
-{% endif %}
-{% if mediawiki_jpeg_pixel_format is defined %}
-$wgJpegPixelFormat = "{{ mediawiki_jpeg_pixel_format }}";
-{% endif %}
-{% if mediawiki_upload_thumbnail_render_http_custom_host is defined %}
-$wgUploadThumbnailRenderHttpCustomHost = "{{ mediawiki_upload_thumbnail_render_http_custom_host }}";
-{% endif %}
-{% if mediawiki_upload_thumbnail_render_http_custom_domain is defined %}
-$wgUploadThumbnailRenderHttpCustomDomain = "{{ mediawiki_upload_thumbnail_render_http_custom_domain }}";
-{% endif %}
-{% if mediawiki_upload_thumbnail_render_map is defined %}
-$wgUploadThumbnailRenderMap = {{ mediawiki_upload_thumbnail_render_map }};
-{% endif %}
-{% if mediawiki_upload_thumbnail_render_method is defined %}
-$wgUploadThumbnailRenderMethod = "{{ mediawiki_upload_thumbnail_render_method }}";
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_use_image_resize, "wgUseImageResize") }}
+
+
+{{ settings.bool_setting(mediawiki_generate_thumbnail_on_parse, "wgGenerateThumbnailOnParse") }}
+
+
+{{ settings.setting(mediawiki_max_animated_gif_area, "wgMaxAnimatedGifArea") }}
+
+
+{{ settings.string_setting(mediawiki_shared_thumbnail_script_path, "wgSharedThumbnailScriptPath") }}
+
+
+{{ settings.bool_setting(mediawiki_show_archive_thumbnails, "wgShowArchiveThumbnails") }}
+
+
+{{ settings.string_setting(mediawiki_tiff_thumbnail_type, "wgTiffThumbnailType") }}
+
+
+{{ settings.setting(mediawiki_thumbnail_namespaces, "wgThumbnailNamespaces") }}
+
+
+{{ settings.string_setting(mediawiki_thumbnail_script_path, "wgThumbnailScriptPath") }}
+
+
+{{ settings.setting(mediawiki_thumb_upright, "wgThumbUpright") }}
+
+
+{{ settings.setting(mediawiki_thumb_limits, "wgThumbLimits") }}
+
+
+{{ settings.bool_setting(mediawiki_responsive_images, "wgResponsiveImages") }}
+
+
+{{ settings.setting(mediawiki_thumbnail_buckets, "wgThumbnailBuckets") }}
+
+
+{{ settings.setting(mediawiki_thumbnail_minimum_bucket_distance, "wgThumbnailMinimumBucketDistance") }}
+
+
+{{ settings.string_setting(mediawiki_jpeg_pixel_format, "wgJpegPixelFormat") }}
+
+
+{{ settings.string_setting(mediawiki_upload_thumbnail_render_http_custom_host, "wgUploadThumbnailRenderHttpCustomHost") }}
+
+
+{{ settings.string_setting(mediawiki_upload_thumbnail_render_http_custom_domain, "wgUploadThumbnailRenderHttpCustomDomain") }}
+
+
+{{ settings.setting(mediawiki_upload_thumbnail_render_map, "wgUploadThumbnailRenderMap") }}
+
+
+{{ settings.string_setting(mediawiki_upload_thumbnail_render_method, "wgUploadThumbnailRenderMethod") }}
+
 
 // Antivirus
-{% if mediawiki_antivirus is defined %}
-$wgAntivirus = "{{ mediawiki_antivirus }}";
-{% endif %}
-{% if mediawiki_antivirus_required is defined %}
-$wgAntivirusRequired = {{ mediawiki_antivirus_required | lower }};
-{% endif %}
-{% if mediawiki_antivirus_setup is defined %}
-$wgAntivirusSetup = {{ mediawiki_antivirus_setup }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_antivirus, "wgAntivirus") }}
+
+
+{{ settings.bool_setting(mediawiki_antivirus_required, "wgAntivirusRequired") }}
+
+
+{{ settings.setting(mediawiki_antivirus_setup, "wgAntivirusSetup") }}
+
 
 // Email settings
-{% if mediawiki_additional_mail_params is defined %}
-$wgAdditionalMailParams = "{{ mediawiki_additional_mail_params }}";
-{% endif %}
-{% if mediawiki_allow_html_email is defined %}
-$wgAllowHTMLEmail = {{ mediawiki_allow_html_email | lower }};
-{% endif %}
-{% if mediawiki_email_authentication is defined %}
-$wgEmailAuthentication = {{ mediawiki_email_authentication | lower }};
-{% endif %}
-{% if mediawiki_emergency_contact is defined %}
-$wgEmergencyContact = "{{ mediawiki_emergency_contact }}";
-{% endif %}
-{% if mediawiki_enable_email is defined %}
-$wgEnableEmail = {{ mediawiki_enable_email | lower }};
-{% endif %}
-{% if mediawiki_enable_special_mute is defined %}
-$wgEnableSpecialMute = {{ mediawiki_enable_special_mute | lower }};
-{% endif %}
-{% if mediawiki_enable_user_email_mutelist is defined %}
-$wgEnableUserEmailMutelist = {{ mediawiki_enable_user_email_mutelist | lower }};
-{% endif %}
-{% if mediawiki_enable_user_email is defined %}
-$wgEnableUserEmail = {{ mediawiki_enable_user_email | lower }};
-{% endif %}
-{% if mediawiki_new_password_expiry is defined %}
-$wgNewPasswordExpiry = {{ mediawiki_new_password_expiry }};
-{% endif %}
-{% if mediawiki_no_reply_address is defined %}
-$wgNoReplyAddress = "{{ mediawiki_no_reply_address }}";
-{% endif %}
-{% if mediawiki_password_expiration_days is defined %}
-$wgPasswordExpirationDays = {{ mediawiki_password_expiration_days }};
-{% endif %}
-{% if mediawiki_password_expire_grace is defined %}
-$wgPasswordExpireGrace = {{ mediawiki_password_expire_grace }};
-{% endif %}
-{% if mediawiki_password_reminder_resend_time is defined %}
-$wgPasswordReminderResendTime = {{ mediawiki_password_reminder_resend_time }};
-{% endif %}
-{% if mediawiki_password_sender is defined %}
-$wgPasswordSender = "{{ mediawiki_password_sender }}";
-{% endif %}
-{% if mediawiki_smtp is defined %}
-$wgSMTP = {{ mediawiki_smtp }};
-{% endif %}
-{% if mediawiki_user_email_confirmation_token_expiry is defined %}
-$wgUserEmailConfirmationTokenExpiry = {{ mediawiki_user_email_confirmation_token_expiry }};
-{% endif %}
-{% if mediawiki_user_email_use_reply_to is defined %}
-$wgUserEmailUseReplyTo = {{ mediawiki_user_email_use_reply_to | lower }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_additional_mail_params, "wgAdditionalMailParams") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_html_email, "wgAllowHTMLEmail") }}
+
+
+{{ settings.bool_setting(mediawiki_email_authentication, "wgEmailAuthentication") }}
+
+
+{{ settings.string_setting(mediawiki_emergency_contact, "wgEmergencyContact") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_email, "wgEnableEmail") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_special_mute, "wgEnableSpecialMute") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_user_email_mutelist, "wgEnableUserEmailMutelist") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
+
+
+{{ settings.setting(mediawiki_new_password_expiry, "wgNewPasswordExpiry") }}
+
+
+{{ settings.string_setting(mediawiki_no_reply_address, "wgNoReplyAddress") }}
+
+
+{{ settings.setting(mediawiki_password_expiration_days, "wgPasswordExpirationDays") }}
+
+
+{{ settings.setting(mediawiki_password_expire_grace, "wgPasswordExpireGrace") }}
+
+
+{{ settings.setting(mediawiki_password_reminder_resend_time, "wgPasswordReminderResendTime") }}
+
+
+{{ settings.string_setting(mediawiki_password_sender, "wgPasswordSender") }}
+
+
+{{ settings.setting(mediawiki_smtp, "wgSMTP") }}
+
+
+{{ settings.setting(mediawiki_user_email_confirmation_token_expiry, "wgUserEmailConfirmationTokenExpiry") }}
+
+
+{{ settings.bool_setting(mediawiki_user_email_use_reply_to, "wgUserEmailUseReplyTo") }}
+
 
 // Email notification (Enotif) settings
-{% if mediawiki_enotif_from_editor is defined %}
-$wgEnotifFromEditor = {{ mediawiki_enotif_from_editor | lower }};
-{% endif %}
-{% if mediawiki_enotif_impersonal is defined %}
-$wgEnotifImpersonal = {{ mediawiki_enotif_impersonal | lower }};
-{% endif %}
-{% if mediawiki_enotif_max_recips is defined %}
-$wgEnotifMaxRecips = {{ mediawiki_enotif_max_recips }};
-{% endif %}
-{% if mediawiki_enotif_minor_edits is defined %}
-$wgEnotifMinorEdits = {{ mediawiki_enotif_minor_edits | lower }};
-{% endif %}
-{% if mediawiki_enotif_reveal_editor_address is defined %}
-$wgEnotifRevealEditorAddress = {{ mediawiki_enotif_reveal_editor_address | lower }};
-{% endif %}
-{% if mediawiki_enotif_use_real_name is defined %}
-$wgEnotifUseRealName = {{ mediawiki_enotif_use_real_name | lower }};
-{% endif %}
-{% if mediawiki_enotif_user_talk is defined %}
-$wgEnotifUserTalk = {{ mediawiki_enotif_user_talk | lower }};
-{% endif %}
-{% if mediawiki_enotif_watchlist is defined %}
-$wgEnotifWatchlist = {{ mediawiki_enotif_watchlist | lower }};
-{% endif %}
-{% if mediawiki_use_enotif is defined %}
-$wgUseEnotif = {{ mediawiki_use_enotif | lower }};
-{% endif %}
-{% if mediawiki_users_notified_on_all_changes is defined %}
-$wgUsersNotifiedOnAllChanges = {{ mediawiki_users_notified_on_all_changes }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_enotif_from_editor, "wgEnotifFromEditor") }}
+
+
+{{ settings.bool_setting(mediawiki_enotif_impersonal, "wgEnotifImpersonal") }}
+
+
+{{ settings.setting(mediawiki_enotif_max_recips, "wgEnotifMaxRecips") }}
+
+
+{{ settings.bool_setting(mediawiki_enotif_minor_edits, "wgEnotifMinorEdits") }}
+
+
+{{ settings.bool_setting(mediawiki_enotif_reveal_editor_address, "wgEnotifRevealEditorAddress") }}
+
+
+{{ settings.bool_setting(mediawiki_enotif_use_real_name, "wgEnotifUseRealName") }}
+
+
+{{ settings.bool_setting(mediawiki_enotif_user_talk, "wgEnotifUserTalk") }}
+
+
+{{ settings.bool_setting(mediawiki_enotif_watchlist, "wgEnotifWatchlist") }}
+
+
+{{ settings.bool_setting(mediawiki_use_enotif, "wgUseEnotif") }}
+
+
+{{ settings.setting(mediawiki_users_notified_on_all_changes, "wgUsersNotifiedOnAllChanges") }}
+
 
 // Database settings
-{% if mediawiki_data_center_update_stick_ttl is defined %}
-$wgDataCenterUpdateStickTTL = {{ mediawiki_data_center_update_stick_ttl }};
-{% endif %}
-{% if mediawiki_db_admin_password is defined %}
-$wgDBadminpassword = "{{ mediawiki_db_admin_password }}";
-{% endif %}
-{% if mediawiki_db_admin_user is defined %}
-$wgDBadminuser = "{{ mediawiki_db_admin_user }}";
-{% endif %}
-{% if mediawiki_db_compress is defined %}
-$wgDBcompress = {{ mediawiki_db_compress | lower }};
-{% endif %}
-{% if mediawiki_db_default_group is defined %}
-$wgDBDefaultGroup = "{{ mediawiki_db_default_group }}";
-{% endif %}
-{% if mediawiki_db_error_log_tz is defined %}
-$wgDBerrorLogTZ = "{{ mediawiki_db_error_log_tz }}";
-{% endif %}
-{% if mediawiki_db_error_log is defined %}
-$wgDBerrorLog = "{{ mediawiki_db_error_log }}";
-{% endif %}
-{% if mediawiki_db_mwschema is defined %}
-$wgDBmwschema = "{{ mediawiki_db_mwschema }}";
-{% endif %}
-{% if mediawiki_db_name is defined %}
-$wgDBname = "{{ mediawiki_db_name }}";
-{% endif %}
-{% if mediawiki_db_password is defined %}
-$wgDBpassword = "{{ mediawiki_db_password }}";
-{% endif %}
-{% if mediawiki_db_prefix is defined %}
-$wgDBprefix = "{{ mediawiki_db_prefix }}";
-{% endif %}
-{% if mediawiki_db_server is defined %}
-$wgDBserver = "{{ mediawiki_db_server }}";
-{% endif %}
-{% if mediawiki_db_ssl is defined %}
-$wgDBssl = {{ mediawiki_db_ssl | lower }};
-{% endif %}
-{% if mediawiki_db_strict_warnings is defined %}
-$wgDBstrictWarnings = {{ mediawiki_db_strict_warnings | lower }};
-{% endif %}
-{% if mediawiki_db_type is defined %}
-$wgDBtype = "{{ mediawiki_db_type }}";
-{% endif %}
-{% if mediawiki_db_user is defined %}
-$wgDBuser = "{{ mediawiki_db_user }}";
-{% endif %}
-{% if mediawiki_external_links_domain_gaps is defined %}
-$wgExternalLinksDomainGaps = {{ mediawiki_external_links_domain_gaps }};
-{% endif %}
-{% if mediawiki_local_databases is defined %}
-$wgLocalDatabases = {{ mediawiki_local_databases }};
-{% endif %}
-{% if mediawiki_max_execution_time_for_expensive_queries is defined %}
-$wgMaxExecutionTimeForExpensiveQueries = {{ mediawiki_max_execution_time_for_expensive_queries }};
-{% endif %}
-{% if mediawiki_search_type_alternatives is defined %}
-$wgSearchTypeAlternatives = {{ mediawiki_search_type_alternatives }};
-{% endif %}
-{% if mediawiki_search_type is defined %}
-$wgSearchType = "{{ mediawiki_search_type }}";
-{% endif %}
-{% if mediawiki_virtual_domains_mapping is defined %}
-$wgVirtualDomainsMapping = {{ mediawiki_virtual_domains_mapping }};
-{% endif %}
+
+{{ settings.setting(mediawiki_data_center_update_stick_ttl, "wgDataCenterUpdateStickTTL") }}
+
+
+{{ settings.string_setting(mediawiki_db_admin_password, "wgDBadminpassword") }}
+
+
+{{ settings.string_setting(mediawiki_db_admin_user, "wgDBadminuser") }}
+
+
+{{ settings.bool_setting(mediawiki_db_compress, "wgDBcompress") }}
+
+
+{{ settings.string_setting(mediawiki_db_default_group, "wgDBDefaultGroup") }}
+
+
+{{ settings.string_setting(mediawiki_db_error_log_tz, "wgDBerrorLogTZ") }}
+
+
+{{ settings.string_setting(mediawiki_db_error_log, "wgDBerrorLog") }}
+
+
+{{ settings.string_setting(mediawiki_db_mwschema, "wgDBmwschema") }}
+
+
+{{ settings.string_setting(mediawiki_db_name, "wgDBname") }}
+
+
+{{ settings.string_setting(mediawiki_db_password, "wgDBpassword") }}
+
+
+{{ settings.string_setting(mediawiki_db_prefix, "wgDBprefix") }}
+
+
+{{ settings.string_setting(mediawiki_db_server, "wgDBserver") }}
+
+
+{{ settings.bool_setting(mediawiki_db_ssl, "wgDBssl") }}
+
+
+{{ settings.bool_setting(mediawiki_db_strict_warnings, "wgDBstrictWarnings") }}
+
+
+{{ settings.string_setting(mediawiki_db_type, "wgDBtype") }}
+
+
+{{ settings.string_setting(mediawiki_db_user, "wgDBuser") }}
+
+
+{{ settings.setting(mediawiki_external_links_domain_gaps, "wgExternalLinksDomainGaps") }}
+
+
+{{ settings.setting(mediawiki_local_databases, "wgLocalDatabases") }}
+
+
+{{ settings.setting(mediawiki_max_execution_time_for_expensive_queries, "wgMaxExecutionTimeForExpensiveQueries") }}
+
+
+{{ settings.setting(mediawiki_search_type_alternatives, "wgSearchTypeAlternatives") }}
+
+
+{{ settings.string_setting(mediawiki_search_type, "wgSearchType") }}
+
+
+{{ settings.setting(mediawiki_virtual_domains_mapping, "wgVirtualDomainsMapping") }}
+
 
 // LoadBalancer settings
-{% if mediawiki_db_servers is defined %}
-$wgDBservers = {{ mediawiki_db_servers }};
-{% endif %}
-{% if mediawiki_lb_factory_conf is defined %}
-$wgLBFactoryConf = {{ mediawiki_lb_factory_conf }};
-{% endif %}
-{% if mediawiki_database_replica_lag_critical is defined %}
-$wgDatabaseReplicaLagCritical = {{ mediawiki_database_replica_lag_critical }};
-{% endif %}
-{% if mediawiki_database_replica_lag_warning is defined %}
-$wgDatabaseReplicaLagWarning = {{ mediawiki_database_replica_lag_warning }};
-{% endif %}
+
+{{ settings.setting(mediawiki_db_servers, "wgDBservers") }}
+
+
+{{ settings.setting(mediawiki_lb_factory_conf, "wgLBFactoryConf") }}
+
+
+{{ settings.setting(mediawiki_database_replica_lag_critical, "wgDatabaseReplicaLagCritical") }}
+
+
+{{ settings.setting(mediawiki_database_replica_lag_warning, "wgDatabaseReplicaLagWarning") }}
+
 
 // MySQL-specific
-{% if mediawiki_db_table_options is defined %}
-$wgDBTableOptions = "{{ mediawiki_db_table_options }}";
-{% endif %}
-{% if mediawiki_sql_mode is defined %}
-$wgSQLMode = "{{ mediawiki_sql_mode }}";
-{% endif %}
+
+{{ settings.string_setting(mediawiki_db_table_options, "wgDBTableOptions") }}
+
+
+{{ settings.string_setting(mediawiki_sql_mode, "wgSQLMode") }}
+
 
 // PostgreSQL-specific
-{% if mediawiki_db_port is defined %}
-$wgDBport = {{ mediawiki_db_port }};
-{% endif %}
+
+{{ settings.setting(mediawiki_db_port, "wgDBport") }}
+
 
 // SQLite-specific
-{% if mediawiki_sqlite_data_dir is defined %}
-$wgSQLiteDataDir = "{{ mediawiki_sqlite_data_dir }}";
-{% endif %}
+
+{{ settings.string_setting(mediawiki_sqlite_data_dir, "wgSQLiteDataDir") }}
+
 
 // Shared DB settings
-{% if mediawiki_shared_db is defined %}
-$wgSharedDB = "{{ mediawiki_shared_db }}";
-{% endif %}
-{% if mediawiki_shared_prefix is defined %}
-$wgSharedPrefix = "{{ mediawiki_shared_prefix }}";
-{% endif %}
-{% if mediawiki_shared_tables is defined %}
-$wgSharedTables = {{ mediawiki_shared_tables }};
-{% endif %}
-{% if mediawiki_shared_schema is defined %}
-$wgSharedSchema = "{{ mediawiki_shared_schema }}";
-{% endif %}
+
+{{ settings.string_setting(mediawiki_shared_db, "wgSharedDB") }}
+
+
+{{ settings.string_setting(mediawiki_shared_prefix, "wgSharedPrefix") }}
+
+
+{{ settings.setting(mediawiki_shared_tables, "wgSharedTables") }}
+
+
+{{ settings.string_setting(mediawiki_shared_schema, "wgSharedSchema") }}
+
 
 // Content handlers and storage
-{% if mediawiki_compress_revisions is defined %}
-$wgCompressRevisions = {{ mediawiki_compress_revisions | lower }};
-{% endif %}
-{% if mediawiki_content_handlers is defined %}
-$wgContentHandlers = {{ mediawiki_content_handlers }};
-{% endif %}
-{% if mediawiki_default_external_store is defined %}
-$wgDefaultExternalStore = "{{ mediawiki_default_external_store }}";
-{% endif %}
-{% if mediawiki_diff_engine is defined %}
-$wgDiffEngine = "{{ mediawiki_diff_engine }}";
-{% endif %}
-{% if mediawiki_enable_remote_bag_o_stuff_tests is defined %}
-$wgEnableRemoteBagOStuffTests = {{ mediawiki_enable_remote_bag_o_stuff_tests | lower }};
-{% endif %}
-{% if mediawiki_external_diff_engine is defined %}
-$wgExternalDiffEngine = "{{ mediawiki_external_diff_engine }}";
-{% endif %}
-{% if mediawiki_external_servers is defined %}
-$wgExternalServers = {{ mediawiki_external_servers }};
-{% endif %}
-{% if mediawiki_external_stores is defined %}
-$wgExternalStores = {{ mediawiki_external_stores }};
-{% endif %}
-{% if mediawiki_namespace_content_models is defined %}
-$wgNamespaceContentModels = {{ mediawiki_namespace_content_models }};
-{% endif %}
-{% if mediawiki_page_language_use_db is defined %}
-$wgPageLanguageUseDB = {{ mediawiki_page_language_use_db | lower }};
-{% endif %}
-{% if mediawiki_revision_cache_expiry is defined %}
-$wgRevisionCacheExpiry = {{ mediawiki_revision_cache_expiry }};
-{% endif %}
-{% if mediawiki_revision_slots_cache_expiry is defined %}
-$wgRevisionSlotsCacheExpiry = {{ mediawiki_revision_slots_cache_expiry }};
-{% endif %}
-{% if mediawiki_text_models_to_parse is defined %}
-$wgTextModelsToParse = {{ mediawiki_text_models_to_parse }};
-{% endif %}
-{% if mediawiki_wikidiff2_options is defined %}
-$wgWikidiff2Options = {{ mediawiki_wikidiff2_options }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_compress_revisions, "wgCompressRevisions") }}
+
+
+{{ settings.setting(mediawiki_content_handlers, "wgContentHandlers") }}
+
+
+{{ settings.string_setting(mediawiki_default_external_store, "wgDefaultExternalStore") }}
+
+
+{{ settings.string_setting(mediawiki_diff_engine, "wgDiffEngine") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_remote_bag_o_stuff_tests, "wgEnableRemoteBagOStuffTests") }}
+
+
+{{ settings.string_setting(mediawiki_external_diff_engine, "wgExternalDiffEngine") }}
+
+
+{{ settings.setting(mediawiki_external_servers, "wgExternalServers") }}
+
+
+{{ settings.setting(mediawiki_external_stores, "wgExternalStores") }}
+
+
+{{ settings.setting(mediawiki_namespace_content_models, "wgNamespaceContentModels") }}
+
+
+{{ settings.bool_setting(mediawiki_page_language_use_db, "wgPageLanguageUseDB") }}
+
+
+{{ settings.setting(mediawiki_revision_cache_expiry, "wgRevisionCacheExpiry") }}
+
+
+{{ settings.setting(mediawiki_revision_slots_cache_expiry, "wgRevisionSlotsCacheExpiry") }}
+
+
+{{ settings.setting(mediawiki_text_models_to_parse, "wgTextModelsToParse") }}
+
+
+{{ settings.setting(mediawiki_wikidiff2_options, "wgWikidiff2Options") }}
+
 
 // Performance hacks and limits
-{% if mediawiki_allow_schema_updates is defined %}
-$wgAllowSchemaUpdates = {{ mediawiki_allow_schema_updates | lower }};
-{% endif %}
-{% if mediawiki_allow_slow_parser_functions is defined %}
-$wgAllowSlowParserFunctions = {{ mediawiki_allow_slow_parser_functions | lower }};
-{% endif %}
-{% if mediawiki_critical_section_time_limit is defined %}
-$wgCriticalSectionTimeLimit = {{ mediawiki_critical_section_time_limit }};
-{% endif %}
-{% if mediawiki_disable_query_pages is defined %}
-$wgDisableQueryPages = {{ mediawiki_disable_query_pages | lower }};
-{% endif %}
-{% if mediawiki_force_deferred_updates_pre_send is defined %}
-$wgForceDeferredUpdatesPreSend = {{ mediawiki_force_deferred_updates_pre_send | lower }};
-{% endif %}
-{% if mediawiki_link_holder_batch_size is defined %}
-$wgLinkHolderBatchSize = {{ mediawiki_link_holder_batch_size }};
-{% endif %}
-{% if mediawiki_max_article_size is defined %}
-$wgMaxArticleSize = {{ mediawiki_max_article_size }};
-{% endif %}
-{% if mediawiki_maximum_moved_pages is defined %}
-$wgMaximumMovedPages = {{ mediawiki_maximum_moved_pages }};
-{% endif %}
-{% if mediawiki_max_job_db_write_duration is defined %}
-$wgMaxJobDBWriteDuration = {{ mediawiki_max_job_db_write_duration }};
-{% endif %}
-{% if mediawiki_max_user_db_write_duration is defined %}
-$wgMaxUserDBWriteDuration = {{ mediawiki_max_user_db_write_duration }};
-{% endif %}
-{% if mediawiki_memory_limit is defined %}
-$wgMemoryLimit = "{{ mediawiki_memory_limit }}";
-{% endif %}
-{% if mediawiki_miser_mode is defined %}
-$wgMiserMode = {{ mediawiki_miser_mode | lower }};
-{% endif %}
-{% if mediawiki_multi_shard_site_stats is defined %}
-$wgMultiShardSiteStats = {{ mediawiki_multi_shard_site_stats | lower }};
-{% endif %}
-{% if mediawiki_pool_counter_conf is defined %}
-$wgPoolCounterConf = {{ mediawiki_pool_counter_conf }};
-{% endif %}
-{% if mediawiki_pool_count_client_conf is defined %}
-$wgPoolCountClientConf = {{ mediawiki_pool_count_client_conf }};
-{% endif %}
-{% if mediawiki_query_cache_limit is defined %}
-$wgQueryCacheLimit = {{ mediawiki_query_cache_limit }};
-{% endif %}
-{% if mediawiki_query_pages is defined %}
-$wgQueryPages = {{ mediawiki_query_pages }};
-{% endif %}
-{% if mediawiki_request_time_limit is defined %}
-$wgRequestTimeLimit = {{ mediawiki_request_time_limit }};
-{% endif %}
-{% if mediawiki_transactional_time_limit is defined %}
-$wgTransactionalTimeLimit = {{ mediawiki_transactional_time_limit }};
-{% endif %}
-{% if mediawiki_wanted_pages_threshold is defined %}
-$wgWantedPagesThreshold = {{ mediawiki_wanted_pages_threshold }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_allow_schema_updates, "wgAllowSchemaUpdates") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_slow_parser_functions, "wgAllowSlowParserFunctions") }}
+
+
+{{ settings.setting(mediawiki_critical_section_time_limit, "wgCriticalSectionTimeLimit") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_query_pages, "wgDisableQueryPages") }}
+
+
+{{ settings.bool_setting(mediawiki_force_deferred_updates_pre_send, "wgForceDeferredUpdatesPreSend") }}
+
+
+{{ settings.setting(mediawiki_link_holder_batch_size, "wgLinkHolderBatchSize") }}
+
+
+{{ settings.setting(mediawiki_max_article_size, "wgMaxArticleSize") }}
+
+
+{{ settings.setting(mediawiki_maximum_moved_pages, "wgMaximumMovedPages") }}
+
+
+{{ settings.setting(mediawiki_max_job_db_write_duration, "wgMaxJobDBWriteDuration") }}
+
+
+{{ settings.setting(mediawiki_max_user_db_write_duration, "wgMaxUserDBWriteDuration") }}
+
+
+{{ settings.string_setting(mediawiki_memory_limit, "wgMemoryLimit") }}
+
+
+{{ settings.bool_setting(mediawiki_miser_mode, "wgMiserMode") }}
+
+
+{{ settings.bool_setting(mediawiki_multi_shard_site_stats, "wgMultiShardSiteStats") }}
+
+
+{{ settings.setting(mediawiki_pool_counter_conf, "wgPoolCounterConf") }}
+
+
+{{ settings.setting(mediawiki_pool_count_client_conf, "wgPoolCountClientConf") }}
+
+
+{{ settings.setting(mediawiki_query_cache_limit, "wgQueryCacheLimit") }}
+
+
+{{ settings.setting(mediawiki_query_pages, "wgQueryPages") }}
+
+
+{{ settings.setting(mediawiki_request_time_limit, "wgRequestTimeLimit") }}
+
+
+{{ settings.setting(mediawiki_transactional_time_limit, "wgTransactionalTimeLimit") }}
+
+
+{{ settings.setting(mediawiki_wanted_pages_threshold, "wgWantedPagesThreshold") }}
+
 
 // Cache settings
-{% if mediawiki_cache_directory is defined %}
-$wgCacheDirectory = "{{ mediawiki_cache_directory }}";
-{% endif %}
-{% if mediawiki_cache_enable_stats is defined %}
-$wgCacheEnableStats = {{ mediawiki_cache_enable_stats | lower }};
-{% endif %}
-{% if mediawiki_cache_epoch is defined %}
-$wgCacheEpoch = {{ mediawiki_cache_epoch }};
-{% endif %}
-{% if mediawiki_cache_pages is defined %}
-$wgCachePages = {{ mediawiki_cache_pages | lower }};
-{% endif %}
-{% if mediawiki_cache_prefix is defined %}
-$wgCachePrefix = "{{ mediawiki_cache_prefix }}";
-{% endif %}
-{% if mediawiki_cache_revision_max_age is defined %}
-$wgCacheRevisionMaxAge = {{ mediawiki_cache_revision_max_age }};
-{% endif %}
-{% if mediawiki_cache_stats_ttl is defined %}
-$wgCacheStatsTTL = {{ mediawiki_cache_stats_ttl }};
-{% endif %}
-{% if mediawiki_cache_ttl is defined %}
-$wgCacheTTL = {{ mediawiki_cache_ttl }};
-{% endif %}
-{% if mediawiki_cluster_cache_dir is defined %}
-$wgClusterCacheDir = "{{ mediawiki_cluster_cache_dir }}";
-{% endif %}
-{% if mediawiki_enable_side_bar_cache is defined %}
-$wgEnableSidebarCache = {{ mediawiki_enable_side_bar_cache | lower }};
-{% endif %}
-{% if mediawiki_external_store_cache_ttl is defined %}
-$wgExternalStoreCacheTTL = {{ mediawiki_external_store_cache_ttl }};
-{% endif %}
-{% if mediawiki_file_cache_directory is defined %}
-$wgFileCacheDirectory = "{{ mediawiki_file_cache_directory }}";
-{% endif %}
-{% if mediawiki_file_cache_depth is defined %}
-$wgFileCacheDepth = {{ mediawiki_file_cache_depth }};
-{% endif %}
-{% if mediawiki_file_cache_time is defined %}
-$wgFileCacheTime = {{ mediawiki_file_cache_time }};
-{% endif %}
-{% if mediawiki_localized_cache_enable_stats is defined %}
-$wgLocalizedCacheEnableStats = {{ mediawiki_localized_cache_enable_stats | lower }};
-{% endif %}
-{% if mediawiki_main_cache_type is defined %}
-$wgMainCacheType = {{ mediawiki_main_cache_type }};
-{% endif %}
-{% if mediawiki_main_stash is defined %}
-$wgMainStash = "{{ mediawiki_main_stash }}";
-{% endif %}
-{% if mediawiki_max_shell_memory is defined %}
-$wgMaxShellMemory = {{ mediawiki_max_shell_memory }};
-{% endif %}
-{% if mediawiki_memcached_servers is defined %}
-$wgMemCachedServers = {{ mediawiki_memcached_servers }};
-{% endif %}
-{% if mediawiki_object_caches is defined %}
-$wgObjectCaches = {{ mediawiki_object_caches }};
-{% endif %}
-{% if mediawiki_parser_cache_type is defined %}
-$wgParserCacheType = {{ mediawiki_parser_cache_type }};
-{% endif %}
-{% if mediawiki_parser_cache_expiry_seconds is defined %}
-$wgParserCacheExpireTime = {{ mediawiki_parser_cache_expiry_seconds }};
-{% endif %}
-{% if mediawiki_parser_cache_use_json is defined %}
-$wgParserCacheUseJSON = {{ mediawiki_parser_cache_use_json | lower }};
-{% endif %}
-{% if mediawiki_session_cache_type is defined %}
-$wgSessionCacheType = {{ mediawiki_session_cache_type }};
-{% endif %}
-{% if mediawiki_use_file_cache is defined %}
-$wgUseFileCache = {{ mediawiki_use_file_cache | lower }};
-{% endif %}
-{% if mediawiki_use_gzip is defined %}
-$wgUseGzip = {{ mediawiki_use_gzip | lower }};
-{% endif %}
-{% if mediawiki_use_memcached is defined %}
-$wgUseMemcached = {{ mediawiki_use_memcached | lower }};
-{% endif %}
-{% if mediawiki_use_parser_cache is defined %}
-$wgUseParserCache = {{ mediawiki_use_parser_cache | lower }};
-{% endif %}
-{% if mediawiki_use_squids is defined %}
-$wgUseSquid = {{ mediawiki_use_squids | lower }};
-{% endif %}
-{% if mediawiki_use_xcache is defined %}
-$wgUseXCache = {{ mediawiki_use_xcache | lower }};
-{% endif %}
-{% if mediawiki_varnish_ttl is defined %}
-$wgVarnishTTL = {{ mediawiki_varnish_ttl }};
-{% endif %}
-{% if mediawiki_wantedfiles_cache_ttl is defined %}
-$wgWantedFilesCacheTTL = {{ mediawiki_wantedfiles_cache_ttl }};
-{% endif %}
-{% if mediawiki_wantedpages_cache_ttl is defined %}
-$wgWantedPagesCacheTTL = {{ mediawiki_wantedpages_cache_ttl }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_cache_directory, "wgCacheDirectory") }}
+
+
+{{ settings.bool_setting(mediawiki_cache_enable_stats, "wgCacheEnableStats") }}
+
+
+{{ settings.setting(mediawiki_cache_epoch, "wgCacheEpoch") }}
+
+
+{{ settings.bool_setting(mediawiki_cache_pages, "wgCachePages") }}
+
+
+{{ settings.string_setting(mediawiki_cache_prefix, "wgCachePrefix") }}
+
+
+{{ settings.setting(mediawiki_cache_revision_max_age, "wgCacheRevisionMaxAge") }}
+
+
+{{ settings.setting(mediawiki_cache_stats_ttl, "wgCacheStatsTTL") }}
+
+
+{{ settings.setting(mediawiki_cache_ttl, "wgCacheTTL") }}
+
+
+{{ settings.string_setting(mediawiki_cluster_cache_dir, "wgClusterCacheDir") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_side_bar_cache, "wgEnableSidebarCache") }}
+
+
+{{ settings.setting(mediawiki_external_store_cache_ttl, "wgExternalStoreCacheTTL") }}
+
+
+{{ settings.string_setting(mediawiki_file_cache_directory, "wgFileCacheDirectory") }}
+
+
+{{ settings.setting(mediawiki_file_cache_depth, "wgFileCacheDepth") }}
+
+
+{{ settings.setting(mediawiki_file_cache_time, "wgFileCacheTime") }}
+
+
+{{ settings.bool_setting(mediawiki_localized_cache_enable_stats, "wgLocalizedCacheEnableStats") }}
+
+
+{{ settings.setting(mediawiki_main_cache_type, "wgMainCacheType") }}
+
+
+{{ settings.string_setting(mediawiki_main_stash, "wgMainStash") }}
+
+
+{{ settings.setting(mediawiki_max_shell_memory, "wgMaxShellMemory") }}
+
+
+{{ settings.setting(mediawiki_memcached_servers, "wgMemCachedServers") }}
+
+
+{{ settings.setting(mediawiki_object_caches, "wgObjectCaches") }}
+
+
+{{ settings.setting(mediawiki_parser_cache_type, "wgParserCacheType") }}
+
+
+{{ settings.setting(mediawiki_parser_cache_expiry_seconds, "wgParserCacheExpireTime") }}
+
+
+{{ settings.bool_setting(mediawiki_parser_cache_use_json, "wgParserCacheUseJSON") }}
+
+
+{{ settings.setting(mediawiki_session_cache_type, "wgSessionCacheType") }}
+
+
+{{ settings.bool_setting(mediawiki_use_file_cache, "wgUseFileCache") }}
+
+
+{{ settings.bool_setting(mediawiki_use_gzip, "wgUseGzip") }}
+
+
+{{ settings.bool_setting(mediawiki_use_memcached, "wgUseMemcached") }}
+
+
+{{ settings.bool_setting(mediawiki_use_parser_cache, "wgUseParserCache") }}
+
+
+{{ settings.bool_setting(mediawiki_use_squids, "wgUseSquid") }}
+
+
+{{ settings.bool_setting(mediawiki_use_xcache, "wgUseXCache") }}
+
+
+{{ settings.setting(mediawiki_varnish_ttl, "wgVarnishTTL") }}
+
+
+{{ settings.setting(mediawiki_wantedfiles_cache_ttl, "wgWantedFilesCacheTTL") }}
+
+
+{{ settings.setting(mediawiki_wantedpages_cache_ttl, "wgWantedPagesCacheTTL") }}
+
 
 // User accounts and authentication settings
-{% if mediawiki_account_creation_throttle is defined %}
-$wgAccountCreationThrottle = {{ mediawiki_account_creation_throttle }};
-{% endif %}
-{% if mediawiki_active_user_days is defined %}
-$wgActiveUserDays = {{ mediawiki_active_user_days }};
-{% endif %}
-{% if mediawiki_allow_user_js is defined %}
-$wgAllowUserJs = {{ mediawiki_allow_user_js | lower }};
-{% endif %}
-{% if mediawiki_allow_user_css is defined %}
-$wgAllowUserCss = {{ mediawiki_allow_user_css | lower }};
-{% endif %}
-{% if mediawiki_auth_manager_auto_config is defined %}
-$wgAuthManagerAutoConfig = {{ mediawiki_auth_manager_auto_config }};
-{% endif %}
-{% if mediawiki_auth_manager_config is defined %}
-$wgAuthManagerConfig = {{ mediawiki_auth_manager_config }};
-{% endif %}
-{% if mediawiki_auth_plugin_data is defined %}
-$wgAuthPluginData = {{ mediawiki_auth_plugin_data }};
-{% endif %}
-{% if mediawiki_auth_remoteuser_allowedgroups is defined %}
-$wgAuthRemoteuserAllowedGroups = {{ mediawiki_auth_remoteuser_allowedgroups }};
-{% endif %}
-{% if mediawiki_auth_remoteuser_allowedusers is defined %}
-$wgAuthRemoteuserAllowedUsers = {{ mediawiki_auth_remoteuser_allowedusers }};
-{% endif %}
-{% if mediawiki_auth_remoteuser_deny_ip is defined %}
-$wgAuthRemoteuserDenyIP = {{ mediawiki_auth_remoteuser_deny_ip }};
-{% endif %}
-{% if mediawiki_auth_remoteuser_domain is defined %}
-$wgAuthRemoteuserDomain = "{{ mediawiki_auth_remoteuser_domain }}";
-{% endif %}
-{% if mediawiki_auth_remoteuser_mail_domain is defined %}
-$wgAuthRemoteuserMailDomain = "{{ mediawiki_auth_remoteuser_mail_domain }}";
-{% endif %}
-{% if mediawiki_auth_remoteuser_name is defined %}
-$wgAuthRemoteuserName = "{{ mediawiki_auth_remoteuser_name }}";
-{% endif %}
-{% if mediawiki_auth_remoteuser_notallowedgroups is defined %}
-$wgAuthRemoteuserNotAllowedGroups = {{ mediawiki_auth_remoteuser_notallowedgroups }};
-{% endif %}
-{% if mediawiki_auth_remoteuser_notallowedusers is defined %}
-$wgAuthRemoteuserNotAllowedUsers = {{ mediawiki_auth_remoteuser_notallowedusers }};
-{% endif %}
-{% if mediawiki_block_allow_whitelist is defined %}
-$wgBlockAllowsUTEdit = {{ mediawiki_block_allow_whitelist | lower }};
-{% endif %}
-{% if mediawiki_block_cache_ttl is defined %}
-$wgBlockCacheTTL = {{ mediawiki_block_cache_ttl }};
-{% endif %}
-{% if mediawiki_block_disable_user_talk is defined %}
-$wgBlockDisablesLogin = {{ mediawiki_block_disable_user_talk | lower }};
-{% endif %}
-{% if mediawiki_block_expiry is defined %}
-$wgBlockExpiry = "{{ mediawiki_block_expiry }}";
-{% endif %}
-{% if mediawiki_centralauthtoken_secret_key is defined %}
-$wgCentralAuthTokenSecretKey = "{{ mediawiki_centralauthtoken_secret_key }}";
-{% endif %}
-{% if mediawiki_cookie_expire is defined %}
-$wgCookieExpiration = {{ mediawiki_cookie_expire }};
-{% endif %}
-{% if mediawiki_cookie_prefix is defined %}
-$wgCookiePrefix = "{{ mediawiki_cookie_prefix }}";
-{% endif %}
-{% if mediawiki_cookie_same_site is defined %}
-$wgCookieSameSite = "{{ mediawiki_cookie_same_site }}";
-{% endif %}
-{% if mediawiki_cookie_secure is defined %}
-$wgCookieSecure = {{ mediawiki_cookie_secure | lower }};
-{% endif %}
-{% if mediawiki_default_robot_policy is defined %}
-$wgDefaultRobotPolicy = "{{ mediawiki_default_robot_policy }}";
-{% endif %}
-{% if mediawiki_disable_account_creation is defined %}
-$wgDisableAccountCreation = {{ mediawiki_disable_account_creation | lower }};
-{% endif %}
-{% if mediawiki_disable_anonymous_editing is defined %}
-$wgDisableAnonEditing = {{ mediawiki_disable_anonymous_editing | lower }};
-{% endif %}
-{% if mediawiki_disable_anonymous_talk is defined %}
-$wgDisableAnonTalk = {{ mediawiki_disable_anonymous_talk | lower }};
-{% endif %}
-{% if mediawiki_disable_api_php_engine is defined %}
-$wgDisableApiPHPEngine = {{ mediawiki_disable_api_php_engine | lower }};
-{% endif %}
-{% if mediawiki_disable_authenticated_api is defined %}
-$wgDisableAuthenticatedApi = {{ mediawiki_disable_authenticated_api | lower }};
-{% endif %}
-{% if mediawiki_disable_email is defined %}
-$wgDisableEmail = {{ mediawiki_disable_email | lower }};
-{% endif %}
-{% if mediawiki_disable_password_reset is defined %}
-$wgDisablePasswordReset = {{ mediawiki_disable_password_reset | lower }};
-{% endif %}
-{% if mediawiki_enable_api is defined %}
-$wgEnableAPI = {{ mediawiki_enable_api | lower }};
-{% endif %}
-{% if mediawiki_enable_write_api is defined %}
-$wgEnableWriteAPI = {{ mediawiki_enable_write_api | lower }};
-{% endif %}
-{% if mediawiki_group_permissions is defined %}
-$wgGroupPermissions = {{ mediawiki_group_permissions }};
-{% endif %}
-{% if mediawiki_invalid_password_regex is defined %}
-$wgInvalidPasswordRegex = "{{ mediawiki_invalid_password_regex }}";
-{% endif %}
-{% if mediawiki_invalid_usernames_regex is defined %}
-$wgInvalidUsernamesRegex = "{{ mediawiki_invalid_usernames_regex }}";
-{% endif %}
-{% if mediawiki_max_name_characters is defined %}
-$wgMaxNameChars = {{ mediawiki_max_name_characters }};
-{% endif %}
-{% if mediawiki_min_password_length is defined %}
-$wgMinimalPasswordLength = {{ mediawiki_min_password_length }};
-{% endif %}
-{% if mediawiki_password_default is defined %}
-$wgPasswordDefault = "{{ mediawiki_password_default }}";
-{% endif %}
-{% if mediawiki_password_policies is defined %}
-$wgPasswordPolicy = {{ mediawiki_password_policies }};
-{% endif %}
-{% if mediawiki_require_email is defined %}
-$wgRequireEmail = {{ mediawiki_require_email | lower }};
-{% endif %}
-{% if mediawiki_require_name is defined %}
-$wgRequireName = {{ mediawiki_require_name | lower }};
-{% endif %}
-{% if mediawiki_secret_key is defined %}
-$wgSecretKey = "{{ mediawiki_secret_key }}";
-{% endif %}
-{% if mediawiki_session_name is defined %}
-$wgSessionName = "{{ mediawiki_session_name }}";
-{% endif %}
-{% if mediawiki_session_persist_anonymous is defined %}
-$wgSessionPersistAnon = {{ mediawiki_session_persist_anonymous | lower }};
-{% endif %}
-{% if mediawiki_temporary_user_default_groups is defined %}
-$wgTemporaryUserDefaultGroups = {{ mediawiki_temporary_user_default_groups }};
-{% endif %}
-{% if mediawiki_user_groups is defined %}
-$wgUserGroups = {{ mediawiki_user_groups }};
-{% endif %}
-{% if mediawiki_user_rights_groups is defined %}
-$wgUserRightsGroups = {{ mediawiki_user_rights_groups }};
-{% endif %}
-{% if mediawiki_whitelisted_saveable_pages is defined %}
-$wgWhitelistRead = {{ mediawiki_whitelisted_saveable_pages }};
-{% endif %}
+
+{{ settings.setting(mediawiki_account_creation_throttle, "wgAccountCreationThrottle") }}
+
+
+{{ settings.setting(mediawiki_active_user_days, "wgActiveUserDays") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_user_js, "wgAllowUserJs") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_user_css, "wgAllowUserCss") }}
+
+
+{{ settings.setting(mediawiki_auth_manager_auto_config, "wgAuthManagerAutoConfig") }}
+
+
+{{ settings.setting(mediawiki_auth_manager_config, "wgAuthManagerConfig") }}
+
+
+{{ settings.setting(mediawiki_auth_plugin_data, "wgAuthPluginData") }}
+
+
+{{ settings.setting(mediawiki_auth_remoteuser_allowedgroups, "wgAuthRemoteuserAllowedGroups") }}
+
+
+{{ settings.setting(mediawiki_auth_remoteuser_allowedusers, "wgAuthRemoteuserAllowedUsers") }}
+
+
+{{ settings.setting(mediawiki_auth_remoteuser_deny_ip, "wgAuthRemoteuserDenyIP") }}
+
+
+{{ settings.string_setting(mediawiki_auth_remoteuser_domain, "wgAuthRemoteuserDomain") }}
+
+
+{{ settings.string_setting(mediawiki_auth_remoteuser_mail_domain, "wgAuthRemoteuserMailDomain") }}
+
+
+{{ settings.string_setting(mediawiki_auth_remoteuser_name, "wgAuthRemoteuserName") }}
+
+
+{{ settings.setting(mediawiki_auth_remoteuser_notallowedgroups, "wgAuthRemoteuserNotAllowedGroups") }}
+
+
+{{ settings.setting(mediawiki_auth_remoteuser_notallowedusers, "wgAuthRemoteuserNotAllowedUsers") }}
+
+
+{{ settings.bool_setting(mediawiki_block_allow_whitelist, "wgBlockAllowsUTEdit") }}
+
+
+{{ settings.setting(mediawiki_block_cache_ttl, "wgBlockCacheTTL") }}
+
+
+{{ settings.bool_setting(mediawiki_block_disable_user_talk, "wgBlockDisablesLogin") }}
+
+
+{{ settings.string_setting(mediawiki_block_expiry, "wgBlockExpiry") }}
+
+
+{{ settings.string_setting(mediawiki_centralauthtoken_secret_key, "wgCentralAuthTokenSecretKey") }}
+
+
+{{ settings.setting(mediawiki_cookie_expire, "wgCookieExpiration") }}
+
+
+{{ settings.string_setting(mediawiki_cookie_prefix, "wgCookiePrefix") }}
+
+
+{{ settings.string_setting(mediawiki_cookie_same_site, "wgCookieSameSite") }}
+
+
+{{ settings.bool_setting(mediawiki_cookie_secure, "wgCookieSecure") }}
+
+
+{{ settings.string_setting(mediawiki_default_robot_policy, "wgDefaultRobotPolicy") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_account_creation, "wgDisableAccountCreation") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_anonymous_editing, "wgDisableAnonEditing") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_anonymous_talk, "wgDisableAnonTalk") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_api_php_engine, "wgDisableApiPHPEngine") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_authenticated_api, "wgDisableAuthenticatedApi") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_email, "wgDisableEmail") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_password_reset, "wgDisablePasswordReset") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_api, "wgEnableAPI") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_write_api, "wgEnableWriteAPI") }}
+
+
+{{ settings.setting(mediawiki_group_permissions, "wgGroupPermissions") }}
+
+
+{{ settings.string_setting(mediawiki_invalid_password_regex, "wgInvalidPasswordRegex") }}
+
+
+{{ settings.string_setting(mediawiki_invalid_usernames_regex, "wgInvalidUsernamesRegex") }}
+
+
+{{ settings.setting(mediawiki_max_name_characters, "wgMaxNameChars") }}
+
+
+{{ settings.setting(mediawiki_min_password_length, "wgMinimalPasswordLength") }}
+
+
+{{ settings.string_setting(mediawiki_password_default, "wgPasswordDefault") }}
+
+
+{{ settings.setting(mediawiki_password_policies, "wgPasswordPolicy") }}
+
+
+{{ settings.bool_setting(mediawiki_require_email, "wgRequireEmail") }}
+
+
+{{ settings.bool_setting(mediawiki_require_name, "wgRequireName") }}
+
+
+{{ settings.string_setting(mediawiki_secret_key, "wgSecretKey") }}
+
+
+{{ settings.string_setting(mediawiki_session_name, "wgSessionName") }}
+
+
+{{ settings.bool_setting(mediawiki_session_persist_anonymous, "wgSessionPersistAnon") }}
+
+
+{{ settings.setting(mediawiki_temporary_user_default_groups, "wgTemporaryUserDefaultGroups") }}
+
+
+{{ settings.setting(mediawiki_user_groups, "wgUserGroups") }}
+
+
+{{ settings.setting(mediawiki_user_rights_groups, "wgUserRightsGroups") }}
+
+
+{{ settings.setting(mediawiki_whitelisted_saveable_pages, "wgWhitelistRead") }}
+
 
 // Namespace settings
-{% if mediawiki_additional_namespaces is defined %}
-$wgExtraNamespaces = {{ mediawiki_additional_namespaces }};
-{% endif %}
-{% if mediawiki_canonical_namespace_names is defined %}
-$wgCanonicalNamespaceNames = {{ mediawiki_canonical_namespace_names }};
-{% endif %}
-{% if mediawiki_case_sensitive_namespaces is defined %}
-$wgCaseSensitiveNamespaces = {{ mediawiki_case_sensitive_namespaces }};
-{% endif %}
-{% if mediawiki_content_namespaces is defined %}
-$wgContentNamespaces = {{ mediawiki_content_namespaces }};
-{% endif %}
-{% if mediawiki_enable_user_email is defined %}
-$wgEnableUserEmail = {{ mediawiki_enable_user_email | lower }};
-{% endif %}
-{% if mediawiki_namespace_aliases is defined %}
-$wgNamespaceAliases = {{ mediawiki_namespace_aliases }};
-{% endif %}
-{% if mediawiki_namespace_protection is defined %}
-$wgNamespaceProtection = {{ mediawiki_namespace_protection }};
-{% endif %}
-{% if mediawiki_namespace_relative_links is defined %}
-$wgNamespaceRelativeLinks = {{ mediawiki_namespace_relative_links }};
-{% endif %}
-{% if mediawiki_namespace_to_be_searched_default is defined %}
-$wgNamespacesToBeSearchedDefault = {{ mediawiki_namespace_to_be_searched_default }};
-{% endif %}
-{% if mediawiki_non_incl_namespaces is defined %}
-$wgNonincludableNamespaces = {{ mediawiki_non_incl_namespaces }};
-{% endif %}
-{% if mediawiki_valid_title_chars is defined %}
-$wgLegalTitleChars = "{{ mediawiki_valid_title_chars }}";
-{% endif %}
-{% if mediawiki_subpage_namespaces is defined %}
-$wgNamespacesWithSubpages = {{ mediawiki_subpage_namespaces }};
-{% endif %}
+
+{{ settings.setting(mediawiki_additional_namespaces, "wgExtraNamespaces") }}
+
+
+{{ settings.setting(mediawiki_canonical_namespace_names, "wgCanonicalNamespaceNames") }}
+
+
+{{ settings.setting(mediawiki_case_sensitive_namespaces, "wgCaseSensitiveNamespaces") }}
+
+
+{{ settings.setting(mediawiki_content_namespaces, "wgContentNamespaces") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
+
+
+{{ settings.setting(mediawiki_namespace_aliases, "wgNamespaceAliases") }}
+
+
+{{ settings.setting(mediawiki_namespace_protection, "wgNamespaceProtection") }}
+
+
+{{ settings.setting(mediawiki_namespace_relative_links, "wgNamespaceRelativeLinks") }}
+
+
+{{ settings.setting(mediawiki_namespace_to_be_searched_default, "wgNamespacesToBeSearchedDefault") }}
+
+
+{{ settings.setting(mediawiki_non_incl_namespaces, "wgNonincludableNamespaces") }}
+
+
+{{ settings.string_setting(mediawiki_valid_title_chars, "wgLegalTitleChars") }}
+
+
+{{ settings.setting(mediawiki_subpage_namespaces, "wgNamespacesWithSubpages") }}
+
 
 // Parser settings
-{% if mediawiki_allow_display_title is defined %}
-$wgAllowDisplayTitle = {{ mediawiki_allow_display_title | lower }};
-{% endif %}
-{% if mediawiki_allow_external_images is defined %}
-$wgAllowExternalImages = {{ mediawiki_allow_external_images | lower }};
-{% endif %}
-{% if mediawiki_allow_external_image_paths is defined %}
-$wgAllowExternalImagesFrom = {{ mediawiki_allow_external_image_paths }};
-{% endif %}
-{% if mediawiki_allow_image_moving is defined %}
-$wgAllowImageMoving = {{ mediawiki_allow_image_moving | lower }};
-{% endif %}
-{% if mediawiki_allow_special_inclusion is defined %}
-$wgAllowSpecialInclusion = {{ mediawiki_allow_special_inclusion | lower }};
-{% endif %}
-{% if mediawiki_clean_signature is defined %}
-$wgCleanSignatures = {{ mediawiki_clean_signature | lower }};
-{% endif %}
-{% if mediawiki_disable_lang_conversion is defined %}
-$wgDisableLangConversion = {{ mediawiki_disable_lang_conversion | lower }};
-{% endif %}
-{% if mediawiki_disable_title_conversion is defined %}
-$wgDisableTitleConversion = {{ mediawiki_disable_title_conversion | lower }};
-{% endif %}
-{% if mediawiki_enable_image_whitelist is defined %}
-$wgEnableImageWhitelist = {{ mediawiki_enable_image_whitelist | lower }};
-{% endif %}
-{% if mediawiki_enable_magic_links is defined %}
-$wgEnableMagicLinks = {{ mediawiki_enable_magic_links }};
-{% endif %}
-{% if mediawiki_enable_parser_limit_report is defined %}
-$wgEnableParserLimitReport = {{ mediawiki_enable_parser_limit_report | lower }};
-{% endif %}
-{% if mediawiki_enable_parser_limit_report_only is defined %}
-$wgEnableParserLimitReportOnly = {{ mediawiki_enable_parser_limit_report_only | lower }};
-{% endif %}
-{% if mediawiki_enable_preprocess_parser_cache is defined %}
-$wgEnablePreprocessParserCache = {{ mediawiki_enable_preprocess_parser_cache | lower }};
-{% endif %}
-{% if mediawiki_enable_score_function is defined %}
-$wgEnableScaryTranscluding = {{ mediawiki_enable_score_function | lower }};
-{% endif %}
-{% if mediawiki_expiry_warning_days is defined %}
-$wgExpiryWarningDays = {{ mediawiki_expiry_warning_days }};
-{% endif %}
-{% if mediawiki_external_link_target is defined %}
-$wgExternalLinkTarget = "{{ mediawiki_external_link_target }}";
-{% endif %}
-{% if mediawiki_fragment_max_length is defined %}
-$wgFragmentMaxLength = {{ mediawiki_fragment_max_length }};
-{% endif %}
-{% if mediawiki_html_email is defined %}
-$wgHTMLEmail = {{ mediawiki_html_email | lower }};
-{% endif %}
-{% if mediawiki_image_lazy_loading is defined %}
-$wgImageLazyLoading = {{ mediawiki_image_lazy_loading | lower }};
-{% endif %}
-{% if mediawiki_image_whitelist_enabled is defined %}
-$wgImageWhitelistEnabled = {{ mediawiki_image_whitelist_enabled | lower }};
-{% endif %}
-{% if mediawiki_image_whitelist is defined %}
-$wgImageWhitelist = {{ mediawiki_image_whitelist }};
-{% endif %}
-{% if mediawiki_max_article_size is defined %}
-$wgMaxArticleSize = {{ mediawiki_max_article_size }};
-{% endif %}
-{% if mediawiki_max_pre_preview_length is defined %}
-$wgMaxPreviewLength = {{ mediawiki_max_pre_preview_length }};
-{% endif %}
-{% if mediawiki_max_sig_chars is defined %}
-$wgMaxSigChars = {{ mediawiki_max_sig_chars }};
-{% endif %}
-{% if mediawiki_max_template_depth is defined %}
-$wgMaxTemplateDepth = {{ mediawiki_max_template_depth }};
-{% endif %}
-{% if mediawiki_parser_conf is defined %}
-$wgParserConf = {{ mediawiki_parser_conf }};
-{% endif %}
-{% if mediawiki_parser_functions is defined %}
-$wgParserFunctions = {{ mediawiki_parser_functions }};
-{% endif %}
-{% if mediawiki_parser_options is defined %}
-$wgParserOptions = {{ mediawiki_parser_options }};
-{% endif %}
-{% if mediawiki_remove_invalid_namespaces is defined %}
-$wgRemoveInvalidNamespaces = {{ mediawiki_remove_invalid_namespaces | lower }};
-{% endif %}
-{% if mediawiki_restrict_display_title is defined %}
-$wgRestrictDisplayTitle = {{ mediawiki_restrict_display_title | lower }};
-{% endif %}
-{% if mediawiki_template_styles is defined %}
-$wgTemplateStyles = {{ mediawiki_template_styles }};
-{% endif %}
-{% if mediawiki_thumbnail_script_path is defined %}
-$wgThumbnailScriptPath = "{{ mediawiki_thumbnail_script_path }}";
-{% endif %}
-{% if mediawiki_transform_whitelist_patterns is defined %}
-$wgTransformWhitelist = {{ mediawiki_transform_whitelist_patterns }};
-{% endif %}
-{% if mediawiki_use_tidy is defined %}
-$wgUseTidy = {{ mediawiki_use_tidy | lower }};
-{% endif %}
-{% if mediawiki_tidy_config is defined %}
-$wgTidyConfig = {{ mediawiki_tidy_config }};
-{% endif %}
-{% if mediawiki_tidy_internal is defined %}
-$wgTidyInternal = {{ mediawiki_tidy_internal | lower }};
-{% endif %}
-{% if mediawiki_tidy_output_encoding is defined %}
-$wgTidyOutputEncoding = "{{ mediawiki_tidy_output_encoding }}";
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_allow_display_title, "wgAllowDisplayTitle") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_external_images, "wgAllowExternalImages") }}
+
+
+{{ settings.setting(mediawiki_allow_external_image_paths, "wgAllowExternalImagesFrom") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_image_moving, "wgAllowImageMoving") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_special_inclusion, "wgAllowSpecialInclusion") }}
+
+
+{{ settings.bool_setting(mediawiki_clean_signature, "wgCleanSignatures") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_lang_conversion, "wgDisableLangConversion") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_title_conversion, "wgDisableTitleConversion") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_image_whitelist, "wgEnableImageWhitelist") }}
+
+
+{{ settings.setting(mediawiki_enable_magic_links, "wgEnableMagicLinks") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_parser_limit_report, "wgEnableParserLimitReport") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_parser_limit_report_only, "wgEnableParserLimitReportOnly") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_preprocess_parser_cache, "wgEnablePreprocessParserCache") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_score_function, "wgEnableScaryTranscluding") }}
+
+
+{{ settings.setting(mediawiki_expiry_warning_days, "wgExpiryWarningDays") }}
+
+
+{{ settings.string_setting(mediawiki_external_link_target, "wgExternalLinkTarget") }}
+
+
+{{ settings.setting(mediawiki_fragment_max_length, "wgFragmentMaxLength") }}
+
+
+{{ settings.bool_setting(mediawiki_html_email, "wgHTMLEmail") }}
+
+
+{{ settings.bool_setting(mediawiki_image_lazy_loading, "wgImageLazyLoading") }}
+
+
+{{ settings.bool_setting(mediawiki_image_whitelist_enabled, "wgImageWhitelistEnabled") }}
+
+
+{{ settings.setting(mediawiki_image_whitelist, "wgImageWhitelist") }}
+
+
+{{ settings.setting(mediawiki_max_article_size, "wgMaxArticleSize") }}
+
+
+{{ settings.setting(mediawiki_max_pre_preview_length, "wgMaxPreviewLength") }}
+
+
+{{ settings.setting(mediawiki_max_sig_chars, "wgMaxSigChars") }}
+
+
+{{ settings.setting(mediawiki_max_template_depth, "wgMaxTemplateDepth") }}
+
+
+{{ settings.setting(mediawiki_parser_conf, "wgParserConf") }}
+
+
+{{ settings.setting(mediawiki_parser_functions, "wgParserFunctions") }}
+
+
+{{ settings.setting(mediawiki_parser_options, "wgParserOptions") }}
+
+
+{{ settings.bool_setting(mediawiki_remove_invalid_namespaces, "wgRemoveInvalidNamespaces") }}
+
+
+{{ settings.bool_setting(mediawiki_restrict_display_title, "wgRestrictDisplayTitle") }}
+
+
+{{ settings.setting(mediawiki_template_styles, "wgTemplateStyles") }}
+
+
+{{ settings.string_setting(mediawiki_thumbnail_script_path, "wgThumbnailScriptPath") }}
+
+
+{{ settings.setting(mediawiki_transform_whitelist_patterns, "wgTransformWhitelist") }}
+
+
+{{ settings.bool_setting(mediawiki_use_tidy, "wgUseTidy") }}
+
+
+{{ settings.setting(mediawiki_tidy_config, "wgTidyConfig") }}
+
+
+{{ settings.bool_setting(mediawiki_tidy_internal, "wgTidyInternal") }}
+
+
+{{ settings.string_setting(mediawiki_tidy_output_encoding, "wgTidyOutputEncoding") }}
+
 
 // Language and internationalization settings
-{% if mediawiki_additional_translations is defined %}
-$wgExtraLanguageNames = {{ mediawiki_additional_translations }};
-{% endif %}
-{% if mediawiki_allow_unicode_urls is defined %}
-$wgAllowUnicodeUrls = {{ mediawiki_allow_unicode_urls | lower }};
-{% endif %}
-{% if mediawiki_application_protocol is defined %}
-$wgApplicationProtocol = "{{ mediawiki_application_protocol }}";
-{% endif %}
-{% if mediawiki_default_language_variant is defined %}
-$wgDefaultLanguageVariant = "{{ mediawiki_default_language_variant }}";
-{% endif %}
-{% if mediawiki_disable_lang_conversion is defined %}
-$wgDisableLangConversion = {{ mediawiki_disable_lang_conversion | lower }};
-{% endif %}
-{% if mediawiki_disable_title_conversion is defined %}
-$wgDisableTitleConversion = {{ mediawiki_disable_title_conversion | lower }};
-{% endif %}
-{% if mediawiki_enable_unicode_bidirectional is defined %}
-$wgEnableUnicodeBidi = {{ mediawiki_enable_unicode_bidirectional | lower }};
-{% endif %}
-{% if mediawiki_extra_language_codes is defined %}
-$wgExtraLanguageCodes = {{ mediawiki_extra_language_codes }};
-{% endif %}
-{% if mediawiki_extra_language_names is defined %}
-$wgExtraLanguageNames = {{ mediawiki_extra_language_names }};
-{% endif %}
-{% if mediawiki_fallback_language is defined %}
-$wgLanguageFallback = {{ mediawiki_fallback_language }};
-{% endif %}
-{% if mediawiki_language_code is defined %}
-$wgLanguageCode = "{{ mediawiki_language_code }}";
-{% endif %}
-{% if mediawiki_language_converter_enabled_for_languages is defined %}
-$wgLanguageConverterEnabled = {{ mediawiki_language_converter_enabled_for_languages }};
-{% endif %}
-{% if mediawiki_locale_cache is defined %}
-$wgLocaleCache = {{ mediawiki_locale_cache }};
-{% endif %}
-{% if mediawiki_locale_directory is defined %}
-$wgLocalisationCacheConf = {{ mediawiki_locale_directory }};
-{% endif %}
-{% if mediawiki_translation_cache_store_class is defined %}
-$wgTranslationCacheStore = "{{ mediawiki_translation_cache_store_class }}";
-{% endif %}
-{% if mediawiki_translation_update_days is defined %}
-$wgTranslateNumerals = {{ mediawiki_translation_update_days }};
-{% endif %}
-{% if mediawiki_url_protocol_mode is defined %}
-$wgUrlProtocols = {{ mediawiki_url_protocol_mode }};
-{% endif %}
-{% if mediawiki_user_language_profile_source is defined %}
-$wgUserLanguageProfileSource = "{{ mediawiki_user_language_profile_source }}";
-{% endif %}
+
+{{ settings.setting(mediawiki_additional_translations, "wgExtraLanguageNames") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_unicode_urls, "wgAllowUnicodeUrls") }}
+
+
+{{ settings.string_setting(mediawiki_application_protocol, "wgApplicationProtocol") }}
+
+
+{{ settings.string_setting(mediawiki_default_language_variant, "wgDefaultLanguageVariant") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_lang_conversion, "wgDisableLangConversion") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_title_conversion, "wgDisableTitleConversion") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_unicode_bidirectional, "wgEnableUnicodeBidi") }}
+
+
+{{ settings.setting(mediawiki_extra_language_codes, "wgExtraLanguageCodes") }}
+
+
+{{ settings.setting(mediawiki_extra_language_names, "wgExtraLanguageNames") }}
+
+
+{{ settings.setting(mediawiki_fallback_language, "wgLanguageFallback") }}
+
+
+{{ settings.string_setting(mediawiki_language_code, "wgLanguageCode") }}
+
+
+{{ settings.setting(mediawiki_language_converter_enabled_for_languages, "wgLanguageConverterEnabled") }}
+
+
+{{ settings.setting(mediawiki_locale_cache, "wgLocaleCache") }}
+
+
+{{ settings.setting(mediawiki_locale_directory, "wgLocalisationCacheConf") }}
+
+
+{{ settings.string_setting(mediawiki_translation_cache_store_class, "wgTranslationCacheStore") }}
+
+
+{{ settings.setting(mediawiki_translation_update_days, "wgTranslateNumerals") }}
+
+
+{{ settings.setting(mediawiki_url_protocol_mode, "wgUrlProtocols") }}
+
+
+{{ settings.string_setting(mediawiki_user_language_profile_source, "wgUserLanguageProfileSource") }}
+
 
 // Skin and interface settings
-{% if mediawiki_additional_styles is defined %}
-$wgResourceModules['site.styles']['styles'] = {{ mediawiki_additional_styles }};
-{% endif %}
-{% if mediawiki_allow_css_subpage is defined %}
-$wgAllowUserCssPrefs = {{ mediawiki_allow_css_subpage | lower }};
-{% endif %}
-{% if mediawiki_allow_js_subpage is defined %}
-$wgAllowUserJs = {{ mediawiki_allow_js_subpage | lower }};
-{% endif %}
-{% if mediawiki_default_mobile_skin is defined %}
-$wgDefaultMobileSkin = "{{ mediawiki_default_mobile_skin }}";
-{% endif %}
-{% if mediawiki_default_skin is defined %}
-$wgDefaultSkin = "{{ mediawiki_default_skin }}";
-{% endif %}
-{% if mediawiki_enable_resource_loader is defined %}
-$wgEnableResourceLoader = {{ mediawiki_enable_resource_loader | lower }};
-{% endif %}
-{% if mediawiki_enable_universal_edit_button is defined %}
-$wgEnableUniversalEditButton = {{ mediawiki_enable_universal_edit_button | lower }};
-{% endif %}
-{% if mediawiki_force_resource_loader is defined %}
-$wgForceResourceLoader = {{ mediawiki_force_resource_loader | lower }};
-{% endif %}
-{% if mediawiki_logo is defined %}
-$wgLogo = "{{ mediawiki_logo }}";
-{% endif %}
-{% if mediawiki_logo_1x is defined %}
-$wgLogo1x = "{{ mediawiki_logo_1x }}";
-{% endif %}
-{% if mediawiki_logo_2x is defined %}
-$wgLogo2x = "{{ mediawiki_logo_2x }}";
-{% endif %}
-{% if mediawiki_logo_icon is defined %}
-$wgLogoIcon = "{{ mediawiki_logo_icon }}";
-{% endif %}
-{% if mediawiki_logo_width is defined %}
-$wgLogoWidth = {{ mediawiki_logo_width }};
-{% endif %}
-{% if mediawiki_logo_height is defined %}
-$wgLogoHeight = {{ mediawiki_logo_height }};
-{% endif %}
-{% if mediawiki_resource_base_path is defined %}
-$wgResourceBasePath = "{{ mediawiki_resource_base_path }}";
-{% endif %}
-{% if mediawiki_resource_loader_max_query_length is defined %}
-$wgResourceLoaderMaxQueryLength = {{ mediawiki_resource_loader_max_query_length }};
-{% endif %}
-{% if mediawiki_resource_loader_storage_enabled is defined %}
-$wgResourceLoaderStorageEnabled = {{ mediawiki_resource_loader_storage_enabled | lower }};
-{% endif %}
-{% if mediawiki_resource_modules is defined %}
-$wgResourceModules = {{ mediawiki_resource_modules }};
-{% endif %}
-{% if mediawiki_rights_icon is defined %}
-$wgRightsIcon = "{{ mediawiki_rights_icon }}";
-{% endif %}
-{% if mediawiki_rights_page is defined %}
-$wgRightsPage = "{{ mediawiki_rights_page }}";
-{% endif %}
-{% if mediawiki_rights_text is defined %}
-$wgRightsText = "{{ mediawiki_rights_text }}";
-{% endif %}
-{% if mediawiki_rights_url is defined %}
-$wgRightsUrl = "{{ mediawiki_rights_url }}";
-{% endif %}
-{% if mediawiki_show_ip_in_header is defined %}
-$wgShowIPinHeader = {{ mediawiki_show_ip_in_header | lower }};
-{% endif %}
-{% if mediawiki_skin_styles is defined %}
-$wgSkinStyles = {{ mediawiki_skin_styles }};
-{% endif %}
-{% if mediawiki_skins_directory is defined %}
-$wgSkinsDirectory = "{{ mediawiki_skins_directory }}";
-{% endif %}
-{% if mediawiki_static_directory is defined %}
-$wgStyleDirectory = "{{ mediawiki_static_directory }}";
-{% endif %}
-{% if mediawiki_style_path is defined %}
-$wgStylePath = "{{ mediawiki_style_path }}";
-{% endif %}
-{% if mediawiki_style_version is defined %}
-$wgStyleVersion = "{{ mediawiki_style_version }}";
-{% endif %}
-{% if mediawiki_tab_width is defined %}
-$wgTabWidth = {{ mediawiki_tab_width }};
-{% endif %}
-{% if mediawiki_theme_directory is defined %}
-$wgThemeDirectory = "{{ mediawiki_theme_directory }}";
-{% endif %}
-{% if mediawiki_use_site_css is defined %}
-$wgUseSiteCss = {{ mediawiki_use_site_css | lower }};
-{% endif %}
-{% if mediawiki_use_site_js is defined %}
-$wgUseSiteJs = {{ mediawiki_use_site_js | lower }};
-{% endif %}
+
+{{ settings.setting(mediawiki_additional_styles, "wgResourceModules['site.styles']['styles']") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_css_subpage, "wgAllowUserCssPrefs") }}
+
+
+{{ settings.bool_setting(mediawiki_allow_js_subpage, "wgAllowUserJs") }}
+
+
+{{ settings.string_setting(mediawiki_default_mobile_skin, "wgDefaultMobileSkin") }}
+
+
+{{ settings.string_setting(mediawiki_default_skin, "wgDefaultSkin") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_resource_loader, "wgEnableResourceLoader") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_universal_edit_button, "wgEnableUniversalEditButton") }}
+
+
+{{ settings.bool_setting(mediawiki_force_resource_loader, "wgForceResourceLoader") }}
+
+
+{{ settings.string_setting(mediawiki_logo, "wgLogo") }}
+
+
+{{ settings.string_setting(mediawiki_logo_1x, "wgLogo1x") }}
+
+
+{{ settings.string_setting(mediawiki_logo_2x, "wgLogo2x") }}
+
+
+{{ settings.string_setting(mediawiki_logo_icon, "wgLogoIcon") }}
+
+
+{{ settings.setting(mediawiki_logo_width, "wgLogoWidth") }}
+
+
+{{ settings.setting(mediawiki_logo_height, "wgLogoHeight") }}
+
+
+{{ settings.string_setting(mediawiki_resource_base_path, "wgResourceBasePath") }}
+
+
+{{ settings.setting(mediawiki_resource_loader_max_query_length, "wgResourceLoaderMaxQueryLength") }}
+
+
+{{ settings.bool_setting(mediawiki_resource_loader_storage_enabled, "wgResourceLoaderStorageEnabled") }}
+
+
+{{ settings.setting(mediawiki_resource_modules, "wgResourceModules") }}
+
+
+{{ settings.string_setting(mediawiki_rights_icon, "wgRightsIcon") }}
+
+
+{{ settings.string_setting(mediawiki_rights_page, "wgRightsPage") }}
+
+
+{{ settings.string_setting(mediawiki_rights_text, "wgRightsText") }}
+
+
+{{ settings.string_setting(mediawiki_rights_url, "wgRightsUrl") }}
+
+
+{{ settings.bool_setting(mediawiki_show_ip_in_header, "wgShowIPinHeader") }}
+
+
+{{ settings.setting(mediawiki_skin_styles, "wgSkinStyles") }}
+
+
+{{ settings.string_setting(mediawiki_skins_directory, "wgSkinsDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_static_directory, "wgStyleDirectory") }}
+
+
+{{ settings.string_setting(mediawiki_style_path, "wgStylePath") }}
+
+
+{{ settings.string_setting(mediawiki_style_version, "wgStyleVersion") }}
+
+
+{{ settings.setting(mediawiki_tab_width, "wgTabWidth") }}
+
+
+{{ settings.string_setting(mediawiki_theme_directory, "wgThemeDirectory") }}
+
+
+{{ settings.bool_setting(mediawiki_use_site_css, "wgUseSiteCss") }}
+
+
+{{ settings.bool_setting(mediawiki_use_site_js, "wgUseSiteJs") }}
+
 
 // Special page settings
-{% if mediawiki_additional_special_pages is defined %}
-$wgSpecialPages = {{ mediawiki_additional_special_pages }};
-{% endif %}
-{% if mediawiki_disable_query_pages is defined %}
-$wgDisableQueryPages = {{ mediawiki_disable_query_pages | lower }};
-{% endif %}
-{% if mediawiki_disable_random_special_page is defined %}
-$wgDisableRandomPage = {{ mediawiki_disable_random_special_page | lower }};
-{% endif %}
-{% if mediawiki_enable_specialchanges is defined %}
-$wgEnableSpecialChanges = {{ mediawiki_enable_specialchanges | lower }};
-{% endif %}
-{% if mediawiki_enable_specialcontributions is defined %}
-$wgEnableSpecialContributions = {{ mediawiki_enable_specialcontributions | lower }};
-{% endif %}
-{% if mediawiki_enable_speciallog is defined %}
-$wgEnableSpecialLog = {{ mediawiki_enable_speciallog | lower }};
-{% endif %}
-{% if mediawiki_enable_specialmovepage is defined %}
-$wgEnableSpecialMovePage = {{ mediawiki_enable_specialmovepage | lower }};
-{% endif %}
-{% if mediawiki_enable_specialnewestpages is defined %}
-$wgEnableSpecialNewestPages = {{ mediawiki_enable_specialnewestpages | lower }};
-{% endif %}
-{% if mediawiki_enable_specialprotectedpages is defined %}
-$wgEnableSpecialProtectedPages = {{ mediawiki_enable_specialprotectedpages | lower }};
-{% endif %}
-{% if mediawiki_enable_specialrecentchanges is defined %}
-$wgEnableSpecialRecentChanges = {{ mediawiki_enable_specialrecentchanges | lower }};
-{% endif %}
-{% if mediawiki_enable_specialrecentchangeslinked is defined %}
-$wgEnableSpecialRecentChangesLinked = {{ mediawiki_enable_specialrecentchangeslinked | lower }};
-{% endif %}
-{% if mediawiki_enable_specialuncategorizedcategories is defined %}
-$wgEnableSpecialUncategorizedCategories = {{ mediawiki_enable_specialuncategorizedcategories | lower }};
-{% endif %}
-{% if mediawiki_enable_specialuncategorizedimages is defined %}
-$wgEnableSpecialUncategorizedImages = {{ mediawiki_enable_specialuncategorizedimages | lower }};
-{% endif %}
-{% if mediawiki_enable_specialuncategorizedpages is defined %}
-$wgEnableSpecialUncategorizedPages = {{ mediawiki_enable_specialuncategorizedpages | lower }};
-{% endif %}
-{% if mediawiki_enable_specialuncategorizedtemplates is defined %}
-$wgEnableSpecialUncategorizedTemplates = {{ mediawiki_enable_specialuncategorizedtemplates | lower }};
-{% endif %}
-{% if mediawiki_enable_specialunusedcategories is defined %}
-$wgEnableSpecialUnusedCategories = {{ mediawiki_enable_specialunusedcategories | lower }};
-{% endif %}
-{% if mediawiki_enable_specialunusedimages is defined %}
-$wgEnableSpecialUnusedImages = {{ mediawiki_enable_specialunusedimages | lower }};
-{% endif %}
-{% if mediawiki_enable_specialunusedtemplates is defined %}
-$wgEnableSpecialUnusedTemplates = {{ mediawiki_enable_specialunusedtemplates | lower }};
-{% endif %}
-{% if mediawiki_enable_specialwantedcategories is defined %}
-$wgEnableSpecialWantedCategories = {{ mediawiki_enable_specialwantedcategories | lower }};
-{% endif %}
-{% if mediawiki_enable_specialwantedfiles is defined %}
-$wgEnableSpecialWantedFiles = {{ mediawiki_enable_specialwantedfiles | lower }};
-{% endif %}
-{% if mediawiki_enable_specialwantedpages is defined %}
-$wgEnableSpecialWantedPages = {{ mediawiki_enable_specialwantedpages | lower }};
-{% endif %}
-{% if mediawiki_enable_specialwantedtemplates is defined %}
-$wgEnableSpecialWantedTemplates = {{ mediawiki_enable_specialwantedtemplates | lower }};
-{% endif %}
-{% if mediawiki_feed_limit is defined %}
-$wgFeedLimit = {{ mediawiki_feed_limit }};
-{% endif %}
-{% if mediawiki_query_cache_limit is defined %}
-$wgQueryCacheLimit = {{ mediawiki_query_cache_limit }};
-{% endif %}
-{% if mediawiki_query_max_limit is defined %}
-$wgQueryMaxLimit = {{ mediawiki_query_max_limit }};
-{% endif %}
-{% if mediawiki_rc_max_age is defined %}
-$wgRCMaxAge = {{ mediawiki_rc_max_age }};
-{% endif %}
-{% if mediawiki_special_file_cache is defined %}
-$wgSpecialFileCache = "{{ mediawiki_special_file_cache }}";
-{% endif %}
-{% if mediawiki_special_page_cache_updates is defined %}
-$wgSpecialPageCacheUpdates = {{ mediawiki_special_page_cache_updates }};
-{% endif %}
-{% if mediawiki_special_version_show_hooks is defined %}
-$wgSpecialVersionShowHooks = {{ mediawiki_special_version_show_hooks | lower }};
-{% endif %}
+
+{{ settings.setting(mediawiki_additional_special_pages, "wgSpecialPages") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_query_pages, "wgDisableQueryPages") }}
+
+
+{{ settings.bool_setting(mediawiki_disable_random_special_page, "wgDisableRandomPage") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialchanges, "wgEnableSpecialChanges") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialcontributions, "wgEnableSpecialContributions") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_speciallog, "wgEnableSpecialLog") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialmovepage, "wgEnableSpecialMovePage") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialnewestpages, "wgEnableSpecialNewestPages") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialprotectedpages, "wgEnableSpecialProtectedPages") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialrecentchanges, "wgEnableSpecialRecentChanges") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialrecentchangeslinked, "wgEnableSpecialRecentChangesLinked") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialuncategorizedcategories, "wgEnableSpecialUncategorizedCategories") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialuncategorizedimages, "wgEnableSpecialUncategorizedImages") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialuncategorizedpages, "wgEnableSpecialUncategorizedPages") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialuncategorizedtemplates, "wgEnableSpecialUncategorizedTemplates") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialunusedcategories, "wgEnableSpecialUnusedCategories") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialunusedimages, "wgEnableSpecialUnusedImages") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialunusedtemplates, "wgEnableSpecialUnusedTemplates") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialwantedcategories, "wgEnableSpecialWantedCategories") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialwantedfiles, "wgEnableSpecialWantedFiles") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialwantedpages, "wgEnableSpecialWantedPages") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_specialwantedtemplates, "wgEnableSpecialWantedTemplates") }}
+
+
+{{ settings.setting(mediawiki_feed_limit, "wgFeedLimit") }}
+
+
+{{ settings.setting(mediawiki_query_cache_limit, "wgQueryCacheLimit") }}
+
+
+{{ settings.setting(mediawiki_query_max_limit, "wgQueryMaxLimit") }}
+
+
+{{ settings.setting(mediawiki_rc_max_age, "wgRCMaxAge") }}
+
+
+{{ settings.string_setting(mediawiki_special_file_cache, "wgSpecialFileCache") }}
+
+
+{{ settings.setting(mediawiki_special_page_cache_updates, "wgSpecialPageCacheUpdates") }}
+
+
+{{ settings.bool_setting(mediawiki_special_version_show_hooks, "wgSpecialVersionShowHooks") }}
+
 
 // Search settings
-{% if mediawiki_disable_search_update is defined %}
-$wgDisableSearchUpdate = {{ mediawiki_disable_search_update | lower }};
-{% endif %}
-{% if mediawiki_enable_search_update is defined %}
-$wgEnableSearchUpdate = {{ mediawiki_enable_search_update | lower }};
-{% endif %}
-{% if mediawiki_external_link_search_limit is defined %}
-$wgExternalLinkSearchLimit = {{ mediawiki_external_link_search_limit }};
-{% endif %}
-{% if mediawiki_min_search_length is defined %}
-$wgMinimalSearchLength = {{ mediawiki_min_search_length }};
-{% endif %}
-{% if mediawiki_search_cache is defined %}
-$wgSearchCache = {{ mediawiki_search_cache }};
-{% endif %}
-{% if mediawiki_search_highlight is defined %}
-$wgSearchHighlight = {{ mediawiki_search_highlight | lower }};
-{% endif %}
-{% if mediawiki_search_match is defined %}
-$wgSearchMatch = "{{ mediawiki_search_match }}";
-{% endif %}
-{% if mediawiki_search_namespaces is defined %}
-$wgSearchNamespaces = {{ mediawiki_search_namespaces }};
-{% endif %}
-{% if mediawiki_search_suggest is defined %}
-$wgEnableMWSuggest = {{ mediawiki_search_suggest | lower }};
-{% endif %}
-{% if mediawiki_search_type is defined %}
-$wgSearchType = "{{ mediawiki_search_type }}";
-{% endif %}
-{% if mediawiki_search_update is defined %}
-$wgSearchUpdate = {{ mediawiki_search_update | lower }};
-{% endif %}
-{% if mediawiki_spell_dictionary is defined %}
-$wgSpellDictionary = "{{ mediawiki_spell_dictionary }}";
-{% endif %}
-{% if mediawiki_search_match_redirect is defined %}
-$wgSearchMatchRedirects = {{ mediawiki_search_match_redirect | lower }};
-{% endif %}
-{% if mediawiki_search_use_extra_namespaces is defined %}
-$wgSearchUseExtraNamespaces = {{ mediawiki_search_use_extra_namespaces | lower }};
-{% endif %}
-{% if mediawiki_search_use_redirect is defined %}
-$wgSearchUseRedirectTargets = {{ mediawiki_search_use_redirect | lower }};
-{% endif %}
-{% if mediawiki_enable_search_suggestions is defined %}
-$wgEnableOpenSearchSuggestions = {{ mediawiki_enable_search_suggestions | lower }};
-{% endif %}
-{% if mediawiki_opensearch_description_length is defined %}
-$wgOpenSearchDescriptionLength = {{ mediawiki_opensearch_description_length }};
-{% endif %}
-{% if mediawiki_opensearch_name is defined %}
-$wgOpenSearchName = "{{ mediawiki_opensearch_name }}";
-{% endif %}
-{% if mediawiki_opensearch_template is defined %}
-$wgOpenSearchTemplate = "{{ mediawiki_opensearch_template }}";
-{% endif %}
-{% if mediawiki_opensearch_description is defined %}
-$wgOpenSearchDescription = "{{ mediawiki_opensearch_description }}";
-{% endif %}
-{% if mediawiki_opensearch_contact is defined %}
-$wgOpenSearchContact = "{{ mediawiki_opensearch_contact }}";
-{% endif %}
-{% if mediawiki_opensearch_default_limit is defined %}
-$wgOpenSearchDefaultLimit = {{ mediawiki_opensearch_default_limit }};
-{% endif %}
-{% if mediawiki_opensearch_max_results is defined %}
-$wgOpenSearchMaxResults = {{ mediawiki_opensearch_max_results }};
-{% endif %}
-{% if mediawiki_search_backend_config is defined %}
-$wgSearchBackendConfig = {{ mediawiki_search_backend_config }};
-{% endif %}
-{% if mediawiki_search_suggest_cache_expiry is defined %}
-$wgSearchSuggestCacheExpiry = {{ mediawiki_search_suggest_cache_expiry }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_disable_search_update, "wgDisableSearchUpdate") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_search_update, "wgEnableSearchUpdate") }}
+
+
+{{ settings.setting(mediawiki_external_link_search_limit, "wgExternalLinkSearchLimit") }}
+
+
+{{ settings.setting(mediawiki_min_search_length, "wgMinimalSearchLength") }}
+
+
+{{ settings.setting(mediawiki_search_cache, "wgSearchCache") }}
+
+
+{{ settings.bool_setting(mediawiki_search_highlight, "wgSearchHighlight") }}
+
+
+{{ settings.string_setting(mediawiki_search_match, "wgSearchMatch") }}
+
+
+{{ settings.setting(mediawiki_search_namespaces, "wgSearchNamespaces") }}
+
+
+{{ settings.bool_setting(mediawiki_search_suggest, "wgEnableMWSuggest") }}
+
+
+{{ settings.string_setting(mediawiki_search_type, "wgSearchType") }}
+
+
+{{ settings.bool_setting(mediawiki_search_update, "wgSearchUpdate") }}
+
+
+{{ settings.string_setting(mediawiki_spell_dictionary, "wgSpellDictionary") }}
+
+
+{{ settings.bool_setting(mediawiki_search_match_redirect, "wgSearchMatchRedirects") }}
+
+
+{{ settings.bool_setting(mediawiki_search_use_extra_namespaces, "wgSearchUseExtraNamespaces") }}
+
+
+{{ settings.bool_setting(mediawiki_search_use_redirect, "wgSearchUseRedirectTargets") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_search_suggestions, "wgEnableOpenSearchSuggestions") }}
+
+
+{{ settings.setting(mediawiki_opensearch_description_length, "wgOpenSearchDescriptionLength") }}
+
+
+{{ settings.string_setting(mediawiki_opensearch_name, "wgOpenSearchName") }}
+
+
+{{ settings.string_setting(mediawiki_opensearch_template, "wgOpenSearchTemplate") }}
+
+
+{{ settings.string_setting(mediawiki_opensearch_description, "wgOpenSearchDescription") }}
+
+
+{{ settings.string_setting(mediawiki_opensearch_contact, "wgOpenSearchContact") }}
+
+
+{{ settings.setting(mediawiki_opensearch_default_limit, "wgOpenSearchDefaultLimit") }}
+
+
+{{ settings.setting(mediawiki_opensearch_max_results, "wgOpenSearchMaxResults") }}
+
+
+{{ settings.setting(mediawiki_search_backend_config, "wgSearchBackendConfig") }}
+
+
+{{ settings.setting(mediawiki_search_suggest_cache_expiry, "wgSearchSuggestCacheExpiry") }}
+
 
 // Debug and development settings
 {% if mediawiki_debug is defined %}
@@ -1511,167 +1534,167 @@ $wgDebugRawPage = {{ mediawiki_debug | lower }};
 $wgDebugTimestamps = {{ mediawiki_debug | lower }};
 $wgDebugToolbar = {{ mediawiki_debug | lower }};
 {% endif %}
-{% if mediawiki_debug_log_file is defined %}
-$wgDebugLogFile = "{{ mediawiki_debug_log_file }}";
-{% endif %}
-{% if mediawiki_debug_log_groups is defined %}
-$wgDebugLogGroups = {{ mediawiki_debug_log_groups }};
-{% endif %}
-{% if mediawiki_debug_max_sql_log_size is defined %}
-$wgDebugMaxSqlLogSize = {{ mediawiki_debug_max_sql_log_size }};
-{% endif %}
-{% if mediawiki_debug_sql_log_file is defined %}
-$wgDebugSqlLogFile = "{{ mediawiki_debug_sql_log_file }}";
-{% endif %}
-{% if mediawiki_development_warnings is defined %}
-$wgDevelopmentWarnings = {{ mediawiki_development_warnings | lower }};
-{% endif %}
-{% if mediawiki_log_exception_backtrace is defined %}
-$wgLogExceptionBacktrace = {{ mediawiki_log_exception_backtrace | lower }};
-{% endif %}
-{% if mediawiki_log_route is defined %}
-$wgLogRoute = "{{ mediawiki_log_route }}";
-{% endif %}
-{% if mediawiki_log_types is defined %}
-$wgLogTypes = {{ mediawiki_log_types }};
-{% endif %}
-{% if mediawiki_max_debug_log_size is defined %}
-$wgMaxDebugLogSize = {{ mediawiki_max_debug_log_size }};
-{% endif %}
-{% if mediawiki_profiler is defined %}
-$wgProfiler = {{ mediawiki_profiler }};
-{% endif %}
-{% if mediawiki_profiler_log_file is defined %}
-$wgProfilerLogFile = "{{ mediawiki_profiler_log_file }}";
-{% endif %}
-{% if mediawiki_profiler_type is defined %}
-$wgProfilerType = "{{ mediawiki_profiler_type }}";
-{% endif %}
-{% if mediawiki_show_debug_toolbar is defined %}
-$wgShowDebugToolbar = {{ mediawiki_show_debug_toolbar | lower }};
-{% endif %}
-{% if mediawiki_show_exception_details is defined %}
-$wgShowExceptionDetails = {{ mediawiki_show_exception_details | lower }};
-{% endif %}
-{% if mediawiki_show_sql_errors is defined %}
-$wgShowSQLErrors = {{ mediawiki_show_sql_errors | lower }};
-{% endif %}
-{% if mediawiki_sql_log_file is defined %}
-$wgSQLLogFile = "{{ mediawiki_sql_log_file }}";
-{% endif %}
-{% if mediawiki_trace_sql_backtrace is defined %}
-$wgTraceSqlBacktrace = {{ mediawiki_trace_sql_backtrace | lower }};
-{% endif %}
-{% if mediawiki_debug_timing_profile_threshold is defined %}
-$wgDebugTimingProfileThreshold = {{ mediawiki_debug_timing_profile_threshold }};
-{% endif %}
-{% if mediawiki_debug_function_entry_level is defined %}
-$wgDebugFunctionEntry = {{ mediawiki_debug_function_entry_level }};
-{% endif %}
-{% if mediawiki_debug_persistent is defined %}
-$wgDebugPersistent = {{ mediawiki_debug_persistent | lower }};
-{% endif %}
-{% if mediawiki_debug_log_prefix is defined %}
-$wgDebugLogPrefix = "{{ mediawiki_debug_log_prefix }}";
-{% endif %}
-{% if mediawiki_debug_log_file_permission is defined %}
-$wgDebugLogFilePermissions = {{ mediawiki_debug_log_file_permission }};
-{% endif %}
-{% if mediawiki_debug_toolbox is defined %}
-$wgDebugToolbox = {{ mediawiki_debug_toolbox | lower }};
-{% endif %}
-{% if mediawiki_debug_dump_config is defined %}
-$wgDebugDumpConfig = {{ mediawiki_debug_dump_config | lower }};
-{% endif %}
-{% if mediawiki_debug_log_backtrace is defined %}
-$wgDebugLogBacktrace = {{ mediawiki_debug_log_backtrace }};
-{% endif %}
-{% if mediawiki_debug_log_file_append is defined %}
-$wgDebugLogFileAppend = {{ mediawiki_debug_log_file_append | lower }};
-{% endif %}
-{% if mediawiki_debug_redirect_url is defined %}
-$wgDebugRedirUrl = "{{ mediawiki_debug_redirect_url }}";
-{% endif %}
-{% if mediawiki_debug_sql_summary is defined %}
-$wgDebugSqlSummary = {{ mediawiki_debug_sql_summary | lower }};
-{% endif %}
+
+{{ settings.string_setting(mediawiki_debug_log_file, "wgDebugLogFile") }}
+
+
+{{ settings.setting(mediawiki_debug_log_groups, "wgDebugLogGroups") }}
+
+
+{{ settings.setting(mediawiki_debug_max_sql_log_size, "wgDebugMaxSqlLogSize") }}
+
+
+{{ settings.string_setting(mediawiki_debug_sql_log_file, "wgDebugSqlLogFile") }}
+
+
+{{ settings.bool_setting(mediawiki_development_warnings, "wgDevelopmentWarnings") }}
+
+
+{{ settings.bool_setting(mediawiki_log_exception_backtrace, "wgLogExceptionBacktrace") }}
+
+
+{{ settings.string_setting(mediawiki_log_route, "wgLogRoute") }}
+
+
+{{ settings.setting(mediawiki_log_types, "wgLogTypes") }}
+
+
+{{ settings.setting(mediawiki_max_debug_log_size, "wgMaxDebugLogSize") }}
+
+
+{{ settings.setting(mediawiki_profiler, "wgProfiler") }}
+
+
+{{ settings.string_setting(mediawiki_profiler_log_file, "wgProfilerLogFile") }}
+
+
+{{ settings.string_setting(mediawiki_profiler_type, "wgProfilerType") }}
+
+
+{{ settings.bool_setting(mediawiki_show_debug_toolbar, "wgShowDebugToolbar") }}
+
+
+{{ settings.bool_setting(mediawiki_show_exception_details, "wgShowExceptionDetails") }}
+
+
+{{ settings.bool_setting(mediawiki_show_sql_errors, "wgShowSQLErrors") }}
+
+
+{{ settings.string_setting(mediawiki_sql_log_file, "wgSQLLogFile") }}
+
+
+{{ settings.bool_setting(mediawiki_trace_sql_backtrace, "wgTraceSqlBacktrace") }}
+
+
+{{ settings.setting(mediawiki_debug_timing_profile_threshold, "wgDebugTimingProfileThreshold") }}
+
+
+{{ settings.setting(mediawiki_debug_function_entry_level, "wgDebugFunctionEntry") }}
+
+
+{{ settings.bool_setting(mediawiki_debug_persistent, "wgDebugPersistent") }}
+
+
+{{ settings.string_setting(mediawiki_debug_log_prefix, "wgDebugLogPrefix") }}
+
+
+{{ settings.setting(mediawiki_debug_log_file_permission, "wgDebugLogFilePermissions") }}
+
+
+{{ settings.bool_setting(mediawiki_debug_toolbox, "wgDebugToolbox") }}
+
+
+{{ settings.bool_setting(mediawiki_debug_dump_config, "wgDebugDumpConfig") }}
+
+
+{{ settings.setting(mediawiki_debug_log_backtrace, "wgDebugLogBacktrace") }}
+
+
+{{ settings.bool_setting(mediawiki_debug_log_file_append, "wgDebugLogFileAppend") }}
+
+
+{{ settings.string_setting(mediawiki_debug_redirect_url, "wgDebugRedirUrl") }}
+
+
+{{ settings.bool_setting(mediawiki_debug_sql_summary, "wgDebugSqlSummary") }}
+
 
 // Experimental features
-{% if mediawiki_enable_experimental_parser is defined %}
-$wgEnableExperimentalParser = {{ mediawiki_enable_experimental_parser | lower }};
-{% endif %}
-{% if mediawiki_experimental_html_cache is defined %}
-$wgExperimentalHtmlCacheType = {{ mediawiki_experimental_html_cache }};
-{% endif %}
-{% if mediawiki_enable_remote_content is defined %}
-$wgEnableRemoteContent = {{ mediawiki_enable_remote_content | lower }};
-{% endif %}
-{% if mediawiki_enable_content_handler_use_db is defined %}
-$wgContentHandlerUseDB = {{ mediawiki_enable_content_handler_use_db | lower }};
-{% endif %}
-{% if mediawiki_enable_wikitext_cache is defined %}
-$wgEnableWikiTextCache = {{ mediawiki_enable_wikitext_cache | lower }};
-{% endif %}
-{% if mediawiki_enable_side_bar_cache is defined %}
-$wgEnableSidebarCache = {{ mediawiki_enable_side_bar_cache | lower }};
-{% endif %}
-{% if mediawiki_enable_category_browse is defined %}
-$wgUseCategoryBrowser = {{ mediawiki_enable_category_browse | lower }};
-{% endif %}
-{% if mediawiki_experimental_parser_limit_report is defined %}
-$wgExperimentalParserLimitReport = {{ mediawiki_experimental_parser_limit_report | lower }};
-{% endif %}
-{% if mediawiki_experimental_template_styles is defined %}
-$wgExperimentalTemplateStyles = {{ mediawiki_experimental_template_styles | lower }};
-{% endif %}
-{% if mediawiki_enable_partial_blocks is defined %}
-$wgEnablePartialBlocks = {{ mediawiki_enable_partial_blocks | lower }};
-{% endif %}
-{% if mediawiki_enable_speculative_page_view is defined %}
-$wgEnableSpeculativePageView = {{ mediawiki_enable_speculative_page_view | lower }};
-{% endif %}
-{% if mediawiki_enable_wikitext_cache_versioning is defined %}
-$wgEnableWikiTextCacheVersioning = {{ mediawiki_enable_wikitext_cache_versioning | lower }};
-{% endif %}
-{% if mediawiki_enable_remote_search_suggestions is defined %}
-$wgEnableOpenSearchSuggest = {{ mediawiki_enable_remote_search_suggestions | lower }};
-{% endif %}
-{% if mediawiki_experimental_mobile_editor is defined %}
-$wgExperimentalMobileEditor = {{ mediawiki_experimental_mobile_editor | lower }};
-{% endif %}
-{% if mediawiki_experimental_print_version is defined %}
-$wgExperimentalPrintVersion = {{ mediawiki_experimental_print_version | lower }};
-{% endif %}
-{% if mediawiki_enable_beta_features is defined %}
-$wgEnableBetaFeatures = {{ mediawiki_enable_beta_features | lower }};
-{% endif %}
-{% if mediawiki_beta_features_whitelist is defined %}
-$wgBetaFeaturesWhitelist = {{ mediawiki_beta_features_whitelist }};
-{% endif %}
-{% if mediawiki_enable_flags is defined %}
-$wgEnableFlags = {{ mediawiki_enable_flags }};
-{% endif %}
-{% if mediawiki_enable_ajax_patrol is defined %}
-$wgAjaxPatrol = {{ mediawiki_enable_ajax_patrol | lower }};
-{% endif %}
-{% if mediawiki_enable_ajax_watch is defined %}
-$wgAjaxWatch = {{ mediawiki_enable_ajax_watch | lower }};
-{% endif %}
-{% if mediawiki_enable_api_rest_module is defined %}
-$wgEnableRestAPI = {{ mediawiki_enable_api_rest_module | lower }};
-{% endif %}
-{% if mediawiki_enable_rest_api_explorer is defined %}
-$wgEnableRestAPIExplorer = {{ mediawiki_enable_rest_api_explorer | lower }};
-{% endif %}
-{% if mediawiki_enable_site_notice is defined %}
-$wgEnableSiteNotice = {{ mediawiki_enable_site_notice | lower }};
-{% endif %}
-{% if mediawiki_enable_user_js is defined %}
-$wgAllowUserJs = {{ mediawiki_enable_user_js | lower }};
-{% endif %}
-{% if mediawiki_enable_user_css is defined %}
-$wgAllowUserCss = {{ mediawiki_enable_user_css | lower }};
-{% endif %}
-{% if mediawiki_enable_user_email is defined %}
-$wgEnableUserEmail = {{ mediawiki_enable_user_email | lower }};
-{% endif %}
+
+{{ settings.bool_setting(mediawiki_enable_experimental_parser, "wgEnableExperimentalParser") }}
+
+
+{{ settings.setting(mediawiki_experimental_html_cache, "wgExperimentalHtmlCacheType") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_remote_content, "wgEnableRemoteContent") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_content_handler_use_db, "wgContentHandlerUseDB") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_wikitext_cache, "wgEnableWikiTextCache") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_side_bar_cache, "wgEnableSidebarCache") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_category_browse, "wgUseCategoryBrowser") }}
+
+
+{{ settings.bool_setting(mediawiki_experimental_parser_limit_report, "wgExperimentalParserLimitReport") }}
+
+
+{{ settings.bool_setting(mediawiki_experimental_template_styles, "wgExperimentalTemplateStyles") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_partial_blocks, "wgEnablePartialBlocks") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_speculative_page_view, "wgEnableSpeculativePageView") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_wikitext_cache_versioning, "wgEnableWikiTextCacheVersioning") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_remote_search_suggestions, "wgEnableOpenSearchSuggest") }}
+
+
+{{ settings.bool_setting(mediawiki_experimental_mobile_editor, "wgExperimentalMobileEditor") }}
+
+
+{{ settings.bool_setting(mediawiki_experimental_print_version, "wgExperimentalPrintVersion") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_beta_features, "wgEnableBetaFeatures") }}
+
+
+{{ settings.setting(mediawiki_beta_features_whitelist, "wgBetaFeaturesWhitelist") }}
+
+
+{{ settings.setting(mediawiki_enable_flags, "wgEnableFlags") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_ajax_patrol, "wgAjaxPatrol") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_ajax_watch, "wgAjaxWatch") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_api_rest_module, "wgEnableRestAPI") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_rest_api_explorer, "wgEnableRestAPIExplorer") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_site_notice, "wgEnableSiteNotice") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_user_js, "wgAllowUserJs") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_user_css, "wgAllowUserCss") }}
+
+
+{{ settings.bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
+
