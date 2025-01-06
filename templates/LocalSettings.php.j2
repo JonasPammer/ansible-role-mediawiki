@@ -1708,7 +1708,7 @@ $wgDebugToolbar = {{ mediawiki_debug | lower }};
 {% for category_identfier, extensions_array in mediawiki_extensions.items() %}
 # {{ category_identfier }} extensions
 {%  for extension in extensions_array %}
-{%      if extension.load %}
+{%      if extension.load|default(true) %}
 wfLoadExtension("{{ extension.name }}");
 {%      endif %}
 {%  endfor %}
