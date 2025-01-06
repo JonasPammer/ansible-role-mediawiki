@@ -13,12 +13,8 @@
   roles:
     - name: jonaspammer.bootstrap
     - name: jonaspammer.core_dependencies
-    - name: geerlingguy.repo-epel
-      # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
-      when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
-    - name: geerlingguy.repo-remi
-      # repo-remi is only supported on redhat
-      when: ansible_os_family == "RedHat"
+    - name: robertdebock.epel
+
     - name: geerlingguy.php-versions
     - name: geerlingguy.php
     - name: geerlingguy.php-mysql

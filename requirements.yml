@@ -2,7 +2,7 @@
 roles:
   - name: jonaspammer.bootstrap
   - name: jonaspammer.core_dependencies
-  - name: geerlingguy.repo-epel
+  - name: robertdebock.epel
   - name: geerlingguy.repo-remi
   - name: geerlingguy.php
   - name: geerlingguy.php-versions
