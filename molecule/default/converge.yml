@@ -64,6 +64,13 @@
     mediawiki_db_type: "mysql"
     mediawiki_db_prefix: ""
     mediawiki_db_table_options: "ENGINE=InnoDB DEFAULT CHARSET=binary"
+    mediawiki_db_server: "localhost"
+    mediawiki_db_name: "mediawiki"
+    mediawiki_db_user: "mediawiki"
+    mediawiki_db_password: "ccc" # pragma: allowlist secret
+    #
+    mediawiki_secret_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # pragma: allowlist secret
+    mediawiki_upgrade_key: "xxxxxxxxxxxxxxxx" # pragma: allowlist secret
 
   roles:
     - "ansible-role-mediawiki"
