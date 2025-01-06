@@ -19,17 +19,18 @@ ${{ config_name }} = "{{ var_name }}";
 {% endif %}
 {% endmacro %}
 
-{# Macro for numeric settings #}
+{# Macro for numeric/array/general settings #}
 {% macro setting(var_name, config_name) %}
 {% if var_name is defined %}
 ${{ config_name }} = {{ var_name }} ;
 {% endif %}
 {% endmacro %}
 
-{# Import macros for use #}
-{% import _self as settings %}
-
-
+{# Import macros #}
+{% set settings = namespace() %}
+{% set settings.bool_setting = bool_setting %}
+{% set settings.string_setting = string_setting %}
+{% set settings.setting = setting %}
 
 /**
  Sorted as seen on https://www.mediawiki.org/wiki/Manual:Configuration_settings
