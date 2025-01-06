@@ -434,22 +434,50 @@ which sources its soft dependencies from `requirements.yml`:
     # https://www.mediawiki.org/wiki/Compatibility
     # https://www.php.net/supported-versions.php
     php_version: "7.4"
-    php_enable_webserver: false
+    php_enable_webserver: true
+    mysql_databases:
+      - name: mediawiki
+    mysql_users:
+      - name: mediawiki
+        password: ccc # pragma: allowlist secret
+        priv: "mediawiki.*:ALL"
+    openssl_items:
+      - filename: mediawiki
+        csr_common_name: "{{ ansible_fqdn }}"
+    apache_remove_default_vhost: true
+    apache_vhosts:
+      - servername: "{{ ansible_fqdn }}"
+        loglevel: debug
+        documentroot: "/var/www/html/mediawiki"
+        extra_parameters: |
+          <Directory "/var/www/html/mediawiki">
+              AllowOverride All
+              Options None FollowSymLinks
+              Require all granted
+          </Directory>
+          # Short URLS
+          RewriteEngine On
+          RewriteRule ^/?wiki(/.*)?$ %{DOCUMENT_ROOT}/index.php [L]
+          RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
+          # HTTPS
+          SSLEngine on
+          SSLCertificateFile {{ openssl_crt_directory }}/mediawiki.crt
+          SSLCertificateKeyFile {{ openssl_key_directory  }}/mediawiki.key
 
   roles:
     - name: jonaspammer.bootstrap
     - name: jonaspammer.core_dependencies
-    - name: geerlingguy.repo-epel
-      # repo-epel is "a collection of selected packages from fedora" and thus not needed for fedora
-      when: ansible_os_family == "RedHat" and ansible_distribution != "Fedora"
-    - name: geerlingguy.repo-remi
-      # repo-remi is only supported on redhat
-      when: ansible_os_family == "RedHat"
+    - name: robertdebock.epel
+
     - name: geerlingguy.php-versions
     - name: geerlingguy.php
     - name: geerlingguy.php-mysql
     - name: geerlingguy.composer
-    #    - name: jonaspammer.core_dependencies
+    - name: geerlingguy.mysql
+    # apache vhost with https
+    - name: jonaspammer.pip
+    - name: jonaspammer.ssl
+    - name: jonaspammer.apache2
 ----
 
 The following diagram is a compilation of the "soft dependencies" of this role
