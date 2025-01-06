@@ -1,4 +1,10 @@
 <?php
+
+# Protect against web entry
+if (!defined("MEDIAWIKI")) {
+    exit;
+}
+
 {# Macro for boolean settings #}
 {% macro bool_setting(var_name, config_name) %}
 {% if var_name is defined %}
@@ -20,9 +26,14 @@ ${{ config_name }} = {{ var_name }} ;
 {% endif %}
 {% endmacro %}
 
-
 {# Import macros for use #}
 {% import _self as settings %}
+
+
+
+/**
+ Sorted as seen on https://www.mediawiki.org/wiki/Manual:Configuration_settings
+ ****************************************/
 
 // General Settings
 {{ settings.string_setting(mediawiki_sitename, "wgSitename") }}
