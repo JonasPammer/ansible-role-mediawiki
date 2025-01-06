@@ -36,1499 +36,571 @@ ${{ config_name }} = {{ var_name }};
 // Global Objects
 
 {{ setting(mediawiki_autoload_local_classes, "wgAutoloadLocalClasses") }}
-
-
 {{ setting(mediawiki_conf, "wgConf") }}
-
 
 // Server URLs and file paths
 
 {{ string_setting(mediawiki_ip, "IP") }}
-
-
 {{ setting(mediawiki_action_paths, "wgActionPaths") }}
-
-
 {{ string_setting(mediawiki_apple_touch_icon, "wgAppleTouchIcon") }}
-
-
 {{ string_setting(mediawiki_article_path, "wgArticlePath") }}
-
-
 {{ bool_setting(mediawiki_assume_proxies_use_default_protocol_ports, "wgAssumeProxiesUseDefaultProtocolPorts") }}
-
-
 {{ string_setting(mediawiki_base_directory, "wgBaseDirectory") }}
-
-
 {{ string_setting(mediawiki_canonical_server, "wgCanonicalServer") }}
-
-
 {{ setting(mediawiki_config_registry, "wgConfigRegistry") }}
-
-
 {{ string_setting(mediawiki_extension_assets_path, "wgExtensionAssetsPath") }}
-
-
 {{ string_setting(mediawiki_extension_directory, "wgExtensionDirectory") }}
-
-
 {{ string_setting(mediawiki_favicon, "wgFavicon") }}
-
-
 {{ string_setting(mediawiki_ffmpeg_location, "wgFFmpegLocation") }}
-
-
 {{ string_setting(mediawiki_ffprobe_location, "wgFFprobeLocation") }}
-
-
 {{ string_setting(mediawiki_file_cache_directory, "wgFileCacheDirectory") }}
-
-
 {{ bool_setting(mediawiki_force_https, "wgForceHTTPS") }}
-
-
 {{ setting(mediawiki_https_port, "wgHTTPSPort") }}
-
-
 {{ string_setting(mediawiki_img_auth_path, "wgImgAuthPath") }}
-
-
 {{ string_setting(mediawiki_load_script, "wgLoadScript") }}
-
-
 {{ string_setting(mediawiki_local_style_path, "wgLocalStylePath") }}
-
-
 {{ setting(mediawiki_logos, "wgLogos") }}
-
-
 {{ string_setting(mediawiki_logo, "wgLogo") }}
-
-
 {{ bool_setting(mediawiki_main_page_is_domain_root, "wgMainPageIsDomainRoot") }}
-
-
 {{ string_setting(mediawiki_referrer_policy, "wgReferrerPolicy") }}
-
-
 {{ string_setting(mediawiki_rest_path, "wgRestPath") }}
-
-
 {{ string_setting(mediawiki_script_path, "wgScriptPath") }}
-
-
 {{ string_setting(mediawiki_script, "wgScript") }}
-
-
 {{ string_setting(mediawiki_server_name, "wgServerName") }}
-
-
 {{ string_setting(mediawiki_server, "wgServer") }}
-
-
 {{ string_setting(mediawiki_style_directory, "wgStyleDirectory") }}
-
-
 {{ string_setting(mediawiki_style_path, "wgStylePath") }}
-
-
 {{ string_setting(mediawiki_thumb_path, "wgThumbPath") }}
-
-
 {{ string_setting(mediawiki_tmp_directory, "wgTmpDirectory") }}
-
-
 {{ string_setting(mediawiki_upload_base_url, "wgUploadBaseUrl") }}
-
-
 {{ string_setting(mediawiki_upload_directory, "wgUploadDirectory") }}
-
-
 {{ string_setting(mediawiki_upload_path, "wgUploadPath") }}
-
-
 {{ bool_setting(mediawiki_use_path_info, "wgUsePathInfo") }}
-
 
 // Files and file uploads
 
 {{ bool_setting(mediawiki_allow_copy_uploads, "wgAllowCopyUploads") }}
-
-
 {{ setting(mediawiki_attempt_failure_epoch, "wgAttemptFailureEpoch") }}
-
-
 {{ bool_setting(mediawiki_check_file_extensions, "wgCheckFileExtensions") }}
-
-
 {{ bool_setting(mediawiki_copy_upload_allow_on_wiki_domain_config, "wgCopyUploadAllowOnWikiDomainConfig") }}
-
-
 {{ string_setting(mediawiki_copy_upload_proxy, "wgCopyUploadProxy") }}
-
-
 {{ setting(mediawiki_copy_uploads_domains, "wgCopyUploadsDomains") }}
-
-
 {{ bool_setting(mediawiki_copy_uploads_from_special_upload, "wgCopyUploadsFromSpecialUpload") }}
-
-
 {{ setting(mediawiki_copy_upload_timeout, "wgCopyUploadTimeout") }}
-
-
 {{ string_setting(mediawiki_deleted_directory, "wgDeletedDirectory") }}
-
-
 {{ string_setting(mediawiki_directory_mode, "wgDirectoryMode") }}
-
-
 {{ bool_setting(mediawiki_disable_upload_script_checks, "wgDisableUploadScriptChecks") }}
-
-
 {{ bool_setting(mediawiki_enable_async_uploads, "wgEnableAsyncUploads") }}
-
-
 {{ bool_setting(mediawiki_enable_async_uploads_by_url, "wgEnableAsyncUploadsByUrl") }}
-
-
 {{ bool_setting(mediawiki_enable_uploads, "wgEnableUploads") }}
-
-
 {{ setting(mediawiki_file_backends, "wgFileBackends") }}
-
-
 {{ setting(mediawiki_prohibited_file_extensions, "wgProhibitedFileExtensions") }}
-
-
 {{ setting(mediawiki_file_extensions, "wgFileExtensions") }}
-
-
 {{ bool_setting(mediawiki_hashed_upload_directory, "wgHashedUploadDirectory") }}
-
-
 {{ string_setting(mediawiki_image_preconnect, "wgImagePreconnect") }}
-
-
 {{ bool_setting(mediawiki_img_auth_details, "wgImgAuthDetails") }}
-
-
 {{ setting(mediawiki_img_auth_url_path_map, "wgImgAuthUrlPathMap") }}
-
-
 {{ setting(mediawiki_local_file_repo, "wgLocalFileRepo") }}
-
-
 {{ setting(mediawiki_lock_managers, "wgLockManagers") }}
-
-
 {{ setting(mediawiki_max_upload_size, "wgMaxUploadSize") }}
-
-
 {{ bool_setting(mediawiki_media_in_target_language, "wgMediaInTargetLanguage") }}
-
-
 {{ setting(mediawiki_min_upload_chunk_size, "wgMinUploadChunkSize") }}
-
-
 {{ bool_setting(mediawiki_native_image_lazy_loading, "wgNativeImageLazyLoading") }}
-
-
 {{ setting(mediawiki_parser_test_media_handlers, "wgParserTestMediaHandlers") }}
-
-
 {{ bool_setting(mediawiki_strict_file_extensions, "wgStrictFileExtensions") }}
-
-
 {{ setting(mediawiki_thumbnail_epoch, "wgThumbnailEpoch") }}
-
-
 {{ setting(mediawiki_upload_dialog, "wgUploadDialog") }}
-
-
 {{ bool_setting(mediawiki_upload_maintenance, "wgUploadMaintenance") }}
-
-
 {{ string_setting(mediawiki_upload_missing_file_url, "wgUploadMissingFileUrl") }}
-
-
 {{ string_setting(mediawiki_upload_navigation_url, "wgUploadNavigationUrl") }}
-
-
 {{ setting(mediawiki_upload_size_warning, "wgUploadSizeWarning") }}
-
-
 {{ setting(mediawiki_upload_stash_max_age, "wgUploadStashMaxAge") }}
-
 
 // MIME types
 
 {{ string_setting(mediawiki_mime_detector_command, "wgMimeDetectorCommand") }}
-
-
 {{ string_setting(mediawiki_mime_info_file, "wgMimeInfoFile") }}
-
-
 {{ string_setting(mediawiki_mime_type_file, "wgMimeTypeFile") }}
-
-
 {{ bool_setting(mediawiki_trivial_mime_detection, "wgTrivialMimeDetection") }}
-
-
 {{ bool_setting(mediawiki_verify_mime_type, "wgVerifyMimeType") }}
-
-
 {{ setting(mediawiki_mime_type_exclusions, "wgMimeTypeExclusions") }}
-
-
 {{ setting(mediawiki_xml_mime_types, "wgXMLMimeTypes") }}
-
 
 // Shared uploads
 
 {{ bool_setting(mediawiki_cache_shared_uploads, "wgCacheSharedUploads") }}
-
-
 {{ setting(mediawiki_foreign_file_repos, "wgForeignFileRepos") }}
-
-
 {{ setting(mediawiki_foreign_upload_targets, "wgForeignUploadTargets") }}
-
-
 {{ bool_setting(mediawiki_hashed_shared_upload_directory, "wgHashedSharedUploadDirectory") }}
-
-
 {{ string_setting(mediawiki_repository_base_url, "wgRepositoryBaseUrl") }}
-
-
 {{ string_setting(mediawiki_shared_upload_dbname, "wgSharedUploadDBname") }}
-
-
 {{ string_setting(mediawiki_shared_upload_dbprefix, "wgSharedUploadDBprefix") }}
-
-
 {{ string_setting(mediawiki_shared_upload_directory, "wgSharedUploadDirectory") }}
-
-
 {{ string_setting(mediawiki_shared_upload_path, "wgSharedUploadPath") }}
-
-
 {{ bool_setting(mediawiki_use_shared_uploads, "wgUseSharedUploads") }}
-
-
 {{ bool_setting(mediawiki_fetch_commons_descriptions, "wgFetchCommonsDescriptions") }}
-
 
 // Images
 
 {{ string_setting(mediawiki_custom_convert_command, "wgCustomConvertCommand") }}
-
-
 {{ bool_setting(mediawiki_enable_auto_rotation, "wgEnableAutoRotation") }}
-
-
 {{ string_setting(mediawiki_exiftool, "wgExiftool") }}
-
-
 {{ string_setting(mediawiki_exiv2_command, "wgExiv2Command") }}
-
-
 {{ setting(mediawiki_gallery_options, "wgGalleryOptions") }}
-
-
 {{ bool_setting(mediawiki_ignore_image_errors, "wgIgnoreImageErrors") }}
-
-
 {{ setting(mediawiki_image_limits, "wgImageLimits") }}
-
-
 {{ setting(mediawiki_jpeg_quality, "wgJpegQuality") }}
-
-
 {{ string_setting(mediawiki_jpeg_tran, "wgJpegTran") }}
-
-
 {{ setting(mediawiki_max_image_area, "wgMaxImageArea") }}
-
-
 {{ setting(mediawiki_media_handlers, "wgMediaHandlers") }}
-
-
 {{ setting(mediawiki_trusted_media_formats, "wgTrustedMediaFormats") }}
-
 
 // DjVu
 
 {{ string_setting(mediawiki_djvu_dump, "wgDjvuDump") }}
-
-
 {{ string_setting(mediawiki_djvu_output_extension, "wgDjvuOutputExtension") }}
-
-
 {{ string_setting(mediawiki_djvu_post_processor, "wgDjvuPostProcessor") }}
-
-
 {{ string_setting(mediawiki_djvu_renderer, "wgDjvuRenderer") }}
-
-
 {{ string_setting(mediawiki_djvu_txt, "wgDjvuTxt") }}
-
-
 {{ bool_setting(mediawiki_djvu_use_boxed_command, "wgDjvuUseBoxedCommand") }}
-
-
 {{ string_setting(mediawiki_shellbox_shell, "wgShellboxShell") }}
-
 
 // EXIF
 
 {{ bool_setting(mediawiki_show_exif, "wgShowEXIF") }}
-
-
 {{ bool_setting(mediawiki_update_compatible_metadata, "wgUpdateCompatibleMetadata") }}
-
 
 // ImageMagick
 
 {{ string_setting(mediawiki_image_magick_convert_command, "wgImageMagickConvertCommand") }}
-
-
 {{ string_setting(mediawiki_image_magick_temp_dir, "wgImageMagickTempDir") }}
-
-
 {{ setting(mediawiki_max_interlacing_areas, "wgMaxInterlacingAreas") }}
-
-
 {{ string_setting(mediawiki_sharpen_parameter, "wgSharpenParameter") }}
-
-
 {{ setting(mediawiki_sharpen_reduction_threshold, "wgSharpenReductionThreshold") }}
-
-
 {{ bool_setting(mediawiki_use_image_magick, "wgUseImageMagick") }}
-
-
 {{ bool_setting(mediawiki_use_tiny_rgb_for_jpg_thumbnails, "wgUseTinyRGBForJPGThumbnails") }}
-
 
 // SVG
 
 {{ string_setting(mediawiki_svg_converter, "wgSVGConverter") }}
-
-
 {{ string_setting(mediawiki_svg_converter_path, "wgSVGConverterPath") }}
-
-
 {{ setting(mediawiki_svg_converters, "wgSVGConverters") }}
-
-
 {{ setting(mediawiki_svg_max_size, "wgSVGMaxSize") }}
-
-
 {{ setting(mediawiki_svg_metadata_cutoff, "wgSVGMetadataCutoff") }}
-
-
 {{ bool_setting(mediawiki_svg_native_rendering, "wgSVGNativeRendering") }}
-
-
 {{ setting(mediawiki_svg_native_rendering_size_limit, "wgSVGNativeRenderingSizeLimit") }}
-
 
 // Thumbnail settings
 
 {{ bool_setting(mediawiki_use_image_resize, "wgUseImageResize") }}
-
-
 {{ bool_setting(mediawiki_generate_thumbnail_on_parse, "wgGenerateThumbnailOnParse") }}
-
-
 {{ setting(mediawiki_max_animated_gif_area, "wgMaxAnimatedGifArea") }}
-
-
 {{ string_setting(mediawiki_shared_thumbnail_script_path, "wgSharedThumbnailScriptPath") }}
-
-
 {{ bool_setting(mediawiki_show_archive_thumbnails, "wgShowArchiveThumbnails") }}
-
-
 {{ string_setting(mediawiki_tiff_thumbnail_type, "wgTiffThumbnailType") }}
-
-
 {{ setting(mediawiki_thumbnail_namespaces, "wgThumbnailNamespaces") }}
-
-
 {{ string_setting(mediawiki_thumbnail_script_path, "wgThumbnailScriptPath") }}
-
-
 {{ setting(mediawiki_thumb_upright, "wgThumbUpright") }}
-
-
 {{ setting(mediawiki_thumb_limits, "wgThumbLimits") }}
-
-
 {{ bool_setting(mediawiki_responsive_images, "wgResponsiveImages") }}
-
-
 {{ setting(mediawiki_thumbnail_buckets, "wgThumbnailBuckets") }}
-
-
 {{ setting(mediawiki_thumbnail_minimum_bucket_distance, "wgThumbnailMinimumBucketDistance") }}
-
-
 {{ string_setting(mediawiki_jpeg_pixel_format, "wgJpegPixelFormat") }}
-
-
 {{ string_setting(mediawiki_upload_thumbnail_render_http_custom_host, "wgUploadThumbnailRenderHttpCustomHost") }}
-
-
 {{ string_setting(mediawiki_upload_thumbnail_render_http_custom_domain, "wgUploadThumbnailRenderHttpCustomDomain") }}
-
-
 {{ setting(mediawiki_upload_thumbnail_render_map, "wgUploadThumbnailRenderMap") }}
-
-
 {{ string_setting(mediawiki_upload_thumbnail_render_method, "wgUploadThumbnailRenderMethod") }}
-
 
 // Antivirus
 
 {{ string_setting(mediawiki_antivirus, "wgAntivirus") }}
-
-
 {{ bool_setting(mediawiki_antivirus_required, "wgAntivirusRequired") }}
-
-
 {{ setting(mediawiki_antivirus_setup, "wgAntivirusSetup") }}
-
 
 // Email settings
 
 {{ string_setting(mediawiki_additional_mail_params, "wgAdditionalMailParams") }}
-
-
 {{ bool_setting(mediawiki_allow_html_email, "wgAllowHTMLEmail") }}
-
-
 {{ bool_setting(mediawiki_email_authentication, "wgEmailAuthentication") }}
-
-
 {{ string_setting(mediawiki_emergency_contact, "wgEmergencyContact") }}
-
-
 {{ bool_setting(mediawiki_enable_email, "wgEnableEmail") }}
-
-
 {{ bool_setting(mediawiki_enable_special_mute, "wgEnableSpecialMute") }}
-
-
 {{ bool_setting(mediawiki_enable_user_email_mutelist, "wgEnableUserEmailMutelist") }}
-
-
 {{ bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
-
-
 {{ setting(mediawiki_new_password_expiry, "wgNewPasswordExpiry") }}
-
-
 {{ string_setting(mediawiki_no_reply_address, "wgNoReplyAddress") }}
-
-
 {{ setting(mediawiki_password_expiration_days, "wgPasswordExpirationDays") }}
-
-
 {{ setting(mediawiki_password_expire_grace, "wgPasswordExpireGrace") }}
-
-
 {{ setting(mediawiki_password_reminder_resend_time, "wgPasswordReminderResendTime") }}
-
-
 {{ string_setting(mediawiki_password_sender, "wgPasswordSender") }}
-
-
 {{ setting(mediawiki_smtp, "wgSMTP") }}
-
-
 {{ setting(mediawiki_user_email_confirmation_token_expiry, "wgUserEmailConfirmationTokenExpiry") }}
-
-
 {{ bool_setting(mediawiki_user_email_use_reply_to, "wgUserEmailUseReplyTo") }}
-
 
 // Email notification (Enotif) settings
 
 {{ bool_setting(mediawiki_enotif_from_editor, "wgEnotifFromEditor") }}
-
-
 {{ bool_setting(mediawiki_enotif_impersonal, "wgEnotifImpersonal") }}
-
-
 {{ setting(mediawiki_enotif_max_recips, "wgEnotifMaxRecips") }}
-
-
 {{ bool_setting(mediawiki_enotif_minor_edits, "wgEnotifMinorEdits") }}
-
-
 {{ bool_setting(mediawiki_enotif_reveal_editor_address, "wgEnotifRevealEditorAddress") }}
-
-
 {{ bool_setting(mediawiki_enotif_use_real_name, "wgEnotifUseRealName") }}
-
-
 {{ bool_setting(mediawiki_enotif_user_talk, "wgEnotifUserTalk") }}
-
-
 {{ bool_setting(mediawiki_enotif_watchlist, "wgEnotifWatchlist") }}
-
-
 {{ bool_setting(mediawiki_use_enotif, "wgUseEnotif") }}
-
-
 {{ setting(mediawiki_users_notified_on_all_changes, "wgUsersNotifiedOnAllChanges") }}
-
 
 // Database settings
 
 {{ setting(mediawiki_data_center_update_stick_ttl, "wgDataCenterUpdateStickTTL") }}
-
-
 {{ string_setting(mediawiki_db_admin_password, "wgDBadminpassword") }}
-
-
 {{ string_setting(mediawiki_db_admin_user, "wgDBadminuser") }}
-
-
 {{ bool_setting(mediawiki_db_compress, "wgDBcompress") }}
-
-
 {{ string_setting(mediawiki_db_default_group, "wgDBDefaultGroup") }}
-
-
 {{ string_setting(mediawiki_db_error_log_tz, "wgDBerrorLogTZ") }}
-
-
 {{ string_setting(mediawiki_db_error_log, "wgDBerrorLog") }}
-
-
 {{ string_setting(mediawiki_db_mwschema, "wgDBmwschema") }}
-
-
 {{ string_setting(mediawiki_db_name, "wgDBname") }}
-
-
 {{ string_setting(mediawiki_db_password, "wgDBpassword") }}
-
-
 {{ string_setting(mediawiki_db_prefix, "wgDBprefix") }}
-
-
 {{ string_setting(mediawiki_db_server, "wgDBserver") }}
-
-
 {{ bool_setting(mediawiki_db_ssl, "wgDBssl") }}
-
-
 {{ bool_setting(mediawiki_db_strict_warnings, "wgDBstrictWarnings") }}
-
-
 {{ string_setting(mediawiki_db_type, "wgDBtype") }}
-
-
 {{ string_setting(mediawiki_db_user, "wgDBuser") }}
-
-
 {{ setting(mediawiki_external_links_domain_gaps, "wgExternalLinksDomainGaps") }}
-
-
 {{ setting(mediawiki_local_databases, "wgLocalDatabases") }}
-
-
 {{ setting(mediawiki_max_execution_time_for_expensive_queries, "wgMaxExecutionTimeForExpensiveQueries") }}
-
-
 {{ setting(mediawiki_search_type_alternatives, "wgSearchTypeAlternatives") }}
-
-
 {{ string_setting(mediawiki_search_type, "wgSearchType") }}
-
-
 {{ setting(mediawiki_virtual_domains_mapping, "wgVirtualDomainsMapping") }}
-
 
 // LoadBalancer settings
 
 {{ setting(mediawiki_db_servers, "wgDBservers") }}
-
-
 {{ setting(mediawiki_lb_factory_conf, "wgLBFactoryConf") }}
-
-
 {{ setting(mediawiki_database_replica_lag_critical, "wgDatabaseReplicaLagCritical") }}
-
-
 {{ setting(mediawiki_database_replica_lag_warning, "wgDatabaseReplicaLagWarning") }}
-
 
 // MySQL-specific
 
 {{ string_setting(mediawiki_db_table_options, "wgDBTableOptions") }}
-
-
 {{ string_setting(mediawiki_sql_mode, "wgSQLMode") }}
-
 
 // PostgreSQL-specific
 
 {{ setting(mediawiki_db_port, "wgDBport") }}
 
-
 // SQLite-specific
 
 {{ string_setting(mediawiki_sqlite_data_dir, "wgSQLiteDataDir") }}
 
-
 // Shared DB settings
 
 {{ string_setting(mediawiki_shared_db, "wgSharedDB") }}
-
-
 {{ string_setting(mediawiki_shared_prefix, "wgSharedPrefix") }}
-
-
 {{ setting(mediawiki_shared_tables, "wgSharedTables") }}
-
-
 {{ string_setting(mediawiki_shared_schema, "wgSharedSchema") }}
-
 
 // Content handlers and storage
 
 {{ bool_setting(mediawiki_compress_revisions, "wgCompressRevisions") }}
-
-
 {{ setting(mediawiki_content_handlers, "wgContentHandlers") }}
-
-
 {{ string_setting(mediawiki_default_external_store, "wgDefaultExternalStore") }}
-
-
 {{ string_setting(mediawiki_diff_engine, "wgDiffEngine") }}
-
-
 {{ bool_setting(mediawiki_enable_remote_bag_o_stuff_tests, "wgEnableRemoteBagOStuffTests") }}
-
-
 {{ string_setting(mediawiki_external_diff_engine, "wgExternalDiffEngine") }}
-
-
 {{ setting(mediawiki_external_servers, "wgExternalServers") }}
-
-
 {{ setting(mediawiki_external_stores, "wgExternalStores") }}
-
-
 {{ setting(mediawiki_namespace_content_models, "wgNamespaceContentModels") }}
-
-
 {{ bool_setting(mediawiki_page_language_use_db, "wgPageLanguageUseDB") }}
-
-
 {{ setting(mediawiki_revision_cache_expiry, "wgRevisionCacheExpiry") }}
-
-
 {{ setting(mediawiki_revision_slots_cache_expiry, "wgRevisionSlotsCacheExpiry") }}
-
-
 {{ setting(mediawiki_text_models_to_parse, "wgTextModelsToParse") }}
-
-
 {{ setting(mediawiki_wikidiff2_options, "wgWikidiff2Options") }}
-
 
 // Performance hacks and limits
 
 {{ bool_setting(mediawiki_allow_schema_updates, "wgAllowSchemaUpdates") }}
-
-
 {{ bool_setting(mediawiki_allow_slow_parser_functions, "wgAllowSlowParserFunctions") }}
-
-
 {{ setting(mediawiki_critical_section_time_limit, "wgCriticalSectionTimeLimit") }}
-
-
 {{ bool_setting(mediawiki_disable_query_pages, "wgDisableQueryPages") }}
-
-
 {{ bool_setting(mediawiki_force_deferred_updates_pre_send, "wgForceDeferredUpdatesPreSend") }}
-
-
 {{ setting(mediawiki_link_holder_batch_size, "wgLinkHolderBatchSize") }}
-
-
 {{ setting(mediawiki_max_article_size, "wgMaxArticleSize") }}
-
-
 {{ setting(mediawiki_maximum_moved_pages, "wgMaximumMovedPages") }}
-
-
 {{ setting(mediawiki_max_job_db_write_duration, "wgMaxJobDBWriteDuration") }}
-
-
 {{ setting(mediawiki_max_user_db_write_duration, "wgMaxUserDBWriteDuration") }}
-
-
 {{ string_setting(mediawiki_memory_limit, "wgMemoryLimit") }}
-
-
 {{ bool_setting(mediawiki_miser_mode, "wgMiserMode") }}
-
-
 {{ bool_setting(mediawiki_multi_shard_site_stats, "wgMultiShardSiteStats") }}
-
-
 {{ setting(mediawiki_pool_counter_conf, "wgPoolCounterConf") }}
-
-
 {{ setting(mediawiki_pool_count_client_conf, "wgPoolCountClientConf") }}
-
-
 {{ setting(mediawiki_query_cache_limit, "wgQueryCacheLimit") }}
-
-
 {{ setting(mediawiki_query_pages, "wgQueryPages") }}
-
-
 {{ setting(mediawiki_request_time_limit, "wgRequestTimeLimit") }}
-
-
 {{ setting(mediawiki_transactional_time_limit, "wgTransactionalTimeLimit") }}
-
-
 {{ setting(mediawiki_wanted_pages_threshold, "wgWantedPagesThreshold") }}
-
 
 // Cache settings
 
 {{ string_setting(mediawiki_cache_directory, "wgCacheDirectory") }}
-
-
 {{ bool_setting(mediawiki_cache_enable_stats, "wgCacheEnableStats") }}
-
-
 {{ setting(mediawiki_cache_epoch, "wgCacheEpoch") }}
-
-
 {{ bool_setting(mediawiki_cache_pages, "wgCachePages") }}
-
-
 {{ string_setting(mediawiki_cache_prefix, "wgCachePrefix") }}
-
-
 {{ setting(mediawiki_cache_revision_max_age, "wgCacheRevisionMaxAge") }}
-
-
 {{ setting(mediawiki_cache_stats_ttl, "wgCacheStatsTTL") }}
-
-
 {{ setting(mediawiki_cache_ttl, "wgCacheTTL") }}
-
-
 {{ string_setting(mediawiki_cluster_cache_dir, "wgClusterCacheDir") }}
-
-
 {{ bool_setting(mediawiki_enable_side_bar_cache, "wgEnableSidebarCache") }}
-
-
 {{ setting(mediawiki_external_store_cache_ttl, "wgExternalStoreCacheTTL") }}
-
-
 {{ string_setting(mediawiki_file_cache_directory, "wgFileCacheDirectory") }}
-
-
 {{ setting(mediawiki_file_cache_depth, "wgFileCacheDepth") }}
-
-
 {{ setting(mediawiki_file_cache_time, "wgFileCacheTime") }}
-
-
 {{ bool_setting(mediawiki_localized_cache_enable_stats, "wgLocalizedCacheEnableStats") }}
-
-
 {{ setting(mediawiki_main_cache_type, "wgMainCacheType") }}
-
-
 {{ string_setting(mediawiki_main_stash, "wgMainStash") }}
-
-
 {{ setting(mediawiki_max_shell_memory, "wgMaxShellMemory") }}
-
-
 {{ setting(mediawiki_memcached_servers, "wgMemCachedServers") }}
-
-
 {{ setting(mediawiki_object_caches, "wgObjectCaches") }}
-
-
 {{ setting(mediawiki_parser_cache_type, "wgParserCacheType") }}
-
-
 {{ setting(mediawiki_parser_cache_expiry_seconds, "wgParserCacheExpireTime") }}
-
-
 {{ bool_setting(mediawiki_parser_cache_use_json, "wgParserCacheUseJSON") }}
-
-
 {{ setting(mediawiki_session_cache_type, "wgSessionCacheType") }}
-
-
 {{ bool_setting(mediawiki_use_file_cache, "wgUseFileCache") }}
-
-
 {{ bool_setting(mediawiki_use_gzip, "wgUseGzip") }}
-
-
 {{ bool_setting(mediawiki_use_memcached, "wgUseMemcached") }}
-
-
 {{ bool_setting(mediawiki_use_parser_cache, "wgUseParserCache") }}
-
-
 {{ bool_setting(mediawiki_use_squids, "wgUseSquid") }}
-
-
 {{ bool_setting(mediawiki_use_xcache, "wgUseXCache") }}
-
-
 {{ setting(mediawiki_varnish_ttl, "wgVarnishTTL") }}
-
-
 {{ setting(mediawiki_wantedfiles_cache_ttl, "wgWantedFilesCacheTTL") }}
-
-
 {{ setting(mediawiki_wantedpages_cache_ttl, "wgWantedPagesCacheTTL") }}
-
 
 // User accounts and authentication settings
 
 {{ setting(mediawiki_account_creation_throttle, "wgAccountCreationThrottle") }}
-
-
 {{ setting(mediawiki_active_user_days, "wgActiveUserDays") }}
-
-
 {{ bool_setting(mediawiki_allow_user_js, "wgAllowUserJs") }}
-
-
 {{ bool_setting(mediawiki_allow_user_css, "wgAllowUserCss") }}
-
-
 {{ setting(mediawiki_auth_manager_auto_config, "wgAuthManagerAutoConfig") }}
-
-
 {{ setting(mediawiki_auth_manager_config, "wgAuthManagerConfig") }}
-
-
 {{ setting(mediawiki_auth_plugin_data, "wgAuthPluginData") }}
-
-
 {{ setting(mediawiki_auth_remoteuser_allowedgroups, "wgAuthRemoteuserAllowedGroups") }}
-
-
 {{ setting(mediawiki_auth_remoteuser_allowedusers, "wgAuthRemoteuserAllowedUsers") }}
-
-
 {{ setting(mediawiki_auth_remoteuser_deny_ip, "wgAuthRemoteuserDenyIP") }}
-
-
 {{ string_setting(mediawiki_auth_remoteuser_domain, "wgAuthRemoteuserDomain") }}
-
-
 {{ string_setting(mediawiki_auth_remoteuser_mail_domain, "wgAuthRemoteuserMailDomain") }}
-
-
 {{ string_setting(mediawiki_auth_remoteuser_name, "wgAuthRemoteuserName") }}
-
-
 {{ setting(mediawiki_auth_remoteuser_notallowedgroups, "wgAuthRemoteuserNotAllowedGroups") }}
-
-
 {{ setting(mediawiki_auth_remoteuser_notallowedusers, "wgAuthRemoteuserNotAllowedUsers") }}
-
-
 {{ bool_setting(mediawiki_block_allow_whitelist, "wgBlockAllowsUTEdit") }}
-
-
 {{ setting(mediawiki_block_cache_ttl, "wgBlockCacheTTL") }}
-
-
 {{ bool_setting(mediawiki_block_disable_user_talk, "wgBlockDisablesLogin") }}
-
-
 {{ string_setting(mediawiki_block_expiry, "wgBlockExpiry") }}
-
-
 {{ string_setting(mediawiki_centralauthtoken_secret_key, "wgCentralAuthTokenSecretKey") }}
-
-
 {{ setting(mediawiki_cookie_expire, "wgCookieExpiration") }}
-
-
 {{ string_setting(mediawiki_cookie_prefix, "wgCookiePrefix") }}
-
-
 {{ string_setting(mediawiki_cookie_same_site, "wgCookieSameSite") }}
-
-
 {{ bool_setting(mediawiki_cookie_secure, "wgCookieSecure") }}
-
-
 {{ string_setting(mediawiki_default_robot_policy, "wgDefaultRobotPolicy") }}
-
-
 {{ bool_setting(mediawiki_disable_account_creation, "wgDisableAccountCreation") }}
-
-
 {{ bool_setting(mediawiki_disable_anonymous_editing, "wgDisableAnonEditing") }}
-
-
 {{ bool_setting(mediawiki_disable_anonymous_talk, "wgDisableAnonTalk") }}
-
-
 {{ bool_setting(mediawiki_disable_api_php_engine, "wgDisableApiPHPEngine") }}
-
-
 {{ bool_setting(mediawiki_disable_authenticated_api, "wgDisableAuthenticatedApi") }}
-
-
 {{ bool_setting(mediawiki_disable_email, "wgDisableEmail") }}
-
-
 {{ bool_setting(mediawiki_disable_password_reset, "wgDisablePasswordReset") }}
-
-
 {{ bool_setting(mediawiki_enable_api, "wgEnableAPI") }}
-
-
 {{ bool_setting(mediawiki_enable_write_api, "wgEnableWriteAPI") }}
-
-
 {{ setting(mediawiki_group_permissions, "wgGroupPermissions") }}
-
-
 {{ string_setting(mediawiki_invalid_password_regex, "wgInvalidPasswordRegex") }}
-
-
 {{ string_setting(mediawiki_invalid_usernames_regex, "wgInvalidUsernamesRegex") }}
-
-
 {{ setting(mediawiki_max_name_characters, "wgMaxNameChars") }}
-
-
 {{ setting(mediawiki_min_password_length, "wgMinimalPasswordLength") }}
-
-
 {{ string_setting(mediawiki_password_default, "wgPasswordDefault") }}
-
-
 {{ setting(mediawiki_password_policies, "wgPasswordPolicy") }}
-
-
 {{ bool_setting(mediawiki_require_email, "wgRequireEmail") }}
-
-
 {{ bool_setting(mediawiki_require_name, "wgRequireName") }}
-
-
 {{ string_setting(mediawiki_secret_key, "wgSecretKey") }}
-
-
 {{ string_setting(mediawiki_session_name, "wgSessionName") }}
-
-
 {{ bool_setting(mediawiki_session_persist_anonymous, "wgSessionPersistAnon") }}
-
-
 {{ setting(mediawiki_temporary_user_default_groups, "wgTemporaryUserDefaultGroups") }}
-
-
 {{ setting(mediawiki_user_groups, "wgUserGroups") }}
-
-
 {{ setting(mediawiki_user_rights_groups, "wgUserRightsGroups") }}
-
-
 {{ setting(mediawiki_whitelisted_saveable_pages, "wgWhitelistRead") }}
-
 
 // Namespace settings
 
 {{ setting(mediawiki_additional_namespaces, "wgExtraNamespaces") }}
-
-
 {{ setting(mediawiki_canonical_namespace_names, "wgCanonicalNamespaceNames") }}
-
-
 {{ setting(mediawiki_case_sensitive_namespaces, "wgCaseSensitiveNamespaces") }}
-
-
 {{ setting(mediawiki_content_namespaces, "wgContentNamespaces") }}
-
-
 {{ bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
-
-
 {{ setting(mediawiki_namespace_aliases, "wgNamespaceAliases") }}
-
-
 {{ setting(mediawiki_namespace_protection, "wgNamespaceProtection") }}
-
-
 {{ setting(mediawiki_namespace_relative_links, "wgNamespaceRelativeLinks") }}
-
-
 {{ setting(mediawiki_namespace_to_be_searched_default, "wgNamespacesToBeSearchedDefault") }}
-
-
 {{ setting(mediawiki_non_incl_namespaces, "wgNonincludableNamespaces") }}
-
-
 {{ string_setting(mediawiki_valid_title_chars, "wgLegalTitleChars") }}
-
-
 {{ setting(mediawiki_subpage_namespaces, "wgNamespacesWithSubpages") }}
-
 
 // Parser settings
 
 {{ bool_setting(mediawiki_allow_display_title, "wgAllowDisplayTitle") }}
-
-
 {{ bool_setting(mediawiki_allow_external_images, "wgAllowExternalImages") }}
-
-
 {{ setting(mediawiki_allow_external_image_paths, "wgAllowExternalImagesFrom") }}
-
-
 {{ bool_setting(mediawiki_allow_image_moving, "wgAllowImageMoving") }}
-
-
 {{ bool_setting(mediawiki_allow_special_inclusion, "wgAllowSpecialInclusion") }}
-
-
 {{ bool_setting(mediawiki_clean_signature, "wgCleanSignatures") }}
-
-
 {{ bool_setting(mediawiki_disable_lang_conversion, "wgDisableLangConversion") }}
-
-
 {{ bool_setting(mediawiki_disable_title_conversion, "wgDisableTitleConversion") }}
-
-
 {{ bool_setting(mediawiki_enable_image_whitelist, "wgEnableImageWhitelist") }}
-
-
 {{ setting(mediawiki_enable_magic_links, "wgEnableMagicLinks") }}
-
-
 {{ bool_setting(mediawiki_enable_parser_limit_report, "wgEnableParserLimitReport") }}
-
-
 {{ bool_setting(mediawiki_enable_parser_limit_report_only, "wgEnableParserLimitReportOnly") }}
-
-
 {{ bool_setting(mediawiki_enable_preprocess_parser_cache, "wgEnablePreprocessParserCache") }}
-
-
 {{ bool_setting(mediawiki_enable_score_function, "wgEnableScaryTranscluding") }}
-
-
 {{ setting(mediawiki_expiry_warning_days, "wgExpiryWarningDays") }}
-
-
 {{ string_setting(mediawiki_external_link_target, "wgExternalLinkTarget") }}
-
-
 {{ setting(mediawiki_fragment_max_length, "wgFragmentMaxLength") }}
-
-
 {{ bool_setting(mediawiki_html_email, "wgHTMLEmail") }}
-
-
 {{ bool_setting(mediawiki_image_lazy_loading, "wgImageLazyLoading") }}
-
-
 {{ bool_setting(mediawiki_image_whitelist_enabled, "wgImageWhitelistEnabled") }}
-
-
 {{ setting(mediawiki_image_whitelist, "wgImageWhitelist") }}
-
-
 {{ setting(mediawiki_max_article_size, "wgMaxArticleSize") }}
-
-
 {{ setting(mediawiki_max_pre_preview_length, "wgMaxPreviewLength") }}
-
-
 {{ setting(mediawiki_max_sig_chars, "wgMaxSigChars") }}
-
-
 {{ setting(mediawiki_max_template_depth, "wgMaxTemplateDepth") }}
-
-
 {{ setting(mediawiki_parser_conf, "wgParserConf") }}
-
-
 {{ setting(mediawiki_parser_functions, "wgParserFunctions") }}
-
-
 {{ setting(mediawiki_parser_options, "wgParserOptions") }}
-
-
 {{ bool_setting(mediawiki_remove_invalid_namespaces, "wgRemoveInvalidNamespaces") }}
-
-
 {{ bool_setting(mediawiki_restrict_display_title, "wgRestrictDisplayTitle") }}
-
-
 {{ setting(mediawiki_template_styles, "wgTemplateStyles") }}
-
-
 {{ string_setting(mediawiki_thumbnail_script_path, "wgThumbnailScriptPath") }}
-
-
 {{ setting(mediawiki_transform_whitelist_patterns, "wgTransformWhitelist") }}
-
-
 {{ bool_setting(mediawiki_use_tidy, "wgUseTidy") }}
-
-
 {{ setting(mediawiki_tidy_config, "wgTidyConfig") }}
-
-
 {{ bool_setting(mediawiki_tidy_internal, "wgTidyInternal") }}
-
-
 {{ string_setting(mediawiki_tidy_output_encoding, "wgTidyOutputEncoding") }}
-
 
 // Language and internationalization settings
 
 {{ setting(mediawiki_additional_translations, "wgExtraLanguageNames") }}
-
-
 {{ bool_setting(mediawiki_allow_unicode_urls, "wgAllowUnicodeUrls") }}
-
-
 {{ string_setting(mediawiki_application_protocol, "wgApplicationProtocol") }}
-
-
 {{ string_setting(mediawiki_default_language_variant, "wgDefaultLanguageVariant") }}
-
-
 {{ bool_setting(mediawiki_disable_lang_conversion, "wgDisableLangConversion") }}
-
-
 {{ bool_setting(mediawiki_disable_title_conversion, "wgDisableTitleConversion") }}
-
-
 {{ bool_setting(mediawiki_enable_unicode_bidirectional, "wgEnableUnicodeBidi") }}
-
-
 {{ setting(mediawiki_extra_language_codes, "wgExtraLanguageCodes") }}
-
-
 {{ setting(mediawiki_extra_language_names, "wgExtraLanguageNames") }}
-
-
 {{ setting(mediawiki_fallback_language, "wgLanguageFallback") }}
-
-
 {{ string_setting(mediawiki_language_code, "wgLanguageCode") }}
-
-
 {{ setting(mediawiki_language_converter_enabled_for_languages, "wgLanguageConverterEnabled") }}
-
-
 {{ setting(mediawiki_locale_cache, "wgLocaleCache") }}
-
-
 {{ setting(mediawiki_locale_directory, "wgLocalisationCacheConf") }}
-
-
 {{ string_setting(mediawiki_translation_cache_store_class, "wgTranslationCacheStore") }}
-
-
 {{ setting(mediawiki_translation_update_days, "wgTranslateNumerals") }}
-
-
 {{ setting(mediawiki_url_protocol_mode, "wgUrlProtocols") }}
-
-
 {{ string_setting(mediawiki_user_language_profile_source, "wgUserLanguageProfileSource") }}
-
 
 // Skin and interface settings
 
 {{ setting(mediawiki_additional_styles, "wgResourceModules['site.styles']['styles']") }}
-
-
 {{ bool_setting(mediawiki_allow_css_subpage, "wgAllowUserCssPrefs") }}
-
-
 {{ bool_setting(mediawiki_allow_js_subpage, "wgAllowUserJs") }}
-
-
 {{ string_setting(mediawiki_default_mobile_skin, "wgDefaultMobileSkin") }}
-
-
 {{ string_setting(mediawiki_default_skin, "wgDefaultSkin") }}
-
-
 {{ bool_setting(mediawiki_enable_resource_loader, "wgEnableResourceLoader") }}
-
-
 {{ bool_setting(mediawiki_enable_universal_edit_button, "wgEnableUniversalEditButton") }}
-
-
 {{ bool_setting(mediawiki_force_resource_loader, "wgForceResourceLoader") }}
-
-
 {{ string_setting(mediawiki_logo, "wgLogo") }}
-
-
 {{ string_setting(mediawiki_logo_1x, "wgLogo1x") }}
-
-
 {{ string_setting(mediawiki_logo_2x, "wgLogo2x") }}
-
-
 {{ string_setting(mediawiki_logo_icon, "wgLogoIcon") }}
-
-
 {{ setting(mediawiki_logo_width, "wgLogoWidth") }}
-
-
 {{ setting(mediawiki_logo_height, "wgLogoHeight") }}
-
-
 {{ string_setting(mediawiki_resource_base_path, "wgResourceBasePath") }}
-
-
 {{ setting(mediawiki_resource_loader_max_query_length, "wgResourceLoaderMaxQueryLength") }}
-
-
 {{ bool_setting(mediawiki_resource_loader_storage_enabled, "wgResourceLoaderStorageEnabled") }}
-
-
 {{ setting(mediawiki_resource_modules, "wgResourceModules") }}
-
-
 {{ string_setting(mediawiki_rights_icon, "wgRightsIcon") }}
-
-
 {{ string_setting(mediawiki_rights_page, "wgRightsPage") }}
-
-
 {{ string_setting(mediawiki_rights_text, "wgRightsText") }}
-
-
 {{ string_setting(mediawiki_rights_url, "wgRightsUrl") }}
-
-
 {{ bool_setting(mediawiki_show_ip_in_header, "wgShowIPinHeader") }}
-
-
 {{ setting(mediawiki_skin_styles, "wgSkinStyles") }}
-
-
 {{ string_setting(mediawiki_skins_directory, "wgSkinsDirectory") }}
-
-
 {{ string_setting(mediawiki_static_directory, "wgStyleDirectory") }}
-
-
 {{ string_setting(mediawiki_style_path, "wgStylePath") }}
-
-
 {{ string_setting(mediawiki_style_version, "wgStyleVersion") }}
-
-
 {{ setting(mediawiki_tab_width, "wgTabWidth") }}
-
-
 {{ string_setting(mediawiki_theme_directory, "wgThemeDirectory") }}
-
-
 {{ bool_setting(mediawiki_use_site_css, "wgUseSiteCss") }}
-
-
 {{ bool_setting(mediawiki_use_site_js, "wgUseSiteJs") }}
-
 
 // Special page settings
 
 {{ setting(mediawiki_additional_special_pages, "wgSpecialPages") }}
-
-
 {{ bool_setting(mediawiki_disable_query_pages, "wgDisableQueryPages") }}
-
-
 {{ bool_setting(mediawiki_disable_random_special_page, "wgDisableRandomPage") }}
-
-
 {{ bool_setting(mediawiki_enable_specialchanges, "wgEnableSpecialChanges") }}
-
-
 {{ bool_setting(mediawiki_enable_specialcontributions, "wgEnableSpecialContributions") }}
-
-
 {{ bool_setting(mediawiki_enable_speciallog, "wgEnableSpecialLog") }}
-
-
 {{ bool_setting(mediawiki_enable_specialmovepage, "wgEnableSpecialMovePage") }}
-
-
 {{ bool_setting(mediawiki_enable_specialnewestpages, "wgEnableSpecialNewestPages") }}
-
-
 {{ bool_setting(mediawiki_enable_specialprotectedpages, "wgEnableSpecialProtectedPages") }}
-
-
 {{ bool_setting(mediawiki_enable_specialrecentchanges, "wgEnableSpecialRecentChanges") }}
-
-
 {{ bool_setting(mediawiki_enable_specialrecentchangeslinked, "wgEnableSpecialRecentChangesLinked") }}
-
-
 {{ bool_setting(mediawiki_enable_specialuncategorizedcategories, "wgEnableSpecialUncategorizedCategories") }}
-
-
 {{ bool_setting(mediawiki_enable_specialuncategorizedimages, "wgEnableSpecialUncategorizedImages") }}
-
-
 {{ bool_setting(mediawiki_enable_specialuncategorizedpages, "wgEnableSpecialUncategorizedPages") }}
-
-
 {{ bool_setting(mediawiki_enable_specialuncategorizedtemplates, "wgEnableSpecialUncategorizedTemplates") }}
-
-
 {{ bool_setting(mediawiki_enable_specialunusedcategories, "wgEnableSpecialUnusedCategories") }}
-
-
 {{ bool_setting(mediawiki_enable_specialunusedimages, "wgEnableSpecialUnusedImages") }}
-
-
 {{ bool_setting(mediawiki_enable_specialunusedtemplates, "wgEnableSpecialUnusedTemplates") }}
-
-
 {{ bool_setting(mediawiki_enable_specialwantedcategories, "wgEnableSpecialWantedCategories") }}
-
-
 {{ bool_setting(mediawiki_enable_specialwantedfiles, "wgEnableSpecialWantedFiles") }}
-
-
 {{ bool_setting(mediawiki_enable_specialwantedpages, "wgEnableSpecialWantedPages") }}
-
-
 {{ bool_setting(mediawiki_enable_specialwantedtemplates, "wgEnableSpecialWantedTemplates") }}
-
-
 {{ setting(mediawiki_feed_limit, "wgFeedLimit") }}
-
-
 {{ setting(mediawiki_query_cache_limit, "wgQueryCacheLimit") }}
-
-
 {{ setting(mediawiki_query_max_limit, "wgQueryMaxLimit") }}
-
-
 {{ setting(mediawiki_rc_max_age, "wgRCMaxAge") }}
-
-
 {{ string_setting(mediawiki_special_file_cache, "wgSpecialFileCache") }}
-
-
 {{ setting(mediawiki_special_page_cache_updates, "wgSpecialPageCacheUpdates") }}
-
-
 {{ bool_setting(mediawiki_special_version_show_hooks, "wgSpecialVersionShowHooks") }}
-
 
 // Search settings
 
 {{ bool_setting(mediawiki_disable_search_update, "wgDisableSearchUpdate") }}
-
-
 {{ bool_setting(mediawiki_enable_search_update, "wgEnableSearchUpdate") }}
-
-
 {{ setting(mediawiki_external_link_search_limit, "wgExternalLinkSearchLimit") }}
-
-
 {{ setting(mediawiki_min_search_length, "wgMinimalSearchLength") }}
-
-
 {{ setting(mediawiki_search_cache, "wgSearchCache") }}
-
-
 {{ bool_setting(mediawiki_search_highlight, "wgSearchHighlight") }}
-
-
 {{ string_setting(mediawiki_search_match, "wgSearchMatch") }}
-
-
 {{ setting(mediawiki_search_namespaces, "wgSearchNamespaces") }}
-
-
 {{ bool_setting(mediawiki_search_suggest, "wgEnableMWSuggest") }}
-
-
 {{ string_setting(mediawiki_search_type, "wgSearchType") }}
-
-
 {{ bool_setting(mediawiki_search_update, "wgSearchUpdate") }}
-
-
 {{ string_setting(mediawiki_spell_dictionary, "wgSpellDictionary") }}
-
-
 {{ bool_setting(mediawiki_search_match_redirect, "wgSearchMatchRedirects") }}
-
-
 {{ bool_setting(mediawiki_search_use_extra_namespaces, "wgSearchUseExtraNamespaces") }}
-
-
 {{ bool_setting(mediawiki_search_use_redirect, "wgSearchUseRedirectTargets") }}
-
-
 {{ bool_setting(mediawiki_enable_search_suggestions, "wgEnableOpenSearchSuggestions") }}
-
-
 {{ setting(mediawiki_opensearch_description_length, "wgOpenSearchDescriptionLength") }}
-
-
 {{ string_setting(mediawiki_opensearch_name, "wgOpenSearchName") }}
-
-
 {{ string_setting(mediawiki_opensearch_template, "wgOpenSearchTemplate") }}
-
-
 {{ string_setting(mediawiki_opensearch_description, "wgOpenSearchDescription") }}
-
-
 {{ string_setting(mediawiki_opensearch_contact, "wgOpenSearchContact") }}
-
-
 {{ setting(mediawiki_opensearch_default_limit, "wgOpenSearchDefaultLimit") }}
-
-
 {{ setting(mediawiki_opensearch_max_results, "wgOpenSearchMaxResults") }}
-
-
 {{ setting(mediawiki_search_backend_config, "wgSearchBackendConfig") }}
-
-
 {{ setting(mediawiki_search_suggest_cache_expiry, "wgSearchSuggestCacheExpiry") }}
-
 
 // Debug and development settings
 {% if mediawiki_debug is defined %}
@@ -1542,166 +614,61 @@ $wgDebugToolbar = {{ mediawiki_debug | lower }};
 {% endif %}
 
 {{ string_setting(mediawiki_debug_log_file, "wgDebugLogFile") }}
-
-
 {{ setting(mediawiki_debug_log_groups, "wgDebugLogGroups") }}
-
-
 {{ setting(mediawiki_debug_max_sql_log_size, "wgDebugMaxSqlLogSize") }}
-
-
 {{ string_setting(mediawiki_debug_sql_log_file, "wgDebugSqlLogFile") }}
-
-
 {{ bool_setting(mediawiki_development_warnings, "wgDevelopmentWarnings") }}
-
-
 {{ bool_setting(mediawiki_log_exception_backtrace, "wgLogExceptionBacktrace") }}
-
-
 {{ string_setting(mediawiki_log_route, "wgLogRoute") }}
-
-
 {{ setting(mediawiki_log_types, "wgLogTypes") }}
-
-
 {{ setting(mediawiki_max_debug_log_size, "wgMaxDebugLogSize") }}
-
-
 {{ setting(mediawiki_profiler, "wgProfiler") }}
-
-
 {{ string_setting(mediawiki_profiler_log_file, "wgProfilerLogFile") }}
-
-
 {{ string_setting(mediawiki_profiler_type, "wgProfilerType") }}
-
-
 {{ bool_setting(mediawiki_show_debug_toolbar, "wgShowDebugToolbar") }}
-
-
 {{ bool_setting(mediawiki_show_exception_details, "wgShowExceptionDetails") }}
-
-
 {{ bool_setting(mediawiki_show_sql_errors, "wgShowSQLErrors") }}
-
-
 {{ string_setting(mediawiki_sql_log_file, "wgSQLLogFile") }}
-
-
 {{ bool_setting(mediawiki_trace_sql_backtrace, "wgTraceSqlBacktrace") }}
-
-
 {{ setting(mediawiki_debug_timing_profile_threshold, "wgDebugTimingProfileThreshold") }}
-
-
 {{ setting(mediawiki_debug_function_entry_level, "wgDebugFunctionEntry") }}
-
-
 {{ bool_setting(mediawiki_debug_persistent, "wgDebugPersistent") }}
-
-
 {{ string_setting(mediawiki_debug_log_prefix, "wgDebugLogPrefix") }}
-
-
 {{ setting(mediawiki_debug_log_file_permission, "wgDebugLogFilePermissions") }}
-
-
 {{ bool_setting(mediawiki_debug_toolbox, "wgDebugToolbox") }}
-
-
 {{ bool_setting(mediawiki_debug_dump_config, "wgDebugDumpConfig") }}
-
-
 {{ setting(mediawiki_debug_log_backtrace, "wgDebugLogBacktrace") }}
-
-
 {{ bool_setting(mediawiki_debug_log_file_append, "wgDebugLogFileAppend") }}
-
-
 {{ string_setting(mediawiki_debug_redirect_url, "wgDebugRedirUrl") }}
-
-
 {{ bool_setting(mediawiki_debug_sql_summary, "wgDebugSqlSummary") }}
-
 
 // Experimental features
 
 {{ bool_setting(mediawiki_enable_experimental_parser, "wgEnableExperimentalParser") }}
-
-
 {{ setting(mediawiki_experimental_html_cache, "wgExperimentalHtmlCacheType") }}
-
-
 {{ bool_setting(mediawiki_enable_remote_content, "wgEnableRemoteContent") }}
-
-
 {{ bool_setting(mediawiki_enable_content_handler_use_db, "wgContentHandlerUseDB") }}
-
-
 {{ bool_setting(mediawiki_enable_wikitext_cache, "wgEnableWikiTextCache") }}
-
-
 {{ bool_setting(mediawiki_enable_side_bar_cache, "wgEnableSidebarCache") }}
-
-
 {{ bool_setting(mediawiki_enable_category_browse, "wgUseCategoryBrowser") }}
-
-
 {{ bool_setting(mediawiki_experimental_parser_limit_report, "wgExperimentalParserLimitReport") }}
-
-
 {{ bool_setting(mediawiki_experimental_template_styles, "wgExperimentalTemplateStyles") }}
-
-
 {{ bool_setting(mediawiki_enable_partial_blocks, "wgEnablePartialBlocks") }}
-
-
 {{ bool_setting(mediawiki_enable_speculative_page_view, "wgEnableSpeculativePageView") }}
-
-
 {{ bool_setting(mediawiki_enable_wikitext_cache_versioning, "wgEnableWikiTextCacheVersioning") }}
-
-
 {{ bool_setting(mediawiki_enable_remote_search_suggestions, "wgEnableOpenSearchSuggest") }}
-
-
 {{ bool_setting(mediawiki_experimental_mobile_editor, "wgExperimentalMobileEditor") }}
-
-
 {{ bool_setting(mediawiki_experimental_print_version, "wgExperimentalPrintVersion") }}
-
-
 {{ bool_setting(mediawiki_enable_beta_features, "wgEnableBetaFeatures") }}
-
-
 {{ setting(mediawiki_beta_features_whitelist, "wgBetaFeaturesWhitelist") }}
-
-
 {{ setting(mediawiki_enable_flags, "wgEnableFlags") }}
-
-
 {{ bool_setting(mediawiki_enable_ajax_patrol, "wgAjaxPatrol") }}
-
-
 {{ bool_setting(mediawiki_enable_ajax_watch, "wgAjaxWatch") }}
-
-
 {{ bool_setting(mediawiki_enable_api_rest_module, "wgEnableRestAPI") }}
-
-
 {{ bool_setting(mediawiki_enable_rest_api_explorer, "wgEnableRestAPIExplorer") }}
-
-
 {{ bool_setting(mediawiki_enable_site_notice, "wgEnableSiteNotice") }}
-
-
 {{ bool_setting(mediawiki_enable_user_js, "wgAllowUserJs") }}
-
-
 {{ bool_setting(mediawiki_enable_user_css, "wgAllowUserCss") }}
-
-
 {{ bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
 
 // EXTENSIONS
