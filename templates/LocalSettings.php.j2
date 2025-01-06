@@ -1698,3 +1698,21 @@ $wgDebugToolbar = {{ mediawiki_debug | lower }};
 
 {{ settings.bool_setting(mediawiki_enable_user_email, "wgEnableUserEmail") }}
 
+// EXTENSIONS
+{% for category_identfier, extensions_array in mediawiki_extensions.items() %}
+# {{ category_identfier }} extensions
+{%  for extension in extensions_array %}
+{%      if extension.load %}
+wfLoadExtension("{{ extension.name }}");
+{%      endif %}
+{%  endfor %}
+{% endfor %}
+
+// SKINS
+{% for skin in mediawiki_skins %}
+wfLoadSkin( '{{ skin.name }}' );
+{% endfor %}
+
+{% if mediawiki_extra_settings is defined %}
+{{ mediawiki_extra_settings }}
+{% endif %}

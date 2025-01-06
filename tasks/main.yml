@@ -91,3 +91,12 @@
       loop: "{{ mediawiki_skins }}"
       loop_control:
         loop_var: "skin"
+
+- name: Template LocalSettings.php
+  ansible.builtin.template:
+    src: "{{ mediawiki_localsettings_template }}"
+    dest: "{{ mediawiki_destination }}/{{ mediawiki_localsettings_filename }}"
+    owner: "{{ mediawiki_linux_username }}"
+    group: "{{ mediawiki_linux_group }}"
+    mode: "{{ mediawiki_destination_permissions }}"
+  when: mediawiki_create_localsettings
