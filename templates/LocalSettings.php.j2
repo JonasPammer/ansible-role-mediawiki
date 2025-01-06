@@ -6,25 +6,25 @@ if (!defined("MEDIAWIKI")) {
 }
 
 {# Macro for boolean settings #}
-{% macro bool_setting(var_name, config_name) %}
-{% if var_name is defined and var_name is not none %}
+{% macro bool_setting(var_name, config_name) -%}
+{% if var_name is defined and var_name is not none -%}
 ${{ config_name }} = {{ var_name | lower }};
-{% endif %}
-{% endmacro %}
+{%- endif %}
+{%- endmacro %}
 
 {# Macro for string settings #}
-{% macro string_setting(var_name, config_name) %}
-{% if var_name is defined and var_name is not none %}
+{% macro string_setting(var_name, config_name) -%}
+{% if var_name is defined and var_name is not none -%}
 ${{ config_name }} = "{{ var_name }}";
-{% endif %}
-{% endmacro %}
+{%- endif %}
+{%- endmacro %}
 
 {# Macro for numeric/array/general settings #}
-{% macro setting(var_name, config_name) %}
-{% if var_name is defined and var_name is not none %}
+{% macro setting(var_name, config_name) -%}
+{% if var_name is defined and var_name is not none -%}
 ${{ config_name }} = {{ var_name }};
-{% endif %}
-{% endmacro %}
+{%- endif %}
+{%- endmacro %}
 
 /**
  Sorted as seen on https://www.mediawiki.org/wiki/Manual:Configuration_settings
