@@ -21,5 +21,6 @@
 
 - name: DEBUG LocalSettings.php
   ansible.builtin.fetch:
-    src: "{{ mediawiki_destination }}/{{ mediawiki_localsettings_filename }}"
+    src: "/var/www/html/mediawiki/LocalSettings.php"
     dest: /var/tmp/LocalSettings.php
+  ignore_errors: true
