@@ -603,14 +603,14 @@ ${{ config_name }} = {{ var_name }};
 {{ setting(mediawiki_search_suggest_cache_expiry, "wgSearchSuggestCacheExpiry") }}
 
 // Debug and development settings
-{% if mediawiki_debug is not none %}
-$wgDebugComments = {{ mediawiki_debug | lower }};
-$wgDebugDumpSql = {{ mediawiki_debug | lower }};
-$wgDebugLogFile = {{ mediawiki_debug | lower }};
-$wgDebugLogGroups = {{ mediawiki_debug | lower }};
-$wgDebugRawPage = {{ mediawiki_debug | lower }};
-$wgDebugTimestamps = {{ mediawiki_debug | lower }};
-$wgDebugToolbar = {{ mediawiki_debug | lower }};
+{% if mediawiki_debug is not none and mediawiki_debug is not false %}
+{{ bool_setting(mediawiki_debug_comments, "wgDebugComments") -}}
+{{ bool_setting(mediawiki_debug_dump_sql, "wgDebugDumpSql") -}}
+{{ bool_setting(mediawiki_debug_log_file, "wgDebugLogFile") -}}
+{{ bool_setting(mediawiki_debug_log_groups, "wgDebugLogGroups") -}}
+{{ bool_setting(mediawiki_debug_raw_page, "wgDebugRawPage") -}}
+{{ bool_setting(mediawiki_debug_timestamps, "wgDebugTimestamps") -}}
+{{ bool_setting(mediawiki_debug_toolbar, "wgDebugToolbar") -}}
 {% endif %}
 
 {{ string_setting(mediawiki_debug_log_file, "wgDebugLogFile") -}}
