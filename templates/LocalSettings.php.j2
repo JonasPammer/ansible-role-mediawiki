@@ -686,6 +686,6 @@ wfLoadExtension("{{ extension.name }}");
 wfLoadSkin( '{{ skin.name }}' );
 {% endfor %}
 
-{% if mediawiki_extra_settings is not none %}
+{% if mediawiki_extra_settings is defined and mediawiki_extra_settings is not none %}
 {{ mediawiki_extra_settings -}}
 {% endif %}
