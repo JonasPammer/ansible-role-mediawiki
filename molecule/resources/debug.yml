@@ -1,26 +1,42 @@
 ---
-- name: DEBUG module variables ("vars") into /var/tmp/vars.yml
+- name: write module variables ("vars") into /tmp/vars.yml
   ansible.builtin.copy:
     content: "{{ vars | to_nice_yaml }}"
-    dest: /var/tmp/vars.yml
+    dest: /tmp/vars.yml
   delegate_to: "{{ item }}"
   ignore_errors: "{{ item == 'localhost' }}"
   loop:
     - "{{ inventory_hostname }}"
     - localhost
 
-- name: DEBUG environment variables ("environment") into /var/tmp/environment.yml
+- name: write environment variables ("environment") into /tmp/environment.yml
   ansible.builtin.copy:
     content: "{{ environment | to_nice_yaml }}"
-    dest: /var/tmp/environment.yml
+    dest: /tmp/environment.yml
   delegate_to: "{{ item }}"
   ignore_errors: "{{ item == 'localhost' }}"
   loop:
     - "{{ inventory_hostname }}"
     - localhost
+
+# split up to take advantage of "flat: false" (explicit default value)
+- name: DEBUG vars.yml
+  ansible.builtin.fetch:
+    src: "/tmp/vars.yml"
+    dest: /var/tmp/vars.yml
+    flat: false
+  ignore_errors: true
+
+- name: DEBUG environment.yml
+  ansible.builtin.fetch:
+    src: "/tmp/environment.yml"
+    dest: /var/tmp/environment.yml
+    flat: false
+  ignore_errors: true
 
 - name: DEBUG LocalSettings.php
   ansible.builtin.fetch:
     src: "/var/www/html/mediawiki/LocalSettings.php"
     dest: /var/tmp/LocalSettings.php
+    flat: false
   ignore_errors: true
