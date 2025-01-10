@@ -2,13 +2,18 @@
 roles:
   - name: jonaspammer.bootstrap
   - name: jonaspammer.core_dependencies
-  - name: geerlingguy.repo-epel
+  - name: jonaspammer.openssl
+  - name: jonaspammer.pip
+  - name: jonaspammer.apache2
+  - name: robertdebock.epel
   - name: geerlingguy.repo-remi
   - name: geerlingguy.php
   - name: geerlingguy.php-versions
   - name: geerlingguy.php-mysql
+  - name: geerlingguy.mysql
   - name: geerlingguy.composer
 
 # NOTE: list all collections used here (even if included in `ansible`)
 collections:
   - name: community.general
+  - name: community.crypto

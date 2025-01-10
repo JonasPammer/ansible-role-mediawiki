@@ -48,5 +48,29 @@
     php_version: "7.4"
     mediawiki_enable_webserver: false
 
+    # LocalSettings.php
+    mediawiki_create_localsettings: true
+    #
+    mediawiki_sitename: "Test"
+    mediawiki_article_path: "/wiki/$1"
+    mediawiki_script_path: ""
+    mediawiki_server: "http://localhost"
+    mediawiki_force_https: false
+    #
+    mediawiki_enable_uploads: true
+    #
+    mediawiki_password_sender: "mediawiki@localhost" # pragma: allowlist secret
+    #
+    mediawiki_db_type: "mysql"
+    mediawiki_db_prefix: ""
+    mediawiki_db_table_options: "ENGINE=InnoDB DEFAULT CHARSET=binary"
+    mediawiki_db_server: "localhost"
+    mediawiki_db_name: "mediawiki"
+    mediawiki_db_user: "mediawiki"
+    mediawiki_db_password: "ccc" # pragma: allowlist secret
+    #
+    mediawiki_secret_key: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # pragma: allowlist secret
+    mediawiki_upgrade_key: "xxxxxxxxxxxxxxxx" # pragma: allowlist secret
+
   roles:
     - "ansible-role-mediawiki"
