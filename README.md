@@ -3,11 +3,11 @@
 
 An Ansible role for
 
--   downloading mediawiki into a specified directory,
+- downloading mediawiki into a specified directory,
 
--   installing recommended system packages
+- installing recommended system packages
 
--   downloading additional extensions and skins through Git or Composer
+- downloading additional extensions and skins through Git or Composer
 
 This role does **not** install/configure an SQL-Server.
 
@@ -23,13 +23,13 @@ This role **does** try to ensure permissions of Mediawiki’s files.
 
 Below you can find information on…
 
--   the role’s required Ansible version
+- the role’s required Ansible version
 
--   the role’s supported platforms
+- the role’s supported platforms
 
--   the role’s [role dependencies](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-dependencies)
+- the role’s [role dependencies](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-dependencies)
 
-**[meta/main.yml](meta/main.yml)**
+[meta/main.yml](meta/main.yml)
 
     ---
     galaxy_info:
@@ -93,11 +93,11 @@ Folder in which to extract the downloaded mediawiki archive into. Must **not** e
 
 The default points to a directory named `mediawiki` in the default httpd' directory of the distribution:
 
--   default: `/var/www/html`
+- default: `/var/www/html`
 
--   Alpine: `/var/www/{{ httpd_servername | default(ansible_fqdn) }}`
+- Alpine: `/var/www/{{ httpd_servername | default(ansible_fqdn) }}`
 
--   Suse: `/srv/www/htdocs`
+- Suse: `/srv/www/htdocs`
 
 <!-- -->
 
@@ -151,11 +151,11 @@ This variable defines how to gather the extension. Possible values: "composer", 
 
 Extensions can be **gathered** for a given MediaWiki-Version through various ways. As of 2021, the most common/supported way is by…
 
--   Downloading the extension from Git to the `/extensions`-directory
+- Downloading the extension from Git to the `/extensions`-directory
 
--   Optionally running `composer install [--no-dev …]` in the cloned directory to install its dependencies in *its* directory (kind-of-like `npm install`).
+- Optionally running `composer install [--no-dev …]` in the cloned directory to install its dependencies in *its* directory (kind-of-like `npm install`).
 
-    When you download an extension from [ MediaWiki’s Extension distributor](https://www.mediawiki.org/wiki/Special:ExtensionDistributor), this step has already been done beforehand.
+  When you download an extension from [ MediaWiki’s Extension distributor](https://www.mediawiki.org/wiki/Special:ExtensionDistributor), this step has already been done beforehand.
 
 A more recent initiative attempts to implement the **sole** use of Composer to gather Mediawiki’s Extensions (instead of just using it for gathering libraries), for-example by issuing `composer require mediawiki/semantic-media-wiki` in Mediawiki’s base directory. This is still [an actively discussed RFC](https://phabricator.wikimedia.org/T250406).
 
@@ -202,9 +202,9 @@ What version of the repository to check out. This can be the literal string HEAD
 git\_run\_composer\_install  
 Boolean or "always". Whether to run `composer install` in the directory of the Extension. Defaults to value of `mediawiki_extensions_git_run_composer_install_default`.
 
--   If set to "always", the command will be executed on every run.
+- If set to "always", the command will be executed on every run.
 
--   If set to a truthy boolean value, the command will be executed if the issued git module reports a change.
+- If set to a truthy boolean value, the command will be executed if the issued git module reports a change.
 
 *system\_package\_dependencies*  
 Package name(s) to install to the system using [ ansible.builtin.package](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html#parameter-name).
@@ -275,9 +275,9 @@ You can use Ansible to skip tasks, or only run certain tasks by using these tags
 
 # 👫 Dependencies
 
--   [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php) (This role only installs packages not included in the defaults of linked role)
+- [geerlingguy.php](https://github.com/geerlingguy/ansible-role-php) (This role only installs packages not included in the defaults of linked role)
 
--   [geerlingguy.php-mysql](https://github.com/geerlingguy/ansible-role-php-mysql)
+- [geerlingguy.php-mysql](https://github.com/geerlingguy/ansible-role-php-mysql)
 
 # 📚 Example Playbook Usages
 
@@ -285,7 +285,7 @@ This role is part of [ many compatible purpose-specific roles of mine](https://g
 
 The machine needs to be prepared. In CI, this is done in `molecule/resources/prepare.yml` which sources its soft dependencies from `requirements.yml`:
 
-**[molecule/resources/prepare.yml](molecule/resources/prepare.yml)**
+[molecule/resources/prepare.yml](molecule/resources/prepare.yml)
 
     ---
     - name: prepare
@@ -346,6 +346,8 @@ The following diagram is a compilation of the "soft dependencies" of this role a
 
 ![requirements.yml dependency graph of jonaspammer.mediawiki](https://raw.githubusercontent.com/JonasPammer/ansible-roles/master/graphs/dependencies_mediawiki.svg)
 
+Recommended Play
+
     roles:
       - jonaspammer.mediawiki
 
@@ -353,6 +355,8 @@ The following diagram is a compilation of the "soft dependencies" of this role a
       mediawiki_destination: "/opt/my_wiki"
       mediawiki_linux_username: "root"
       mediawiki_linux_group: "root"
+
+Downloading Extensions and Skins
 
 If an extensions is under [ Wikimedias' version control](https://www.mediawiki.org/wiki/Category:Extensions_in_Wikimedia_version_control), you will only need to supply the `name` property.
 
@@ -455,13 +459,13 @@ A role may work on different **distributions**, like Red Hat Enterprise Linux (R
 
 The tested ansible versions try to stay equivalent with the [ support pattern of Ansible’s `community.general` collection](https://github.com/ansible-collections/community.general#tested-with-ansible). As of writing this is:
 
--   2.13 (Ansible 6)
+- 2.13 (Ansible 6)
 
--   2.14 (Ansible 7)
+- 2.14 (Ansible 7)
 
--   2.15 (Ansible 8)
+- 2.15 (Ansible 8)
 
--   2.16 (Ansible 9)
+- 2.16 (Ansible 9)
 
 # 📝 Development
 
@@ -469,9 +473,9 @@ The tested ansible versions try to stay equivalent with the [ support pattern of
 
 ## 📌 Development Machine Dependencies
 
--   Python 3.10 or greater
+- Python 3.10 or greater
 
--   Docker
+- Docker
 
 ## 📌 Development Dependencies
 
@@ -587,6 +591,8 @@ The procedure is described [ in the official devcontainer docs under "Sharing Gi
 
 This Project shall be kept in sync with [the CookieCutter it was originally templated from](https://github.com/JonasPammer/cookiecutter-ansible-role) using [cruft](https://github.com/cruft/cruft) (if possible) or manual alteration (if needed) to the best extend possible.
 
+Official Example Usage of `cruft update`
+
 > <figure>
 > <img src="https://raw.githubusercontent.com/cruft/cruft/master/art/example_update.gif" alt="Official Example Usage of `cruft update`" />
 > </figure>
@@ -635,9 +641,9 @@ A casual contributor does not have to worry about following [*the spec*](https:/
 
 Contributions are made to this repo via Issues and Pull Requests (PRs). A few general guidelines that cover both:
 
--   Search for existing Issues and PRs before creating your own.
+- Search for existing Issues and PRs before creating your own.
 
--   If you’ve never contributed before, see [ the first timer’s guide on Auth0’s blog](https://auth0.com/blog/a-first-timers-guide-to-an-open-source-project/) for resources and tips on how to get started.
+- If you’ve never contributed before, see [ the first timer’s guide on Auth0’s blog](https://auth0.com/blog/a-first-timers-guide-to-an-open-source-project/) for resources and tips on how to get started.
 
 ### Issues
 
@@ -649,15 +655,15 @@ If you find an Issue that addresses the problem you’re having, please add your
 
 PRs to this Project are always welcome and can be a quick way to get your fix or improvement slated for the next release. [In general](https://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests/), PRs should:
 
--   Only fix/add the functionality in question **OR** address wide-spread whitespace/style issues, not both.
+- Only fix/add the functionality in question **OR** address wide-spread whitespace/style issues, not both.
 
--   Add unit or integration tests for fixed or changed functionality (if a test suite already exists).
+- Add unit or integration tests for fixed or changed functionality (if a test suite already exists).
 
--   **Address a single concern**
+- **Address a single concern**
 
--   **Include documentation** in the repo
+- **Include documentation** in the repo
 
--   Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
+- Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
 
 For changes that address core functionality or would require breaking changes (e.g. a major release), it’s best to open an Issue to discuss your proposal first.
 
@@ -685,7 +691,7 @@ Note that this Project adheres to Semantic Versioning. Please report any acciden
 
 # ⚖️ License
 
-**[LICENSE](LICENSE)**
+[LICENSE](LICENSE)
 
     MIT License
 
