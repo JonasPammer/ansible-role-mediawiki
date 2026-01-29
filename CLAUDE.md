@@ -290,15 +290,15 @@ Extensions are organized as a dictionary of lists:
 
 ```yaml
 mediawiki_extensions:
-  category_name:  # Arbitrary category for organization
+  category_name: # Arbitrary category for organization
     - name: "ExtensionName"
-      load: true  # Used in LocalSettings.php template
-      gather_type: "git"  # or "composer"
+      load: true # Used in LocalSettings.php template
+      gather_type: "git" # or "composer"
 
       # Git-specific options
       git_url: "https://github.com/..."
       git_version: "REL1_39"
-      git_run_composer_install: true  # or "always"
+      git_run_composer_install: true # or "always"
 
       # Composer-specific options
       composer_name: "mediawiki/extension-name"
