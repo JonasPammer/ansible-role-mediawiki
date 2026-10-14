@@ -91,7 +91,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
 
       - name: upload docs directory for job transfer
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: docs
           path: ./docs
@@ -113,7 +113,7 @@ jobs:
     steps:
       ### Deploy README.adoc
       - name: download docs directory from previous job
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           name: docs
           path: ./docs
